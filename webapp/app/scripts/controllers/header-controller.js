@@ -264,7 +264,7 @@ angular.module('rippleDemonstrator')
       };
 
       if ($scope.currentUser.role === 'idcr') {
-        $scope.title = 'IDCR POC';
+        $scope.title = 'Irish Care Record';
       }
       if ($scope.currentUser.role === 'phr') {
         $scope.title = 'PHR';
