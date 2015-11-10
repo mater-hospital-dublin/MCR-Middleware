@@ -13,14 +13,14 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.haematology.bleeds.store;
+package org.rippleosi.patient.haematology.jointscores.store;
 
 import org.apache.camel.Body;
 import org.apache.camel.Header;
 import org.rippleosi.common.exception.ConfigurationException;
-import org.rippleosi.patient.haematology.bleeds.model.BleedDetails;
+import org.rippleosi.patient.haematology.jointscores.model.JointScoreDetails;
 
-public class NotConfiguredBleedsStore implements BleedsStore {
+public class NotConfiguredJointScoresStore implements JointScoresStore {
 
     @Override
     public String getSource() {
@@ -33,12 +33,12 @@ public class NotConfiguredBleedsStore implements BleedsStore {
     }
 
     @Override
-    public void update(@Header("patientId") String patientId, @Body BleedDetails bleed) {
-        throw ConfigurationException.unimplementedTransaction(BleedsStore.class);
+    public void update(@Header("patientId") String patientId, @Body JointScoreDetails jointScore) {
+        throw ConfigurationException.unimplementedTransaction(JointScoresStore.class);
     }
 
     @Override
-    public void create(@Header("patientId") String patientId, @Body BleedDetails bleed) {
-        throw ConfigurationException.unimplementedTransaction(BleedsStore.class);
+    public void create(@Header("patientId") String patientId, @Body JointScoreDetails jointScore) {
+        throw ConfigurationException.unimplementedTransaction(JointScoresStore.class);
     }
 }

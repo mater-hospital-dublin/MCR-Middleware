@@ -13,18 +13,11 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.haematology.bleeds.store;
+package org.rippleosi.patient.haematology.jointscores.store;
 
-import org.apache.camel.Body;
-import org.apache.camel.Header;
-import org.apache.camel.InOnly;
-import org.rippleosi.common.repo.Repository;
-import org.rippleosi.patient.haematology.bleeds.model.BleedDetails;
+import org.rippleosi.common.repo.RepositoryFactory;
 
-@InOnly
-public interface BleedsStore extends Repository {
+@FunctionalInterface
+public interface JointScoresStoreFactory extends RepositoryFactory<JointScoresStore> {
 
-    void create(@Header("patientId") String patientId, @Body BleedDetails bleed);
-
-    void update(@Header("patientId") String patientId, @Body BleedDetails bleed);
 }
