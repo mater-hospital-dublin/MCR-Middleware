@@ -15,6 +15,8 @@
  */
 package org.rippleosi.patient.vitals.rest;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.rippleosi.patient.vitals.model.VitalsDetails;
@@ -44,18 +46,43 @@ public class VitalsController {
     @RequestMapping(method = RequestMethod.GET)
     public List<VitalsSummary> findAllAllergies(@PathVariable("patientId") String patientId,
                                                 @RequestParam(required = false) String source) {
-        VitalsSearch search = vitalsSearchFactory.select(source);
+//        VitalsSearch search = vitalsSearchFactory.select(source);
+//
+//        return search.findAllAllergies(patientId);
+        VitalsSummary summary1 = new VitalsSummary();
+        summary1.setSource("openehr");
+        summary1.setSourceId("12345");
+        summary1.setHeight("165.0");
+        summary1.setWeight("58.4");
 
-        return search.findAllAllergies(patientId);
+        VitalsSummary summary2 = new VitalsSummary();
+        summary1.setSource("openehr");
+        summary1.setSourceId("67891");
+        summary1.setHeight("165.0");
+        summary1.setWeight("62.8");
+
+        List<VitalsSummary> summaries = new ArrayList<>();
+        summaries.add(summary1);
+        summaries.add(summary2);
+
+        return summaries;
     }
 
     @RequestMapping(value = "/{vitalsId}", method = RequestMethod.GET)
     public VitalsDetails findAllergy(@PathVariable("patientId") String patientId,
                                      @PathVariable("vitalsId") String vitalsId,
                                      @RequestParam(required = false) String source) {
-        VitalsSearch search = vitalsSearchFactory.select(source);
-
-        return search.findAllergy(patientId, vitalsId);
+//        VitalsSearch search = vitalsSearchFactory.select(source);
+//
+//        return search.findAllergy(patientId, vitalsId);
+        VitalsDetails details = new VitalsDetails();
+        details.setSource("openehr");
+        details.setSourceId("12345");
+        details.setHeight("165.0");
+        details.setWeight("58.4");
+        details.setHeightRecorded(new Date());
+        details.setWeightRecorded(new Date());
+        return details;
     }
 
     @RequestMapping(method = RequestMethod.POST)
