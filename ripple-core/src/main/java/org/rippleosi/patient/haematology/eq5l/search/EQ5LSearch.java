@@ -13,18 +13,17 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.haematology.bleeds.store;
+package org.rippleosi.patient.haematology.eq5l.search;
 
-import org.apache.camel.Body;
-import org.apache.camel.Header;
-import org.apache.camel.InOnly;
+import java.util.List;
+
 import org.rippleosi.common.repo.Repository;
-import org.rippleosi.patient.haematology.bleeds.model.BleedDetails;
+import org.rippleosi.patient.haematology.eq5l.model.EQ5LDetails;
+import org.rippleosi.patient.haematology.eq5l.model.EQ5LSummary;
 
-@InOnly
-public interface BleedsStore extends Repository {
+public interface EQ5LSearch extends Repository {
 
-    void create(@Header("patientId") String patientId, @Body BleedDetails bleed);
+    List<EQ5LSummary> findAllEQ5Ls(String patientId);
 
-    void update(@Header("patientId") String patientId, @Body BleedDetails bleed);
+    EQ5LDetails findEQ5L(String patientId, String eq5lId);
 }

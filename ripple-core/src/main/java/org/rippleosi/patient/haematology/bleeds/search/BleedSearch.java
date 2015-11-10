@@ -13,21 +13,17 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.haematology.bleeds.store;
+package org.rippleosi.patient.haematology.bleeds.search;
 
-import org.rippleosi.common.repo.AbstractRepositoryFactory;
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
-public class DefaultBleedsStoreFactory extends AbstractRepositoryFactory<BleedsStore> implements BleedsStoreFactory {
+import org.rippleosi.common.repo.Repository;
+import org.rippleosi.patient.haematology.bleeds.model.BleedDetails;
+import org.rippleosi.patient.haematology.bleeds.model.BleedSummary;
 
-    @Override
-    protected BleedsStore defaultRepository() {
-        return new NotConfiguredBleedsStore();
-    }
+public interface BleedSearch extends Repository {
 
-    @Override
-    protected Class<BleedsStore> repositoryClass() {
-        return BleedsStore.class;
-    }
+    List<BleedSummary> findAllBleeds(String patientId);
+
+    BleedDetails findBleed(String patientId, String bleedId);
 }

@@ -21,8 +21,8 @@ import java.util.List;
 
 import org.rippleosi.patient.haematology.jointscores.model.JointScoreDetails;
 import org.rippleosi.patient.haematology.jointscores.model.JointScoreSummary;
-import org.rippleosi.patient.haematology.jointscores.search.JointScoresSearchFactory;
-import org.rippleosi.patient.haematology.jointscores.store.JointScoresStoreFactory;
+import org.rippleosi.patient.haematology.jointscores.search.JointScoreSearchFactory;
+import org.rippleosi.patient.haematology.jointscores.store.JointScoreStoreFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,10 +36,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class JointScoresController {
 
     @Autowired
-    private JointScoresSearchFactory jointScoresSearchFactory;
+    private JointScoreSearchFactory jointScoreSearchFactory;
 
     @Autowired
-    private JointScoresStoreFactory jointScoresStoreFactory;
+    private JointScoreStoreFactory jointScoreStoreFactory;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<JointScoreSummary> findAllJointScores(@PathVariable("patientId") String patientId,
@@ -91,17 +91,17 @@ public class JointScoresController {
     public void createJointScore(@PathVariable("patientId") String patientId,
                                  @RequestParam(required = false) String source,
                                  @RequestBody JointScoreDetails jointScore) {
-//        BleedsStore store = bleedsStoreFactory.select(source);
+//        JointScoreStore store = jointScoreStoreFactory.select(source);
 //
-//        store.create(patientId, bleed);
+//        store.create(patientId, jointScore);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public void updateJointScore(@PathVariable("patientId") String patientId,
                                  @RequestParam(required = false) String source,
                                  @RequestBody JointScoreDetails jointScore) {
-//        BleedsStore store = bleedsStoreFactory.select(source);
+//        JointScoreStore store = jointScoreStoreFactory.select(source);
 //
-//        store.update(patientId, bleed);
+//        store.update(patientId, jointScore);
     }
 }

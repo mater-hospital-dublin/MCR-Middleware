@@ -21,10 +21,8 @@ import java.util.List;
 
 import org.rippleosi.patient.haematology.bleeds.model.BleedDetails;
 import org.rippleosi.patient.haematology.bleeds.model.BleedSummary;
-import org.rippleosi.patient.haematology.bleeds.search.BleedsSearch;
-import org.rippleosi.patient.haematology.bleeds.search.BleedsSearchFactory;
-import org.rippleosi.patient.haematology.bleeds.store.BleedsStore;
-import org.rippleosi.patient.haematology.bleeds.store.BleedsStoreFactory;
+import org.rippleosi.patient.haematology.bleeds.search.BleedSearchFactory;
+import org.rippleosi.patient.haematology.bleeds.store.BleedStoreFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,10 +36,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class BleedsController {
 
     @Autowired
-    private BleedsSearchFactory bleedsSearchFactory;
+    private BleedSearchFactory bleedSearchFactory;
 
     @Autowired
-    private BleedsStoreFactory bleedsStoreFactory;
+    private BleedStoreFactory bleedStoreFactory;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<BleedSummary> findAllBleeds(@PathVariable("patientId") String patientId,
@@ -91,7 +89,7 @@ public class BleedsController {
     public void createBleed(@PathVariable("patientId") String patientId,
                             @RequestParam(required = false) String source,
                             @RequestBody BleedDetails bleed) {
-//        BleedsStore store = bleedsStoreFactory.select(source);
+//        BleedStore store = bleedStoreFactory.select(source);
 //
 //        store.create(patientId, bleed);
     }
@@ -100,7 +98,7 @@ public class BleedsController {
     public void updateBleed(@PathVariable("patientId") String patientId,
                             @RequestParam(required = false) String source,
                             @RequestBody BleedDetails bleed) {
-//        BleedsStore store = bleedsStoreFactory.select(source);
+//        BleedStore store = bleedStoreFactory.select(source);
 //
 //        store.update(patientId, bleed);
     }

@@ -13,11 +13,11 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.haematology.jointscores.store;
+package org.rippleosi.patient.haematology.eq5l.search;
 
 import org.rippleosi.common.repo.RepositoryFactory;
 
 @FunctionalInterface
-public interface JointScoresStoreFactory extends RepositoryFactory<JointScoresStore> {
+public interface EQ5LSearchFactory extends RepositoryFactory<EQ5LSearch> {
 
 }

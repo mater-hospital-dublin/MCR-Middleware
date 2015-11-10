@@ -13,15 +13,14 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.haematology.jointscores.search;
+package org.rippleosi.patient.haematology.bleeds.store;
 
-import java.util.List;
-
+import org.apache.camel.Body;
+import org.apache.camel.Header;
 import org.rippleosi.common.exception.ConfigurationException;
-import org.rippleosi.patient.haematology.jointscores.model.JointScoreDetails;
-import org.rippleosi.patient.haematology.jointscores.model.JointScoreSummary;
+import org.rippleosi.patient.haematology.bleeds.model.BleedDetails;
 
-public class NotConfiguredJointScoresSearch implements JointScoresSearch {
+public class NotConfiguredBleedStore implements BleedStore {
 
     @Override
     public String getSource() {
@@ -34,12 +33,12 @@ public class NotConfiguredJointScoresSearch implements JointScoresSearch {
     }
 
     @Override
-    public List<JointScoreSummary> findAllJointScores(String patientId) {
-        throw ConfigurationException.unimplementedTransaction(JointScoresSearch.class);
+    public void update(@Header("patientId") String patientId, @Body BleedDetails bleed) {
+        throw ConfigurationException.unimplementedTransaction(BleedStore.class);
     }
 
     @Override
-    public JointScoreDetails findJointScore(String patientId, String jointScoreId) {
-        throw ConfigurationException.unimplementedTransaction(JointScoresSearch.class);
+    public void create(@Header("patientId") String patientId, @Body BleedDetails bleed) {
+        throw ConfigurationException.unimplementedTransaction(BleedStore.class);
     }
 }

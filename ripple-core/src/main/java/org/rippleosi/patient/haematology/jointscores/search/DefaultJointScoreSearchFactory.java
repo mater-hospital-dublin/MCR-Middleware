@@ -15,15 +15,20 @@
  */
 package org.rippleosi.patient.haematology.jointscores.search;
 
-import java.util.List;
+import org.rippleosi.common.repo.AbstractRepositoryFactory;
+import org.springframework.stereotype.Service;
 
-import org.rippleosi.common.repo.Repository;
-import org.rippleosi.patient.haematology.jointscores.model.JointScoreDetails;
-import org.rippleosi.patient.haematology.jointscores.model.JointScoreSummary;
+@Service
+public class DefaultJointScoreSearchFactory
+    extends AbstractRepositoryFactory<JointScoreSearch> implements JointScoreSearchFactory {
 
-public interface JointScoresSearch extends Repository {
+    @Override
+    protected JointScoreSearch defaultRepository() {
+        return new NotConfiguredJointScoreSearch();
+    }
 
-    List<JointScoreSummary> findAllJointScores(String patientId);
-
-    JointScoreDetails findJointScore(String patientId, String jointScoreId);
+    @Override
+    protected Class<JointScoreSearch> repositoryClass() {
+        return JointScoreSearch.class;
+    }
 }

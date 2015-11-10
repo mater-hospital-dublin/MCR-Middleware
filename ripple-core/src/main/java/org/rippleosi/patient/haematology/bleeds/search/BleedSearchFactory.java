@@ -15,15 +15,9 @@
  */
 package org.rippleosi.patient.haematology.bleeds.search;
 
-import java.util.List;
+import org.rippleosi.common.repo.RepositoryFactory;
 
-import org.rippleosi.common.repo.Repository;
-import org.rippleosi.patient.haematology.bleeds.model.BleedDetails;
-import org.rippleosi.patient.haematology.bleeds.model.BleedSummary;
+@FunctionalInterface
+public interface BleedSearchFactory extends RepositoryFactory<BleedSearch> {
 
-public interface BleedsSearch extends Repository {
-
-    List<BleedSummary> findAllBleeds(String patientId);
-
-    BleedDetails findBleed(String patientId, String bleedId);
 }

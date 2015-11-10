@@ -13,11 +13,22 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.haematology.bleeds.store;
+package org.rippleosi.patient.haematology.eq5l.search;
 
-import org.rippleosi.common.repo.RepositoryFactory;
+import org.rippleosi.common.repo.AbstractRepositoryFactory;
+import org.springframework.stereotype.Service;
 
-@FunctionalInterface
-public interface BleedsStoreFactory extends RepositoryFactory<BleedsStore> {
+@Service
+public class DefaultEQ5LSearchFactory
+    extends AbstractRepositoryFactory<EQ5LSearch> implements EQ5LSearchFactory {
 
+    @Override
+    protected EQ5LSearch defaultRepository() {
+        return new NotConfiguredEQ5LSearch();
+    }
+
+    @Override
+    protected Class<EQ5LSearch> repositoryClass() {
+        return EQ5LSearch.class;
+    }
 }

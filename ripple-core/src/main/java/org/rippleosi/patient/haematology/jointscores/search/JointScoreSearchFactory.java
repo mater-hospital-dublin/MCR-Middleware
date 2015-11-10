@@ -13,22 +13,11 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.haematology.jointscores.store;
+package org.rippleosi.patient.haematology.jointscores.search;
 
-import org.rippleosi.common.repo.AbstractRepositoryFactory;
-import org.springframework.stereotype.Service;
+import org.rippleosi.common.repo.RepositoryFactory;
 
-@Service
-public class DefaultJointScoresStoreFactory
-    extends AbstractRepositoryFactory<JointScoresStore> implements JointScoresStoreFactory {
+@FunctionalInterface
+public interface JointScoreSearchFactory extends RepositoryFactory<JointScoreSearch> {
 
-    @Override
-    protected JointScoresStore defaultRepository() {
-        return new NotConfiguredJointScoresStore();
-    }
-
-    @Override
-    protected Class<JointScoresStore> repositoryClass() {
-        return JointScoresStore.class;
-    }
 }

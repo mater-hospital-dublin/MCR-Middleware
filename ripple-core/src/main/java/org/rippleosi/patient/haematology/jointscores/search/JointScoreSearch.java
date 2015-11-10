@@ -13,11 +13,17 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.haematology.bleeds.search;
+package org.rippleosi.patient.haematology.jointscores.search;
 
-import org.rippleosi.common.repo.RepositoryFactory;
+import java.util.List;
 
-@FunctionalInterface
-public interface BleedsSearchFactory extends RepositoryFactory<BleedsSearch> {
+import org.rippleosi.common.repo.Repository;
+import org.rippleosi.patient.haematology.jointscores.model.JointScoreDetails;
+import org.rippleosi.patient.haematology.jointscores.model.JointScoreSummary;
 
+public interface JointScoreSearch extends Repository {
+
+    List<JointScoreSummary> findAllJointScores(String patientId);
+
+    JointScoreDetails findJointScore(String patientId, String jointScoreId);
 }

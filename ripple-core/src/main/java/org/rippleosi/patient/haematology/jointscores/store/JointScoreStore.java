@@ -13,22 +13,18 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.haematology.jointscores.search;
+package org.rippleosi.patient.haematology.jointscores.store;
 
-import org.rippleosi.common.repo.AbstractRepositoryFactory;
-import org.springframework.stereotype.Service;
+import org.apache.camel.Body;
+import org.apache.camel.Header;
+import org.apache.camel.InOnly;
+import org.rippleosi.common.repo.Repository;
+import org.rippleosi.patient.haematology.jointscores.model.JointScoreDetails;
 
-@Service
-public class DefaultJointScoresSearchFactory
-    extends AbstractRepositoryFactory<JointScoresSearch> implements JointScoresSearchFactory {
+@InOnly
+public interface JointScoreStore extends Repository {
 
-    @Override
-    protected JointScoresSearch defaultRepository() {
-        return new NotConfiguredJointScoresSearch();
-    }
+    void create(@Header("patientId") String patientId, @Body JointScoreDetails jointScore);
 
-    @Override
-    protected Class<JointScoresSearch> repositoryClass() {
-        return JointScoresSearch.class;
-    }
+    void update(@Header("patientId") String patientId, @Body JointScoreDetails jointScore);
 }
