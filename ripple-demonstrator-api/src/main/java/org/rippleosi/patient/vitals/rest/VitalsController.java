@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.rippleosi.patient.vitals.model.VitalsDetails;
+import org.rippleosi.patient.vitals.search.VitalsSearch;
 import org.rippleosi.patient.vitals.search.VitalsSearchFactory;
 import org.rippleosi.patient.vitals.store.VitalsStore;
 import org.rippleosi.patient.vitals.store.VitalsStoreFactory;
@@ -42,11 +43,11 @@ public class VitalsController {
     private VitalsStoreFactory vitalsStoreFactory;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<VitalsDetails> findAllAllergies(@PathVariable("patientId") String patientId,
-                                                @RequestParam(required = false) String source) {
+    public List<VitalsDetails> findAllVitals(@PathVariable("patientId") String patientId,
+                                             @RequestParam(required = false) String source) {
 //        VitalsSearch search = vitalsSearchFactory.select(source);
 //
-//        return search.findAllAllergies(patientId);
+//        return search.findAllVitals(patientId);
         VitalsDetails details1 = new VitalsDetails();
         details1.setSource("openehr");
         details1.setSourceId("12345");
@@ -71,12 +72,12 @@ public class VitalsController {
     }
 
     @RequestMapping(value = "/{vitalsId}", method = RequestMethod.GET)
-    public VitalsDetails findAllergy(@PathVariable("patientId") String patientId,
-                                     @PathVariable("vitalsId") String vitalsId,
-                                     @RequestParam(required = false) String source) {
+    public VitalsDetails findVital(@PathVariable("patientId") String patientId,
+                                   @PathVariable("vitalsId") String vitalsId,
+                                   @RequestParam(required = false) String source) {
 //        VitalsSearch search = vitalsSearchFactory.select(source);
 //
-//        return search.findAllergy(patientId, vitalsId);
+//        return search.findVital(patientId, vitalsId);
         VitalsDetails details = new VitalsDetails();
         details.setSource("openehr");
         details.setSourceId("12345");
@@ -88,20 +89,20 @@ public class VitalsController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void createAllergy(@PathVariable("patientId") String patientId,
-                              @RequestParam(required = false) String source,
-                              @RequestBody VitalsDetails vitals) {
-        VitalsStore store = vitalsStoreFactory.select(source);
-
-        store.create(patientId, vitals);
+    public void createVital(@PathVariable("patientId") String patientId,
+                            @RequestParam(required = false) String source,
+                            @RequestBody VitalsDetails vitals) {
+//        VitalsStore store = vitalsStoreFactory.select(source);
+//
+//        store.create(patientId, vitals);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateAllergy(@PathVariable("patientId") String patientId,
-                              @RequestParam(required = false) String source,
-                              @RequestBody VitalsDetails vitals) {
-        VitalsStore store = vitalsStoreFactory.select(source);
-
-        store.update(patientId, vitals);
+    public void updateVital(@PathVariable("patientId") String patientId,
+                            @RequestParam(required = false) String source,
+                            @RequestBody VitalsDetails vitals) {
+//        VitalsStore store = vitalsStoreFactory.select(source);
+//
+//        store.update(patientId, vitals);
     }
 }
