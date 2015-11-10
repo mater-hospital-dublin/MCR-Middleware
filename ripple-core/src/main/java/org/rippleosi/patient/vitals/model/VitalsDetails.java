@@ -21,9 +21,9 @@ public class VitalsDetails {
 
     private String sourceId;
     private String source;
-    private String height;
+    private Double height;
     private Date heightRecorded;
-    private String weight;
+    private Double weight;
     private Date weightRecorded;
 
     public String getSourceId() {
@@ -42,11 +42,11 @@ public class VitalsDetails {
         this.source = source;
     }
 
-    public String getHeight() {
+    public Double getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(Double height) {
         this.height = height;
     }
 
@@ -58,11 +58,11 @@ public class VitalsDetails {
         this.heightRecorded = heightRecorded;
     }
 
-    public String getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 

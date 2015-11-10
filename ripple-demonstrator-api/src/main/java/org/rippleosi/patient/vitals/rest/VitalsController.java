@@ -50,16 +50,16 @@ public class VitalsController {
         VitalsDetails details1 = new VitalsDetails();
         details1.setSource("openehr");
         details1.setSourceId("12345");
-        details1.setHeight("165.0");
-        details1.setWeight("58.4");
+        details1.setHeight(165.0);
+        details1.setWeight(58.4);
         details1.setHeightRecorded(new Date());
         details1.setWeightRecorded(new Date());
 
         VitalsDetails details2 = new VitalsDetails();
         details2.setSource("openehr");
         details2.setSourceId("67891");
-        details2.setHeight("165.0");
-        details2.setWeight("62.8");
+        details2.setHeight(165.0);
+        details2.setWeight(62.8);
         details2.setHeightRecorded(new Date());
         details2.setWeightRecorded(new Date());
 
@@ -80,8 +80,8 @@ public class VitalsController {
         VitalsDetails details = new VitalsDetails();
         details.setSource("openehr");
         details.setSourceId("12345");
-        details.setHeight("165.0");
-        details.setWeight("58.4");
+        details.setHeight(165.0);
+        details.setWeight(58.4);
         details.setHeightRecorded(new Date());
         details.setWeightRecorded(new Date());
         return details;
