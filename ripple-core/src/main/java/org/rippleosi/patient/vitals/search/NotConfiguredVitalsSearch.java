@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.rippleosi.common.exception.ConfigurationException;
 import org.rippleosi.patient.vitals.model.VitalsDetails;
-import org.rippleosi.patient.vitals.model.VitalsSummary;
 
 public class NotConfiguredVitalsSearch implements VitalsSearch {
 
@@ -34,7 +33,7 @@ public class NotConfiguredVitalsSearch implements VitalsSearch {
     }
 
     @Override
-    public List<VitalsSummary> findAllAllergies(String patientId) {
+    public List<VitalsDetails> findAllAllergies(String patientId) {
         throw ConfigurationException.unimplementedTransaction(VitalsSearch.class);
     }
 

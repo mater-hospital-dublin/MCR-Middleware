@@ -20,8 +20,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.rippleosi.patient.vitals.model.VitalsDetails;
-import org.rippleosi.patient.vitals.model.VitalsSummary;
-import org.rippleosi.patient.vitals.search.VitalsSearch;
 import org.rippleosi.patient.vitals.search.VitalsSearchFactory;
 import org.rippleosi.patient.vitals.store.VitalsStore;
 import org.rippleosi.patient.vitals.store.VitalsStoreFactory;
@@ -44,28 +42,32 @@ public class VitalsController {
     private VitalsStoreFactory vitalsStoreFactory;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<VitalsSummary> findAllAllergies(@PathVariable("patientId") String patientId,
+    public List<VitalsDetails> findAllAllergies(@PathVariable("patientId") String patientId,
                                                 @RequestParam(required = false) String source) {
 //        VitalsSearch search = vitalsSearchFactory.select(source);
 //
 //        return search.findAllAllergies(patientId);
-        VitalsSummary summary1 = new VitalsSummary();
-        summary1.setSource("openehr");
-        summary1.setSourceId("12345");
-        summary1.setHeight("165.0");
-        summary1.setWeight("58.4");
+        VitalsDetails details1 = new VitalsDetails();
+        details1.setSource("openehr");
+        details1.setSourceId("12345");
+        details1.setHeight("165.0");
+        details1.setWeight("58.4");
+        details1.setHeightRecorded(new Date());
+        details1.setWeightRecorded(new Date());
 
-        VitalsSummary summary2 = new VitalsSummary();
-        summary1.setSource("openehr");
-        summary1.setSourceId("67891");
-        summary1.setHeight("165.0");
-        summary1.setWeight("62.8");
+        VitalsDetails details2 = new VitalsDetails();
+        details2.setSource("openehr");
+        details2.setSourceId("67891");
+        details2.setHeight("165.0");
+        details2.setWeight("62.8");
+        details2.setHeightRecorded(new Date());
+        details2.setWeightRecorded(new Date());
 
-        List<VitalsSummary> summaries = new ArrayList<>();
-        summaries.add(summary1);
-        summaries.add(summary2);
+        List<VitalsDetails> details = new ArrayList<>();
+        details.add(details1);
+        details.add(details2);
 
-        return summaries;
+        return details;
     }
 
     @RequestMapping(value = "/{vitalsId}", method = RequestMethod.GET)
