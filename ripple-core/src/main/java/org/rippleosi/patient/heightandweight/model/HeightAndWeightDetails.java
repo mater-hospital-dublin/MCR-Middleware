@@ -13,11 +13,11 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.vitals.model;
+package org.rippleosi.patient.heightandweight.model;
 
 import java.util.Date;
 
-public class VitalsDetails {
+public class HeightAndWeightDetails {
 
     private String sourceId;
     private String source;

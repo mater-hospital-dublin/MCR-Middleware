@@ -13,14 +13,14 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.vitals.search;
+package org.rippleosi.patient.heightandweight.search;
 
 import java.util.List;
 
 import org.rippleosi.common.exception.ConfigurationException;
-import org.rippleosi.patient.vitals.model.VitalsDetails;
+import org.rippleosi.patient.heightandweight.model.HeightAndWeightDetails;
 
-public class NotConfiguredVitalsSearch implements VitalsSearch {
+public class NotConfiguredHeightAndWeightSearch implements HeightAndWeightSearch {
 
     @Override
     public String getSource() {
@@ -33,12 +33,12 @@ public class NotConfiguredVitalsSearch implements VitalsSearch {
     }
 
     @Override
-    public List<VitalsDetails> findAllVitals(String patientId) {
-        throw ConfigurationException.unimplementedTransaction(VitalsSearch.class);
+    public List<HeightAndWeightDetails> findAllHeightsAndWeights(String patientId) {
+        throw ConfigurationException.unimplementedTransaction(HeightAndWeightSearch.class);
     }
 
     @Override
-    public VitalsDetails findVital(String patientId, String vitalsId) {
-        throw ConfigurationException.unimplementedTransaction(VitalsSearch.class);
+    public HeightAndWeightDetails findHeightAndWeight(String patientId, String heightAndWeightId) {
+        throw ConfigurationException.unimplementedTransaction(HeightAndWeightSearch.class);
     }
 }

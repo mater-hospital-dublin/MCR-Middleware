@@ -13,14 +13,14 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.vitals.store;
+package org.rippleosi.patient.heightandweight.store;
 
 import org.apache.camel.Body;
 import org.apache.camel.Header;
 import org.rippleosi.common.exception.ConfigurationException;
-import org.rippleosi.patient.vitals.model.VitalsDetails;
+import org.rippleosi.patient.heightandweight.model.HeightAndWeightDetails;
 
-public class NotConfiguredVitalsStore implements VitalsStore {
+public class NotConfiguredHeightAndWeightStore implements HeightAndWeightStore {
 
     @Override
     public String getSource() {
@@ -33,12 +33,12 @@ public class NotConfiguredVitalsStore implements VitalsStore {
     }
 
     @Override
-    public void create(@Header("patientId") String patientId, @Body VitalsDetails vitals) {
-        throw ConfigurationException.unimplementedTransaction(VitalsStore.class);
+    public void create(@Header("patientId") String patientId, @Body HeightAndWeightDetails heightAndWeight) {
+        throw ConfigurationException.unimplementedTransaction(HeightAndWeightStore.class);
     }
 
     @Override
-    public void update(@Header("patientId") String patientId, @Body VitalsDetails vitals) {
-        throw ConfigurationException.unimplementedTransaction(VitalsStore.class);
+    public void update(@Header("patientId") String patientId, @Body HeightAndWeightDetails heightAndWeight) {
+        throw ConfigurationException.unimplementedTransaction(HeightAndWeightStore.class);
     }
 }
