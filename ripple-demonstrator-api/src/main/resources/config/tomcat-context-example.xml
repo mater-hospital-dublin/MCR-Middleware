@@ -6,18 +6,19 @@
     <Environment name="c4hOpenEHR.password"         type="java.lang.String" override="false" value="InDeCoMP"/>
     <Environment name="c4hOpenEHR.subjectNamespace" type="java.lang.String" override="false" value="uk.nhs.nhs_number"/>
 
-    <Environment name="c4hOpenEHR.allergiesTemplate"    type="java.lang.String" override="false" value="LCR Allergies List.v0"/>
-    <Environment name="c4hOpenEHR.contactsTemplate"     type="java.lang.String" override="false" value="LCR Relevant Contacts List.v0"/>
-    <Environment name="c4hOpenEHR.endOfLifeTemplate"    type="java.lang.String" override="false" value="IDCR - End of Life Patient Preferences.v0"/>
-    <Environment name="c4hOpenEHR.labOrderTemplate"     type="java.lang.String" override="false" value="IDCR - Laboratory Order.v0"/>
-    <Environment name="c4hOpenEHR.mdtReportTemplate"    type="java.lang.String" override="false" value="IDCR - Generic MDT Output Report.v0"/>
-    <Environment name="c4hOpenEHR.medicationTemplate"   type="java.lang.String" override="false" value="LCR Medication List.v0"/>
-    <Environment name="c4hOpenEHR.problemTemplate"      type="java.lang.String" override="false" value="LCR Problem List.v0"/>
-    <Environment name="c4hOpenEHR.proceduresTemplate"   type="java.lang.String" override="false" value="IDCR Procedures List.v0"/>
-    <Environment name="c4hOpenEHR.transferTemplate"     type="java.lang.String" override="false" value="LCR Handover Summary Report.v0"/>
-    <Environment name="c4hOpenEHR.cancermdtTemplate"    type="java.lang.String" override="false" value="IDCR - Cancer MDT Output Report.v0"/>
-    <Environment name="c4hOpenEHR.referralsTemplate"    type="java.lang.String" override="false" value="RIPPLE - Minimal referral.v0"/>
-    <Environment name="c4hOpenEHR.appointmentsTemplate" type="java.lang.String" override="false" value="RIPPLE - Minimal referral.v0"/>
+    <Environment name="c4hOpenEHR.allergiesTemplate"        type="java.lang.String" override="false" value="LCR Allergies List.v0"/>
+    <Environment name="c4hOpenEHR.contactsTemplate"         type="java.lang.String" override="false" value="LCR Relevant Contacts List.v0"/>
+    <Environment name="c4hOpenEHR.endOfLifeTemplate"        type="java.lang.String" override="false" value="IDCR - End of Life Patient Preferences.v0"/>
+    <Environment name="c4hOpenEHR.labOrderTemplate"         type="java.lang.String" override="false" value="IDCR - Laboratory Order.v0"/>
+    <Environment name="c4hOpenEHR.mdtReportTemplate"        type="java.lang.String" override="false" value="IDCR - Generic MDT Output Report.v0"/>
+    <Environment name="c4hOpenEHR.medicationTemplate"       type="java.lang.String" override="false" value="LCR Medication List.v0"/>
+    <Environment name="c4hOpenEHR.problemTemplate"          type="java.lang.String" override="false" value="LCR Problem List.v0"/>
+    <Environment name="c4hOpenEHR.proceduresTemplate"       type="java.lang.String" override="false" value="IDCR Procedures List.v0"/>
+    <Environment name="c4hOpenEHR.transferTemplate"         type="java.lang.String" override="false" value="LCR Handover Summary Report.v0"/>
+    <Environment name="c4hOpenEHR.cancermdtTemplate"        type="java.lang.String" override="false" value="IDCR - Cancer MDT Output Report.v0"/>
+    <Environment name="c4hOpenEHR.referralsTemplate"        type="java.lang.String" override="false" value="RIPPLE - Minimal referral.v0"/>
+    <Environment name="c4hOpenEHR.appointmentsTemplate"     type="java.lang.String" override="false" value="RIPPLE - Minimal referral.v0"/>
+    <Environment name="c4hOpenEHR.heightAndWeightTemplate"  type="java.lang.String" override="false" value="NCHCD - Patient visit - Height_weight.v0"/>
 
     <Environment name="legacy.datasource.vendor"    type="java.lang.String"  override="false" value="mysql"/>
     <Environment name="legacy.datasource.host"      type="java.lang.String"  override="false" value="127.0.0.1"/>
