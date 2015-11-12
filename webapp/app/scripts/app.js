@@ -282,6 +282,25 @@ angular
         }
       })
 
+      .state('bleeds', {
+        url: '/patients/{patientId:int}/bleeds?reportType&searchString&queryType',
+        views: {
+          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
+          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
+          main: { templateUrl: 'views/bleeds/bleed-list.html', controller: 'BleedsListCtrl' }
+        }
+      })
+
+      .state('bleeds-detail', {
+        url: '/patients/{patientId:int}/bleeds/{bleedIndex}?filter&page&reportType&searchString&queryType',
+        views: {
+          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
+          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
+          main: { templateUrl: 'views/bleeds/bleed-list.html', controller: 'BleedsListCtrl' },
+          detail: { templateUrl: 'views/bleeds/bleed-detail.html', controller: 'BleedsDetailCtrl' }
+        }
+      })
+
        .state('results', {
         url: '/patients/{patientId:int}/results?reportType&searchString&queryType',
         views: {
