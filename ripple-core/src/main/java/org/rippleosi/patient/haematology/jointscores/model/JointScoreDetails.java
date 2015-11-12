@@ -15,9 +15,10 @@
  */
 package org.rippleosi.patient.haematology.jointscores.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class JointScoreDetails {
+public class JointScoreDetails implements Serializable {
 
     private String source;
     private String sourceId;

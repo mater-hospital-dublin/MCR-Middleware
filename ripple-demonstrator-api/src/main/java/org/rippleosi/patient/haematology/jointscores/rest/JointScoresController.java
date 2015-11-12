@@ -15,13 +15,13 @@
  */
 package org.rippleosi.patient.haematology.jointscores.rest;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.rippleosi.patient.haematology.jointscores.model.JointScoreDetails;
 import org.rippleosi.patient.haematology.jointscores.model.JointScoreSummary;
+import org.rippleosi.patient.haematology.jointscores.search.JointScoreSearch;
 import org.rippleosi.patient.haematology.jointscores.search.JointScoreSearchFactory;
+import org.rippleosi.patient.haematology.jointscores.store.JointScoreStore;
 import org.rippleosi.patient.haematology.jointscores.store.JointScoreStoreFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,64 +44,35 @@ public class JointScoresController {
     @RequestMapping(method = RequestMethod.GET)
     public List<JointScoreSummary> findAllJointScores(@PathVariable("patientId") String patientId,
                                                       @RequestParam(required = false) String source) {
-//        JointScoresSearch search = jointScoresSearchFactory.select(source);
-//
-//        return search.findAllJointScores(patientId);
-        JointScoreSummary summary1 = new JointScoreSummary();
-        summary1.setSource("openehr");
-        summary1.setSourceId("25841351");
-        summary1.setTotalScore(15);
-        summary1.setDateRecorded(new Date());
+        JointScoreSearch search = jointScoreSearchFactory.select(source);
 
-        JointScoreSummary summary2 = new JointScoreSummary();
-        summary2.setSource("openehr");
-        summary2.setSourceId("784151");
-        summary2.setTotalScore(10);
-        summary2.setDateRecorded(new Date());
-
-        List<JointScoreSummary> summaries = new ArrayList<>();
-        summaries.add(summary1);
-        summaries.add(summary2);
-
-        return summaries;
+        return search.findAllJointScores(patientId);
     }
 
     @RequestMapping(value = "/{jointScoreId}", method = RequestMethod.GET)
     public JointScoreDetails findJointScore(@PathVariable("patientId") String patientId,
                                             @PathVariable("jointScoreId") String jointScoreId,
                                             @RequestParam(required = false) String source) {
-//        JointScoresSearch search = jointScoresSearchFactory.select(source);
-//
-//        return search.findJointScore(patientId, jointScoreId);
-        JointScoreDetails details = new JointScoreDetails();
-        details.setSource("openehr");
-        details.setSourceId("25841351");
-        details.setDateRecorded(new Date());
-        details.setLeftKnee(3);
-        details.setRightKnee(2);
-        details.setLeftElbow(0);
-        details.setRightElbow(0);
-        details.setLeftAnkle(7);
-        details.setRightAnkle(3);
-        details.setTotalScore(15);
-        return details;
+        JointScoreSearch search = jointScoreSearchFactory.select(source);
+
+        return search.findJointScore(patientId, jointScoreId);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public void createJointScore(@PathVariable("patientId") String patientId,
                                  @RequestParam(required = false) String source,
                                  @RequestBody JointScoreDetails jointScore) {
-//        JointScoreStore store = jointScoreStoreFactory.select(source);
-//
-//        store.create(patientId, jointScore);
+        JointScoreStore store = jointScoreStoreFactory.select(source);
+
+        store.create(patientId, jointScore);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public void updateJointScore(@PathVariable("patientId") String patientId,
                                  @RequestParam(required = false) String source,
                                  @RequestBody JointScoreDetails jointScore) {
-//        JointScoreStore store = jointScoreStoreFactory.select(source);
-//
-//        store.update(patientId, jointScore);
+        JointScoreStore store = jointScoreStoreFactory.select(source);
+
+        store.update(patientId, jointScore);
     }
 }
