@@ -15,13 +15,13 @@
  */
 package org.rippleosi.patient.haematology.bleeds.rest;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.rippleosi.patient.haematology.bleeds.model.BleedDetails;
 import org.rippleosi.patient.haematology.bleeds.model.BleedSummary;
+import org.rippleosi.patient.haematology.bleeds.search.BleedSearch;
 import org.rippleosi.patient.haematology.bleeds.search.BleedSearchFactory;
+import org.rippleosi.patient.haematology.bleeds.store.BleedStore;
 import org.rippleosi.patient.haematology.bleeds.store.BleedStoreFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,62 +44,35 @@ public class BleedsController {
     @RequestMapping(method = RequestMethod.GET)
     public List<BleedSummary> findAllBleeds(@PathVariable("patientId") String patientId,
                                             @RequestParam(required = false) String source) {
-//        BleedsSearch search = bleedsSearchFactory.select(source);
-//
-//        return search.findAllBleeds(patientId);
-        BleedSummary summary1 = new BleedSummary();
-        summary1.setSource("openehr");
-        summary1.setSourceId("98461341");
-        summary1.setDateRecorded(new Date());
-        summary1.setSite("Nose");
+        BleedSearch search = bleedSearchFactory.select(source);
 
-        BleedSummary summary2 = new BleedSummary();
-        summary2.setSource("openehr");
-        summary2.setSourceId("8641448");
-        summary2.setDateRecorded(new Date());
-        summary2.setSite("Knee");
-
-        List<BleedSummary> summaries = new ArrayList<>();
-        summaries.add(summary1);
-        summaries.add(summary2);
-
-        return summaries;
+        return search.findAllBleeds(patientId);
     }
 
     @RequestMapping(value = "/{bleedId}", method = RequestMethod.GET)
     public BleedDetails findBleed(@PathVariable("patientId") String patientId,
                                   @PathVariable("bleedId") String bleedId,
                                   @RequestParam(required = false) String source) {
-//        BleedsSearch search = bleedsSearchFactory.select(source);
-//
-//        return search.findBleed(patientId, bleedId);
-        BleedDetails details = new BleedDetails();
-        details.setSource("openehr");
-        details.setSourceId("98461341");
-        details.setDateRecorded(new Date());
-        details.setCause("Spontaneous");
-        details.setType("Mucosal");
-        details.setSite("Nose");
-        details.setPain(0);
-        details.setSeverity("Moderate");
-        return details;
+        BleedSearch search = bleedSearchFactory.select(source);
+
+        return search.findBleed(patientId, bleedId);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public void createBleed(@PathVariable("patientId") String patientId,
                             @RequestParam(required = false) String source,
                             @RequestBody BleedDetails bleed) {
-//        BleedStore store = bleedStoreFactory.select(source);
-//
-//        store.create(patientId, bleed);
+        BleedStore store = bleedStoreFactory.select(source);
+
+        store.create(patientId, bleed);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public void updateBleed(@PathVariable("patientId") String patientId,
                             @RequestParam(required = false) String source,
                             @RequestBody BleedDetails bleed) {
-//        BleedStore store = bleedStoreFactory.select(source);
-//
-//        store.update(patientId, bleed);
+        BleedStore store = bleedStoreFactory.select(source);
+
+        store.update(patientId, bleed);
     }
 }

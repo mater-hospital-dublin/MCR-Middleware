@@ -15,9 +15,10 @@
  */
 package org.rippleosi.patient.haematology.bleeds.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class BleedDetails {
+public class BleedDetails implements Serializable {
 
     private String source;
     private String sourceId;
@@ -25,7 +26,7 @@ public class BleedDetails {
     private String cause;
     private String type;
     private String site;
-    private Integer pain;
+    private Double pain;
     private String severity;
 
     public String getSource() {
@@ -76,11 +77,11 @@ public class BleedDetails {
         this.site = site;
     }
 
-    public Integer getPain() {
+    public Double getPain() {
         return pain;
     }
 
-    public void setPain(Integer pain) {
+    public void setPain(Double pain) {
         this.pain = pain;
     }
 

@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~   Copyright 2015 Ripple OSI
+  ~
+  ~      Licensed under the Apache License, Version 2.0 (the "License");
+  ~      you may not use this file except in compliance with the License.
+  ~      You may obtain a copy of the License at
+  ~
+  ~          http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~      Unless required by applicable law or agreed to in writing, software
+  ~      distributed under the License is distributed on an "AS IS" BASIS,
+  ~      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~      See the License for the specific language governing permissions and
+  ~      limitations under the License.
+  -->
 <Context path="" reloadable="true">
 
     <Environment name="c4hOpenEHR.address"          type="java.lang.String" override="false" value="https://ehrscape.code-4-health.org/rest/v1/"/>
@@ -19,6 +34,7 @@
     <Environment name="c4hOpenEHR.referralsTemplate"        type="java.lang.String" override="false" value="RIPPLE - Minimal referral.v0"/>
     <Environment name="c4hOpenEHR.appointmentsTemplate"     type="java.lang.String" override="false" value="RIPPLE - Minimal referral.v0"/>
     <Environment name="c4hOpenEHR.heightAndWeightTemplate"  type="java.lang.String" override="false" value="NCHCD - Patient visit - Height_weight.v0"/>
+    <Environment name="c4hOpenEHR.bleedTemplate"            type="java.lang.String" override="false" value="NCHCD - Patient event report.v0"/>
 
     <Environment name="legacy.datasource.vendor"    type="java.lang.String"  override="false" value="mysql"/>
     <Environment name="legacy.datasource.host"      type="java.lang.String"  override="false" value="127.0.0.1"/>
@@ -28,6 +44,6 @@
     <Environment name="legacy.datasource.password"  type="java.lang.String"  override="false" value="answer99q"/>
     <Environment name="legacy.datasource.showSql"   type="java.lang.Boolean" override="false" value="false"/>
 
-    <Environment name="vista.address"               type="java.lang.String" override="false" value="https://46.101.0.93:8000/ec2/vista/"/>
+    <Environment name="vista.address"               type="java.lang.String"  override="false" value="https://46.101.0.93:8000/ec2/vista/"/>
 
 </Context>
