@@ -58,11 +58,13 @@ angular.module('rippleDemonstrator')
       case 'mdt':
         toState = 'cancerMdt';
         break;
+<<<<<<< HEAD
       case 'bleeds':
         toState = 'bleeds';
-        break;
-       case 'JointScore':
+=======
+      case 'JointScore':
         toState = 'jointScore';
+>>>>>>> Joint Scores complete
         break;
       }
       $state.go(toState, requestHeader);

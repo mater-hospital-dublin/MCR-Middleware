@@ -90,8 +90,11 @@
   <script src="scripts/services/result.js"></script>
   <script src="scripts/services/order.js"></script>
   <script src="scripts/services/report.js"></script>
+<<<<<<< HEAD
   <script src="scripts/services/bleed.js"></script>
+=======
   <script src="scripts/services/joint-scores.js"></script>
+>>>>>>> Joint Scores complete
   <script src="scripts/models/patient.js"></script>
   <script src="scripts/controllers/patients-list.js"></script>
   <script src="scripts/controllers/header-controller.js"></script>

@@ -92,6 +92,25 @@ angular
         }
       })
 
+      .state('jointScore', {
+        url: '/patients/{patientId:int}/jointscore?reportType&searchString&queryType',
+        views: {
+          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
+          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
+          main: { templateUrl: 'views/joint-score/joint-score-list.html', controller: 'JointScoreListCtrl' }
+        }
+      })
+
+      .state('jointScore-detail', {
+        url: '/patients/{patientId:int}/jointscore/{jointScoreIndex}?filter&page&reportType&searchString&queryType&source',
+        views: {
+          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
+          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
+          main: { templateUrl: 'views/joint-score/joint-score-list.html', controller: 'JointScoreListCtrl' },
+          detail: { templateUrl: 'views/joint-score/joint-score-detail.html', controller: 'JointScoreDetailCtrl' }
+        }
+      })
+
       .state('allergies-detail', {
         url: '/patients/{patientId:int}/allergies/{allergyIndex}?filter&page&reportType&searchString&queryType',
         views: {

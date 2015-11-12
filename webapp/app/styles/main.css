@@ -2128,3 +2128,7 @@ div#age-chart div.morris-hover.morris-default-style {
   color: black;
   text-decoration: underline;
 }
+
+input#author.form-control.joint-score-author.input-sm{
+  width:160%;
+}
