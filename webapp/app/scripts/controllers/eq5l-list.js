@@ -85,7 +85,7 @@ angular.module('rippleDemonstrator')
           mobility: eq5l.mobility,
           pain: eq5l.pain,
           selfCare: eq5l.selfCare,
-          usualActivities: eq5l.unsualActivities,
+          usualActivities: eq5l.usualActivities,
           lifeScore: eq5l.lifeScore,
           source: 'openehr',
           sourceId: ''

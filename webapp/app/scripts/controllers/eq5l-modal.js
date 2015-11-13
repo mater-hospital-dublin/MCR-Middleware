@@ -9,41 +9,46 @@ angular.module('rippleDemonstrator')
     $scope.modal = modal;
 
     $scope.MobilityOptions = [
-      'I have no problems',
-      'trembling',
-      'Slight weakness',
+      'I have no problems in walking about',
+      'I have slight problems in walking about',
+      'I have moderate problems in walking about',
+      'I have severe problems in walking about',
+      'I am unable to walk about',
       ];
 
     $scope.SelfCareOptions = [
-      'I have no problems',
-      'I have slight problems',
-      'I am unable to care for myself'
+      'I have no problems washing or dressing myself',
+      'I have slight problems washing or dressing myself',
+      'I have moderate problems washing or dressing myself',
+      'I have severe problems washing or dressing myself',
+      'I am unable to wash or dress myself'
       ];
 
     $scope.ActivitiesOptions = [
-      'I have no problems',
-      'I am unable',
-      'I have slight problem with activities',
-      'I am unable to carry out any activities'
+      'I have no problems doing my usual activities',
+      'I have slight problems doing my usual activities',
+      'I have moderate problems doing my usual activities',
+      'I have severe problems doing my usual activities',
+      'I am unable to do my usual activities'
       ];
 
     $scope.PainOptions = [
-      'I have no pain',
-      'I have no discomfort',
-      'I have no discomfort or pain',
-      'I have mild pain',
-      'I have mild discomfort',
-      'I am under intense pain'
+      'I have no pain or discomfort',
+      'I have slight pain or discomfort',
+      'I have moderate pain or discomfort',
+      'I have severe pain or discomfort',
+      'I have extreme pain or discomfort'
       ];
 
     $scope.AnxietyOptions = [
-      'I have no anxiety',
-      'I have slight problem with anxiety',
-      'I have a minor problem with anxiety',
-      'I have severe anxiety'
+      'I am not anxious or depressed',
+      'I am slightly anxious or depressed',
+      'I am moderately anxious or depressed',
+      'I am severely anxious or depressed',
+      'I am extremely anxious or depressed'
       ];
 
-    if (modal.title === 'Edit Joint Score') {
+    if (modal.title === 'Edit Eq5l') {
       $scope.eq5l.dateRecorded = new Date($scope.eq5l.dateRecorded).toISOString().slice(0, 10);
     } else {
       $scope.eq5l.dateRecorded = new Date().toISOString().slice(0, 10);

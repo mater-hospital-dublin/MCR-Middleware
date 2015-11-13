@@ -30,9 +30,11 @@
               <div class="input-group">
                 <select class="form-control input-sm" id="mobility" name="mobility" ng-model="eq5l.mobility" required>
                   <option value="">-- Mobility --</option>
-                  <option>I have no problems</option>
-                  <option>trembling</option>
-                  <option>Slight weakness</option>
+                  <option>I have no problems doing my usual activities in walking about</option>
+                  <option>I have slight problems in walking about</option>
+                  <option>I have moderate problems in walking about</option>
+                  <option>I have severe problems in walking about</option>
+                  <option>I am unable to walk about</option>
                 </select>
               </div>
               <span class="help-block animate-fade" ng-show="formSubmitted && eq5lForm.mobility.$error.required">You must enter a value.</span>
@@ -48,9 +50,11 @@
               <div class="input-group">
                 <select class="form-control input-sm" id="selfCare" name="selfCare" ng-model="eq5l.selfCare" required>
                   <option value="">-- Self Care --</option>
-                  <option>I have no problems</option>
-                  <option>I have slight problems</option>
-                  <option>I am unable to care for myself</option>
+                  <option>I have no problems washing or dressing myself</option>
+                  <option>I have slight problems washing or dressing myself</option>
+                  <option>I have moderate problems washing or dressing myself</option>
+                  <option>I have severe problems washing or dressing myself</option>
+                  <option>I am unable to wash or dress myself</option>
                 </select>
               </div>
               <span class="help-block animate-fade" ng-show="formSubmitted && eq5lForm.selfCare.$error.required">You must enter a value.</span>
@@ -60,19 +64,20 @@
       </div>
       <div class="row">
         <div class="col-md-offset-2 col-md-10">
-          <div class="form-group" ng-class="{'has-error': (formSubmitted || eq5lForm.unsualActivities.$dirty) && eq5lForm.unsualActivities.$invalid, 'has-success': eq5lForm.unsualActivities.$valid && eq5lForm.unsualActivities.$dirty}">
-            <label for="unsualActivities" class="control-label col-md-3">Unsual Activities</label>
+          <div class="form-group" ng-class="{'has-error': (formSubmitted || eq5lForm.usualActivities.$dirty) && eq5lForm.usualActivities.$invalid, 'has-success': eq5lForm.usualActivities.$valid && eq5lForm.usualActivities.$dirty}">
+            <label for="unsualActivities" class="control-label col-md-3">Usual Activities</label>
             <div class="col-md-9">
               <div class="input-group">
-                <select class="form-control input-sm" id="unsualActivities" name="unsualActivities" ng-model="eq5l.unsualActivities" required>
-                  <option value="">-- Unsual Activities --</option>
-                  <option>I have no problems</option>
-                  <option>I am unable</option>
-                  <option>I have slight problem with activities</option>
-                  <option>I am unable to carry out any activities</option>
+                <select class="form-control input-sm" id="usualActivities" name="usualActivities" ng-model="eq5l.usualActivities" required>
+                  <option value="">-- Usual Activities --</option>
+                  <option>I have no problems doing my usual activities</option>
+                  <option>I have slight problems doing my usual activitiese</option>
+                  <option>I have moderate problems doing my usual activities</option>
+                  <option>I have severe problems doing my usual activities</option>
+                  <option>I am unable to do my usual activities</option>
                 </select>
               </div>
-              <span class="help-block animate-fade" ng-show="formSubmitted && eq5lForm.unsualActivities.$error.required">You must enter a value.</span>
+              <span class="help-block animate-fade" ng-show="formSubmitted && eq5lForm.usualActivities.$error.required">You must enter a value.</span>
             </div>
           </div>
         </div>
@@ -85,12 +90,12 @@
               <div class="input-group">
                 <select class="form-control input-sm" id="pain" name="pain" ng-model="eq5l.pain" required>
                   <option value="">-- Pain --</option>
-                  <option>I have no pain</option>
-                  <option>I have no discomfort</option>
-                  <option>I have no discomfort or pain</option>
+                  <option>I have no pain or discomfort</option>
+                  <option>I have slight pain or discomfort</option>
+                  <option>I have moderate pain or discomfort</option>
                   <option>I have mild pain</option>
-                  <option>I have mild discomfort</option>
-                  <option>I am under intense pain</option>
+                  <option>I have severe pain or discomfort</option>
+                  <option>I have extreme pain or discomfort</option>
                 </select>
               </div>
               <span class="help-block animate-fade" ng-show="formSubmitted && eq5lForm.pain.$error.required">You must enter a value.</span>
@@ -106,10 +111,11 @@
               <div class="input-group">
                 <select class="form-control input-sm" id="anxiety" name="anxiety" ng-model="eq5l.anxiety" required>
                   <option value="">-- Anxiety --</option>
-                  <option>I have no anxiety</option>
-                  <option>I have slight problem with anxiety</option>
-                  <option>I have a minor problem with anxiety</option>
-                  <option>I have severe anxiety</option>
+                  <option>I am not anxious or depressed</option>
+                  <option>I am slightly anxious or depressed</option>
+                  <option>I am moderately anxious or depressed</option>
+                  <option>I am severely anxious or depressed</option>
+                  <option>I am extremely anxious or depressed</option>
                 </select>
               </div>
               <span class="help-block animate-fade" ng-show="formSubmitted && eq5lForm.anxiety.$error.required">You must enter a value.</span>
