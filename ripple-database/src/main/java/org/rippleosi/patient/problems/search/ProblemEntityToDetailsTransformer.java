@@ -13,27 +13,27 @@
  *      See the License for the specific language governing permissions and
  *      limitations under the License.
  */
-package org.rippleosi.patient.problems.search.search;
+package org.rippleosi.patient.problems.search;
 
 import org.apache.commons.collections4.Transformer;
 import org.rippleosi.patient.problems.model.ProblemDetails;
-import org.rippleosi.patient.problems.search.model.VistaProblem;
+import org.rippleosi.patient.problems.model.ProblemEntity;
 
-public class VistaProblemToDetailTransformer implements Transformer<VistaProblem, ProblemDetails> {
+public class ProblemEntityToDetailsTransformer implements Transformer<ProblemEntity, ProblemDetails> {
 
     @Override
-    public ProblemDetails transform(VistaProblem input) {
+    public ProblemDetails transform(ProblemEntity entity) {
         ProblemDetails details = new ProblemDetails();
 
-        details.setSource("vista");
-        details.setSourceId(input.getUid());
-        details.setProblem(input.getIcdName());
-        details.setDateOfOnset(input.getOnset());
-        details.setDescription(input.getProblemText());
-        details.setTerminology(input.getIcdName());
-        details.setTerminologyCode(input.getIcdCode());
-        details.setAuthor(input.getProviderName());
-        details.setDateCreated(input.getEntered());
+        details.setSourceId(String.valueOf(entity.getId()));
+        details.setSource("ClinTech");
+        details.setProblem(entity.getProblem());
+        details.setDescription(entity.getDescription());
+        details.setTerminology(entity.getTerminology());
+        details.setTerminologyCode(entity.getCode());
+        details.setDateOfOnset(entity.getDateOfOnset());
+        details.setAuthor(entity.getAuthor());
+        details.setDateCreated(entity.getDateCreated());
 
         return details;
     }

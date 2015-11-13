@@ -28,7 +28,7 @@ public class ProblemDetails implements Serializable {
     private Date dateOfOnset;
     private String description;
     private String terminology;
-    private String code;
+    private String terminologyCode;
     private String author;
     private Date dateCreated;
 
@@ -80,12 +80,12 @@ public class ProblemDetails implements Serializable {
         this.terminology = terminology;
     }
 
-    public String getCode() {
-        return code;
+    public String getTerminologyCode() {
+        return terminologyCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setTerminologyCode(String terminologyCode) {
+        this.terminologyCode = terminologyCode;
     }
 
     public String getAuthor() {

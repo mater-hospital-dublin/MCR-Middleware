@@ -147,6 +147,9 @@ public class PatientEntityToDetailsTransformer implements Transformer<PatientEnt
             ProblemSearch vistaSearch = problemSearchFactory.select("vista");
             problems.addAll(vistaSearch.findProblemHeadlines("17"));
 
+            ProblemSearch legacySearch = problemSearchFactory.select("ClinTech");
+            problems.addAll(legacySearch.findProblemHeadlines(patientId));
+
             return CollectionUtils.collect(problems, new ProblemTransformer(), new ArrayList<>());
         } catch (DataNotFoundException ignore) {
             return Collections.emptyList();

@@ -95,6 +95,7 @@ public class PatientEntityToDetailsTransformerTest {
         when(mockMedicationSearchFactory.select(null)).thenReturn(mockMedicationSearch);
         when(mockProblemSearchFactory.select(null)).thenReturn(mockProblemSearch);
         when(mockProblemSearchFactory.select("vista")).thenReturn(mockProblemSearch);
+        when(mockProblemSearchFactory.select("ClinTech")).thenReturn(mockProblemSearch);
         when(mockTransferSearchFactory.select(null)).thenReturn(mockTransferSearch);
     }
 

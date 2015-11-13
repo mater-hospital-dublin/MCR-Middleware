@@ -108,6 +108,19 @@ CREATE TABLE poc_legacy.problem_headlines (
   FOREIGN KEY   (transfer_id)  REFERENCES  poc_legacy.transfers_of_care(id)
 );
 
+CREATE TABLE poc_legacy.problems (
+  id                BIGINT        NOT NULL    AUTO_INCREMENT,
+  patient_id        VARCHAR(30)   NOT NULL,
+  problem           VARCHAR(256)  NULL,
+  date_of_onset     DATE          NULL,
+  description       VARCHAR(200)  NULL,
+  terminology       VARCHAR(30)   NULL,
+  terminology_code  VARCHAR(30)   NULL,
+  author            VARCHAR(60)   NULL,
+  date_created      DATE          NULL,
+  PRIMARY KEY       (id)
+);
+
 /* Delete the answer user (grant all to workaround MySQL not supporting 'IF EXISTS') */
 GRANT ALL ON poc_legacy.* TO 'answer' IDENTIFIED BY 'answer99q';
 DROP USER 'answer';

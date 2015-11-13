@@ -37,7 +37,7 @@ public class ProblemDetailsTransformer implements Transformer<Map<String, Object
         problem.setSourceId(MapUtils.getString(input, "uid"));
         problem.setProblem(MapUtils.getString(input, "problem"));
         problem.setDateOfOnset(dateOfOnset != null ? dateOfOnset : dateTimeOfOnset);
-        problem.setCode(MapUtils.getString(input, "problem_code"));
+        problem.setTerminologyCode(MapUtils.getString(input, "problem_code"));
         problem.setTerminology(MapUtils.getString(input, "problem_terminology"));
         problem.setDescription(MapUtils.getString(input, "description"));
         problem.setAuthor(MapUtils.getString(input, "author"));

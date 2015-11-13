@@ -71,8 +71,8 @@ public class OpenEHRProblemStore extends AbstractOpenEhrService implements Probl
         String author = problem.getAuthor();
         content.put("ctx/composer_name", author != null ? author : "Dr Tony Shannon");
 
-        if (StringUtils.isBlank(problem.getCode())) {
-            problem.setCode("00001");
+        if (StringUtils.isBlank(problem.getTerminologyCode())) {
+            problem.setTerminologyCode("00001");
         }
 
         if (StringUtils.isBlank(problem.getTerminology())) {
@@ -83,7 +83,7 @@ public class OpenEHRProblemStore extends AbstractOpenEhrService implements Probl
 
         content.put(PROBLEM_PREFIX + "/problem_diagnosis|value", problem.getProblem());
         content.put(PROBLEM_PREFIX + "/clinical_description", problem.getDescription());
-        content.put(PROBLEM_PREFIX + "/problem_diagnosis|code", problem.getCode());
+        content.put(PROBLEM_PREFIX + "/problem_diagnosis|code", problem.getTerminologyCode());
         content.put(PROBLEM_PREFIX + "/problem_diagnosis|terminology", problem.getTerminology());
         content.put(PROBLEM_PREFIX + "/date_time_of_onset", dateOfOnset);
 

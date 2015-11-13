@@ -101,17 +101,6 @@ VALUE
   (96,    'Mrs',  'Plato',      'White',      '193-6144 Euismod Street',            'Kinross',            'Limerick',     'LK',     '070 7594 8865',    '1978-06-14',  'Male',   9999999095,  241843,       3,             96),
   (97,    'Mrs',  'Jacob',      'Glass',      'Ap #270-3024 A, St.',                'Jedburgh',           'Limerick',     'LK',     '07977 658224',     '1954-02-04',  'Female', 9999999096,  841867,       4,             97),
   (98,    'Mrs',  'Clio',       'Cooke',      'P.O. Box 624, 2873 Faucibus Ave',    'Folkestone',         'Limerick',     'LK',     '0800 719 4863',    '1941-03-23',  'Female', 9999999097,  845135,       4,             98),
-  (99,    'Mrs',  'Aiko',       'Haney',      '323-4504 Tempus Av.',                'Bedford',            'Limerick',     'LK',     '0500 772606',      '1992-11-09',  'Female', 9999999098,  864177,       4,             99),
-  (100,   'Mrs',  'Marcia',     'Hicks',      'Ap #545-9425 Donec St.',             'Tiverton',           'Limerick',     'LK',     '(020) 1301 9581',  '1954-07-29',  'Female', 9999999099,  841514,       5,             100),
-  (101,   'Mr',   'Dante',      'Roth',       'P.O. Box 416, 1038 Nullam Street',   'Laurencekirk',       'Limerick',     'LK',     '076 2031 1395',    '1962-05-03',  'Male',   9999999100,  848351,       1,             101),
-  (102,   'Mrs',  'Zephr',      'Mccarthy',   '390-7981 Lorem Rd.',                 'Clackmannan',        'Sligo',        'SO',     '055 0916 7547',    '1998-03-13',  'Female', 9999999101,  325441,       2,             102),
-  (103,   'Mr',   'Cassidy',    'Wood',       'Ap #166-824 Risus. Ave',             'Tewkesbury',         'Sligo',        'SO',     '(016977) 8525',    '1950-06-25',  'Female', 9999999102,  954201,       4,             103),
-  (104,   'Mrs',  'Cooper',     'Irwin',      'Ap #378-7520 Erat, Rd.',             'Halkirk',            'Sligo',        'SO',     '0816 939 6772',    '1970-02-19',  'Male',   9999999103,  695214,       3,             104),
-  (105,   'Mrs',  'Gage',       'Meadows',    'P.O. Box 896, 4253 Eleifend St.',    'Tongue',             'Sligo',        'SO',     '0890 902 2134',    '1995-11-18',  'Male',   9999999104,  841003,       3,             105),
-  (106,   'Mr',   'Shoshana',   'Hewitt',     '1986 Integer Road',                  'Northampton',        'Sligo',        'SO',     '0809 641 0596',    '1936-11-04',  'Female', 9999999105,  874133,       5,             106),
-  (107,   'Mr',   'Sade',       'Bowman',     'Ap #163-4448 Nunc. Rd.',             'Bracknell',          'Sligo',        'SO',     '0800 423784',      '1978-06-14',  'Male',   9999999106,  956134,       5,             107),
-  (108,   'Mrs',  'Alexis',     'Greer',      '741-7482 Cras Street',               'Kilsyth',            'Sligo',        'SO',     '(01515) 20694',    '1954-02-04',  'Female', 9999999107,  984513,       5,             108),
-  (109,   'Mr',   'Sarah',      'Fuentes',    'Ap #634-1630 Rutrum Road',           'Annan',              'Sligo',        'SO',     '07624 601614',     '1941-03-23',  'Female', 9999999108,  986413,       4,             109),
-  (110,   'Mrs',  'Daryl',      'Johnston',   '117 Montes, Ave',                    'Worthing',           'Sligo',        'SO',     '0800 465805',      '1992-11-09',  'Female', 9999999109,  948411,       3,             110);
+  (99,    'Mrs',  'Aiko',       'Haney',      '323-4504 Tempus Av.',                'Bedford',            'Limerick',     'LK',     '0500 772606',      '1992-11-09',  'Female', 9999999098,  864177,       4,             99);
 
 UNLOCK TABLES;

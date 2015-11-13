@@ -53,6 +53,9 @@ public class ProblemsController {
         ProblemSearch vistaSearch = problemSearchFactory.select("vista");
         problems.addAll(vistaSearch.findAllProblems("17"));
 
+        ProblemSearch legacySearch = problemSearchFactory.select("ClinTech");
+        problems.addAll(legacySearch.findAllProblems(patientId));
+
         return problems;
     }
 
@@ -64,6 +67,9 @@ public class ProblemsController {
 
         ProblemSearch vistaSearch = problemSearchFactory.select("vista");
         problemHeadlines.addAll(vistaSearch.findProblemHeadlines("17"));
+
+        ProblemSearch legacySearch = problemSearchFactory.select("ClinTech");
+        problemHeadlines.addAll(legacySearch.findProblemHeadlines(patientId));
 
         return problemHeadlines;
     }
