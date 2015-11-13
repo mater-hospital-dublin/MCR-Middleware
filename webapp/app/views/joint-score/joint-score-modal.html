@@ -29,7 +29,7 @@
             <label for="leftElbow" class="control-label col-md-2">Left Elbow</label>
             <div class="col-md-3">
               <div class="input-group">
-                <input type="number" class="form-control input-sm" id="leftElbow" min="0" ng-change="updateTotal()" name="leftElbow" ng-model="jointScore.leftElbow" required />
+                <input type="number" class="form-control input-sm" id="leftElbow" init min="0" ng-change="updateTotal()" name="leftElbow" ng-model="jointScore.leftElbow" required />
               </div>
             </div>
             <span class="help-block animate-fade" ng-show="formSubmitted && jointScoreForm.leftElbow.$error.required">You must enter a value.</span>

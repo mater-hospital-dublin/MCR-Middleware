@@ -10,6 +10,12 @@ angular.module('rippleDemonstrator')
 
     if (modal.title === 'Edit Joint Score') {
       $scope.jointScore.dateRecorded = new Date($scope.jointScore.dateRecorded).toISOString().slice(0, 10);
+      if($scope.jointScore.leftElbow === null) $scope.jointScore.leftElbow = 0;
+      if($scope.jointScore.rightElbow === null) $scope.jointScore.rightElbow = 0;
+      if($scope.jointScore.leftKnee === null) $scope.jointScore.leftKnee = 0;
+      if($scope.jointScore.rightKnee === null) $scope.jointScore.rightKnee = 0;
+      if($scope.jointScore.leftAnkle === null) $scope.jointScore.leftAnkle = 0;
+      if($scope.jointScore.rightAnkle === null) $scope.jointScore.rightAnkle = 0;
     } else {
       $scope.jointScore.dateRecorded = new Date().toISOString().slice(0, 10);
       $scope.jointScore.leftElbow = 0;
@@ -30,6 +36,7 @@ angular.module('rippleDemonstrator')
 
     $scope.ok = function (jointScoreForm, jointScore) {
       $scope.formSubmitted = true;
+      jointScore.totalScore =  $scope.totalScore;
 
       if (jointScoreForm.$valid) {
         $modalInstance.close(jointScore);

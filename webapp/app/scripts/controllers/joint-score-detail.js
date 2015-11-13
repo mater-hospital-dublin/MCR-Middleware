@@ -11,6 +11,12 @@ angular.module('rippleDemonstrator')
 
     JointScores.get($stateParams.patientId, $stateParams.jointScoreIndex).then(function (result) {
       $scope.jointScore = result.data;
+      if($scope.jointScore.leftElbow === null) $scope.jointScore.leftElbow = 0;
+      if($scope.jointScore.rightElbow === null) $scope.jointScore.rightElbow = 0;
+      if($scope.jointScore.leftKnee === null) $scope.jointScore.leftKnee = 0;
+      if($scope.jointScore.rightKnee === null) $scope.jointScore.rightKnee = 0;
+      if($scope.jointScore.leftAnkle === null) $scope.jointScore.leftAnkle = 0;
+      if($scope.jointScore.rightAnkle === null) $scope.jointScore.rightAnkle = 0;
       $scope.dateRecorded = moment($scope.jointScore.dateRecorded).format('DD-MMM-YYYY');
       usSpinnerService.stop('jointScoreDetail-spinner');
     });
