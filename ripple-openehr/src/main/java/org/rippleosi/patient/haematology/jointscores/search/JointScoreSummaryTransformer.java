@@ -35,7 +35,7 @@ public class JointScoreSummaryTransformer implements Transformer<Map<String, Obj
 
         jointScore.setSource("openehr");
         jointScore.setSourceId(uid);
-        jointScore.setTotalScore(Integer.valueOf(totalScore));
+        jointScore.setTotalScore(totalScore != null ? Integer.valueOf(totalScore) : 0);
         jointScore.setDateRecorded(DateFormatter.toDate(dateRecorded));
 
         return jointScore;
