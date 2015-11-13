@@ -4,18 +4,18 @@
 <table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
-      <th>Bleed</th>
+      <th>Cause</th>
       <th>Site</th>
-      <th>DateRecorded</th>
+      <th>Date Recorded</th>
       <th>Source</th>
     </tr>
   </thead>
 
   <tbody>
     <tr dir-paginate="bleed in bleeds| filter:query | itemsPerPage: 9 " current-page="currentPage"  ng-click="go('{{bleed.sourceId}}')" ng-class="{info: selected(bleed.sourceId)}">
-      <td>{{ bleed.name }}</td>
+      <td>{{ bleed.cause }}</td>
       <td>{{ bleed.site }}</td>
-      <td>{{ bleed.dateRecorded | date:'yyyy' }}</td>
+      <td>{{ bleed.dateRecorded | date:'dd-MMM-yyyy' }}</td>
       <td>{{ bleed.source }}</td>
     </tr>
 
