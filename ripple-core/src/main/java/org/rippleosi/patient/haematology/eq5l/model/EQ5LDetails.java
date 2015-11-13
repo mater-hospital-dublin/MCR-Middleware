@@ -15,9 +15,10 @@
  */
 package org.rippleosi.patient.haematology.eq5l.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class EQ5LDetails {
+public class EQ5LDetails implements Serializable {
 
     private String source;
     private String sourceId;

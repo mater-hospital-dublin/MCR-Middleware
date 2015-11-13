@@ -36,6 +36,7 @@
     <Environment name="c4hOpenEHR.heightAndWeightTemplate"  type="java.lang.String" override="false" value="NCHCD - Patient visit - Height_weight.v0"/>
     <Environment name="c4hOpenEHR.bleedTemplate"            type="java.lang.String" override="false" value="NCHCD - Patient event report.v0"/>
     <Environment name="c4hOpenEHR.jointScoresTemplate"      type="java.lang.String" override="false" value="NCHCD - Patient visit - Scores.v0"/>
+    <Environment name="c4hOpenEHR.eq5lTemplate"             type="java.lang.String" override="false" value="NCHCD - Patient visit - Scores.v0"/>
 
     <Environment name="legacy.datasource.vendor"    type="java.lang.String"  override="false" value="mysql"/>
     <Environment name="legacy.datasource.host"      type="java.lang.String"  override="false" value="127.0.0.1"/>

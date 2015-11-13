@@ -15,13 +15,13 @@
  */
 package org.rippleosi.patient.haematology.eq5l.rest;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.rippleosi.patient.haematology.eq5l.model.EQ5LDetails;
 import org.rippleosi.patient.haematology.eq5l.model.EQ5LSummary;
+import org.rippleosi.patient.haematology.eq5l.search.EQ5LSearch;
 import org.rippleosi.patient.haematology.eq5l.search.EQ5LSearchFactory;
+import org.rippleosi.patient.haematology.eq5l.store.EQ5LStore;
 import org.rippleosi.patient.haematology.eq5l.store.EQ5LStoreFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,63 +44,35 @@ public class EQ5LController {
     @RequestMapping(method = RequestMethod.GET)
     public List<EQ5LSummary> findAllEQ5Ls(@PathVariable("patientId") String patientId,
                                           @RequestParam(required = false) String source) {
-//        EQ5LSearch search = eq5lSearchFactory.select(source);
-//
-//        return search.findAllEQ5Ls(patientId);
-        EQ5LSummary summary1 = new EQ5LSummary();
-        summary1.setSource("openehr");
-        summary1.setSourceId("9435174");
-        summary1.setLifeScore(15);
-        summary1.setDateRecorded(new Date());
+        EQ5LSearch search = eq5lSearchFactory.select(source);
 
-        EQ5LSummary summary2 = new EQ5LSummary();
-        summary2.setSource("openehr");
-        summary2.setSourceId("62154");
-        summary2.setLifeScore(3);
-        summary2.setDateRecorded(new Date());
-
-        List<EQ5LSummary> summaries = new ArrayList<>();
-        summaries.add(summary1);
-        summaries.add(summary2);
-
-        return summaries;
+        return search.findAllEQ5Ls(patientId);
     }
 
     @RequestMapping(value = "/{eq5lId}", method = RequestMethod.GET)
     public EQ5LDetails findEQ5L(@PathVariable("patientId") String patientId,
                                 @PathVariable("eq5lId") String eq5lId,
                                 @RequestParam(required = false) String source) {
-//        EQ5LSearch search = eq5lSearchFactory.select(source);
-//
-//        return search.findEQ5L(patientId, eq5lId);
-        EQ5LDetails details = new EQ5LDetails();
-        details.setSource("openehr");
-        details.setSourceId("9435174");
-        details.setDateRecorded(new Date());
-        details.setMobility("I have no problems");
-        details.setSelfCare("I have no problems");
-        details.setUsualActivities("I am unable");
-        details.setPain("I have mild pain");
-        details.setAnxiety("I have severe anxiety");
-        details.setLifeScore(15);
-        return details;
+        EQ5LSearch search = eq5lSearchFactory.select(source);
+
+        return search.findEQ5L(patientId, eq5lId);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public void createEQ5L(@PathVariable("patientId") String patientId,
                            @RequestParam(required = false) String source,
                            @RequestBody EQ5LDetails eq5l) {
-//        EQ5LStore store = eq5lStoreFactory.select(source);
-//
-//        store.create(patientId, eq5l);
+        EQ5LStore store = eq5lStoreFactory.select(source);
+
+        store.create(patientId, eq5l);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public void updateEQ5L(@PathVariable("patientId") String patientId,
                            @RequestParam(required = false) String source,
                            @RequestBody EQ5LDetails eq5l) {
-//        EQ5LStore store = eq5lStoreFactory.select(source);
-//
-//        store.update(patientId, eq5l);
+        EQ5LStore store = eq5lStoreFactory.select(source);
+
+        store.update(patientId, eq5l);
     }
 }
