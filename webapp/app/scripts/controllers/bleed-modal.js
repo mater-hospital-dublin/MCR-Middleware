@@ -27,7 +27,6 @@ angular.module('rippleDemonstrator')
     ];
 
     $scope.sites = [
-      'Nose',
       'Left elbow',
       'Right elbow',
       'Left knee',
