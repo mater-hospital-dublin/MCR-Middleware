@@ -3,10 +3,7 @@
 angular.module('rippleDemonstrator')
   .controller('BleedsListCtrl', function ($scope, $location, $stateParams, SearchInput, $modal, $state, usSpinnerService, PatientService, Bleed) {
 
-    $scope.query = {};
-    $scope.queryBy = '$';
     SearchInput.update();
-
 
     $scope.currentPage = 1;
 
@@ -18,16 +15,30 @@ angular.module('rippleDemonstrator')
       $scope.currentPage = $stateParams.page;
     }
 
+    $scope.search = function (row) {
+      return (
+        angular.lowercase(row.cause).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
+        angular.lowercase(row.site).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
+        angular.lowercase(row.dateRecorded).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
+        angular.lowercase(row.source).indexOf(angular.lowercase($scope.query) || '') !== -1
+      );
+    };
+
     PatientService.get($stateParams.patientId).then(function (patient) {
       $scope.patient = patient;
     });
 
     if ($stateParams.filter) {
-      $scope.query.$ = $stateParams.filter;
+      $scope.query = $stateParams.filter;
     }
 
     Bleed.all($stateParams.patientId).then(function (result) {
       $scope.bleeds = result.data;
+
+      for (var i = 0; i < $scope.bleeds.length; i++) {
+        $scope.bleeds[i].dateRecorded = moment($scope.bleeds[i].dateRecorded).format('DD-MMM-YYYY');
+      }
+
       usSpinnerService.stop('patientSummary-spinner');
     });
 
@@ -35,7 +46,7 @@ angular.module('rippleDemonstrator')
       $state.go('bleeds-detail', {
         patientId: $scope.patient.id,
         bleedIndex: id,
-        filter: $scope.query.$,
+        filter: $scope.query,
         page: $scope.currentPage,
         reportType: $stateParams.reportType,
         searchString: $stateParams.searchString,
@@ -69,7 +80,7 @@ angular.module('rippleDemonstrator')
 
       modalInstance.result.then(function (bleed) {
         bleed.dateRecorded = new Date(bleed.dateRecorded);
-        console.log(bleed.source);
+
         var toAdd = {
           sourceId: '',
           cause: bleed.cause,
@@ -85,7 +96,7 @@ angular.module('rippleDemonstrator')
           setTimeout(function () {
             $state.go('bleeds', {
               patientId: $scope.patient.id,
-              filter: $scope.query.$,
+              filter: $scope.query,
               page: $scope.currentPage,
               reportType: $stateParams.reportType,
               searchString: $stateParams.searchString,
