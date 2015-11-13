@@ -45,7 +45,7 @@ angular.module('rippleDemonstrator')
           severity: bleed.severity,
           site: bleed.site,
           type: bleed.type,
-          source: 'openehr'
+          source: bleed.source
         };
 
         Bleed.update($scope.patient.id, toUpdate).then(function () {

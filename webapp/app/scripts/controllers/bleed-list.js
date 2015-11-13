@@ -69,6 +69,7 @@ angular.module('rippleDemonstrator')
 
       modalInstance.result.then(function (bleed) {
         bleed.dateRecorded = new Date(bleed.dateRecorded);
+        console.log(bleed.source);
         var toAdd = {
           sourceId: '',
           cause: bleed.cause,
@@ -77,7 +78,7 @@ angular.module('rippleDemonstrator')
           severity: bleed.severity,
           site: bleed.site,
           type: bleed.type,
-          source: 'openehr'
+          source: bleed.source
         };
 
         Bleed.create($scope.patient.id, toAdd).then(function () {
