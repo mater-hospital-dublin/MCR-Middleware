@@ -92,6 +92,25 @@ angular
         }
       })
 
+      .state('eq5l', {
+        url: '/patients/{patientId:int}/eq5l?reportType&searchString&queryType',
+        views: {
+          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
+          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
+          main: { templateUrl: 'views/eq5l/eq5l-list.html', controller: 'Eq5lListCtrl' }
+        }
+      })
+
+      .state('eq5l-detail', {
+        url: '/patients/{patientId:int}/eq5l/{eq5lIndex}?filter&page&reportType&searchString&queryType&source',
+        views: {
+          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
+          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
+          main: { templateUrl: 'views/eq5l/eq5l-list.html', controller: 'Eq5lListCtrl' },
+          detail: { templateUrl: 'views/eq5l/eq5l-detail.html', controller: 'Eq5lDetailCtrl' }
+        }
+      })
+
       .state('jointScore', {
         url: '/patients/{patientId:int}/jointscore?reportType&searchString&queryType',
         views: {

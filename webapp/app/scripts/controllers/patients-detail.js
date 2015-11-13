@@ -61,8 +61,11 @@ angular.module('rippleDemonstrator')
       case 'bleeds':
         toState = 'bleeds';
         break;
-       case 'JointScore':
+      case 'JointScore':
         toState = 'jointScore';
+        break;
+      case 'eq5l':
+        toState = 'eq5l';
         break;
       }
       $state.go(toState, requestHeader);

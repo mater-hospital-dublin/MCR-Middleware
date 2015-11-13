@@ -126,7 +126,7 @@
             <label for="author" class="control-label col-md-12">Author</label>
             <div class="col-md-12">
               <div class="input-group">
-                <input type="text" value="{{currentUser.email}}" placeholder="{{currentUser.email}}" class="form-control joint-score-author input-sm" id="author" name="author" ng-model="medication.author" disabled />
+                <input type="text" value="{{currentUser.email}}" placeholder="{{currentUser.email}}" class="form-control joint-score-author input-sm" id="author" name="author" ng-model="jointScore.author" disabled />
               </div>
               <span class="help-block animate-fade" ng-show="formSubmitted && jointScoreForm.author.$error.required">You must enter a value.</span>
             </div>

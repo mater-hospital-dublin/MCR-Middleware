@@ -2132,3 +2132,7 @@ div#age-chart div.morris-hover.morris-default-style {
 input#author.form-control.joint-score-author.input-sm{
   width:160%;
 }
+
+.eq5lForm .col-md-9 div.input-group {
+  width: 80%;
+}
