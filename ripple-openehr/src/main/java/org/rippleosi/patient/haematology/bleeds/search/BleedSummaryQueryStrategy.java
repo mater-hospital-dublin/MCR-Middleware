@@ -33,11 +33,13 @@ public class BleedSummaryQueryStrategy extends AbstractListQueryStrategy<BleedSu
     public String getQuery(String namespace, String patientId) {
         return "select a/uid/value as uid, " +
             "a_a/data[at0001|Event Series|]/origin/value as date_recorded, " +
-            "b_a/items[at0151|Body site|]/value/value as site " +
+            "b_a/items[at0151|Body site|]/value/value as site, " +
+            "c_a/items[at0002|Cause of bleed|]/value/value as cause " +
             "from EHR e " +
             "contains COMPOSITION a[openEHR-EHR-COMPOSITION.encounter.v1] " +
             "contains OBSERVATION a_a[openEHR-EHR-OBSERVATION.story.v1] " +
             "contains CLUSTER b_a[openEHR-EHR-CLUSTER.symptom_sign.v1] " +
+            "contains CLUSTER c_a[openEHR-EHR-CLUSTER.bleed_self_assessment.v0] " +
             "where a/name/value='Patient event report' " +
             "and e/ehr_status/subject/external_ref/namespace = '" + namespace + "' " +
             "and e/ehr_status/subject/external_ref/id/value = '" + patientId + "'";

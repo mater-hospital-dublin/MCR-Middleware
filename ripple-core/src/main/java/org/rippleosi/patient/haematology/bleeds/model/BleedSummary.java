@@ -21,6 +21,7 @@ public class BleedSummary {
 
     private String source;
     private String sourceId;
+    private String cause;
     private String site;
     private Date dateRecorded;
 
@@ -38,6 +39,14 @@ public class BleedSummary {
 
     public void setSourceId(String sourceId) {
         this.sourceId = sourceId;
+    }
+
+    public String getCause() {
+        return cause;
+    }
+
+    public void setCause(String cause) {
+        this.cause = cause;
     }
 
     public String getSite() {

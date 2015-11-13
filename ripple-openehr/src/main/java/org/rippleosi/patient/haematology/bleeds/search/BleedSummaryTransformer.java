@@ -28,6 +28,7 @@ public class BleedSummaryTransformer implements Transformer<Map<String, Object>,
     public BleedSummary transform(Map<String, Object> input) {
 
         String uid = MapUtils.getString(input, "uid");
+        String cause = MapUtils.getString(input, "cause");
         String dateRecorded = MapUtils.getString(input, "date_recorded");
         String site = MapUtils.getString(input, "site");
 
@@ -35,6 +36,7 @@ public class BleedSummaryTransformer implements Transformer<Map<String, Object>,
 
         bleed.setSource("openehr");
         bleed.setSourceId(uid);
+        bleed.setCause(cause);
         bleed.setDateRecorded(DateFormatter.toDate(dateRecorded));
         bleed.setSite(site);
 
