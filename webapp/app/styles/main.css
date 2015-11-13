@@ -2063,7 +2063,7 @@ i.fa.cancel-reportType.fa-times {
 }
 
 .allergyForm .row,
-.bleedForm .row,
+.heightAndWeightForm .row,
 .medicationForm .row,
 .diagnosisForm > .row {
   margin-right: 0px;
@@ -2083,6 +2083,7 @@ i.fa.cancel-reportType.fa-times {
 
 .diagnosisForm .input-group,
 .bleedForm .input-group,
+.heightAndWeightForm .input-group,
 .medicationForm .input-group
 {
   width: 100%;

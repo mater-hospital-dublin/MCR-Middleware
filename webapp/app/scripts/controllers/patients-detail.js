@@ -61,6 +61,9 @@ angular.module('rippleDemonstrator')
       case 'bleeds':
         toState = 'bleeds';
         break;
+      case 'heightAndWeights':
+        toState = 'heightAndWeights';
+        break;
       case 'JointScore':
         toState = 'jointScore';
         break;

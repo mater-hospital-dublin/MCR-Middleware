@@ -339,6 +339,25 @@ angular
         }
       })
 
+      .state('heightAndWeights', {
+        url: '/patients/{patientId:int}/heightAndWeights?reportType&searchString&queryType',
+        views: {
+          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
+          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
+          main: { templateUrl: 'views/heightAndWeights/heightAndWeight-list.html', controller: 'HeightAndWeightsListCtrl' }
+        }
+      })
+
+      .state('heightAndWeights-detail', {
+        url: '/patients/{patientId:int}/heightAndWeights/{heightAndWeightIndex}?filter&page&reportType&searchString&queryType',
+        views: {
+          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
+          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
+          main: { templateUrl: 'views/heightAndWeights/heightAndWeight-list.html', controller: 'HeightAndWeightsListCtrl' },
+          detail: { templateUrl: 'views/heightAndWeights/heightAndWeight-detail.html', controller: 'HeightAndWeightsDetailCtrl' }
+        }
+      })
+
        .state('results', {
         url: '/patients/{patientId:int}/results?reportType&searchString&queryType',
         views: {
