@@ -35,8 +35,39 @@ angular.module('rippleDemonstrator')
       usSpinnerService.stop('patientSummary-spinner');
     });
 
-    $scope.go = function (path) {
-      $location.path(path);
+    $scope.go = function (section, sourceId, source) {
+      var requestHeader = {
+        patientId: $stateParams.patientId,
+        reportType: $stateParams.reportType,
+        searchString: $stateParams.searchString,
+        queryType: $stateParams.queryType,
+        source: source,
+      };
+
+      var toState = '';
+      switch (section) {
+      case 'diagnosis':
+        toState = 'diagnoses-detail';
+        requestHeader.diagnosisIndex = sourceId;
+        break;
+      case 'allergy':
+        toState = 'allergies-detail';
+        requestHeader.allergyIndex = sourceId;
+        break;
+      case 'medication':
+        toState = 'medications-detail'
+        requestHeader.medicationIndex = sourceId;
+        break;
+      case 'contact':
+        toState = 'contacts-detail'
+        requestHeader.contactIndex = sourceId;
+        break;
+      case 'transfer':
+        toState = 'transferOfCare-detail'
+        requestHeader.transferOfCareIndex = sourceId;
+        break;
+      }
+      $state.go(toState, requestHeader);
     };
 
     $scope.goToSection = function (section) {

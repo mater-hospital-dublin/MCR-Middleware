@@ -28,7 +28,7 @@
           <tbody>
             <tr ng-repeat="diagnosis in diagnoses" data-target="patient-detail.html">
               <!--data target-->
-              <td ng-click="go('/patients/{{patient.id}}/diagnoses/{{diagnosis.sourceId}}')">{{ diagnosis.text }} <span class="glyphicon glyphicon-chevron-right"></span></td>
+              <td ng-click="go('diagnosis','{{diagnosis.sourceId}}', '{{diagnosis.source}}')">{{ diagnosis.text }}<span class="glyphicon glyphicon-chevron-right"></span></td>
             </tr>
           </tbody>
         </table>
@@ -46,7 +46,7 @@
         <table class="table table-striped clickable">
           <tbody>
             <tr ng-repeat="allergy in allergies">
-              <td ng-click="go('/patients/{{patient.id}}/allergies/{{allergy.sourceId}}')">{{allergy.text}}<span class="glyphicon glyphicon-chevron-right"></span> </td>
+              <td ng-click="go('allergy', '{{allergy.sourceId}}', '{{allergy.source}}')">{{allergy.text}}<span class="glyphicon glyphicon-chevron-right"></span> </td>
             </tr>
           </tbody>
         </table>
@@ -63,7 +63,7 @@
         <table class="table table-striped clickable">
           <tbody>
             <tr ng-repeat="medication in medications">
-              <td ng-click="go('/patients/{{patient.id}}/medications/{{medication.sourceId}}')"> {{ medication.text }}<span class="glyphicon glyphicon-chevron-right"></span></td>
+              <td ng-click="go('medication', '{{medication.sourceId}}', '{{medication.source}}')"> {{ medication.text }}<span class="glyphicon glyphicon-chevron-right"></span></td>
             </tr>
           </tbody>
         </table>
@@ -80,7 +80,7 @@
         <table class="table table-striped clickable">
           <tbody>
             <tr ng-repeat="contact in contacts">
-              <td ng-click="go('/patients/{{patient.id}}/contacts/{{contact.sourceId}}')"> {{ contact.text }} <span class="glyphicon glyphicon-chevron-right"></span></td>
+              <td ng-click="go('contact', '{{contact.sourceId}}', '{{contact.source}}')"> {{ contact.text }} <span class="glyphicon glyphicon-chevron-right"></span></td>
             </tr>
           </tbody>
         </table>
@@ -97,7 +97,7 @@
         <table class="table table-striped clickable">
           <tbody>
             <tr ng-repeat="transfer in transferofCareComposition">
-              <td ng-click="go('/patients/{{patient.id}}/transfer-of-care-detail/{{transfer.sourceId}}')">
+              <td ng-click="go('tranfser', '{{transfer.sourceId}}', {{transfer.source}})">
                 <span class="glyphicon glyphicon-chevron-right"></span> From {{transfer.from}}
                 <br> to {{transfer.to}}
                 <br> {{transfer.dateOfTransfer | date:'dd-MMM-y' }}
