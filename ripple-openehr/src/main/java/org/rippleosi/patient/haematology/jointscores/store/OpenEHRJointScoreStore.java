@@ -76,27 +76,27 @@ public class OpenEHRJointScoreStore extends AbstractOpenEhrService implements Jo
         int i = 0;
 
         if (leftKnee != null && leftKnee > 0) {
-            content = populateJointData(content, i, "Left knee", leftKnee);
+            content = populateJointData(content, i, "Left knee", "at0009", leftKnee);
             i++;
         }
         if (rightKnee != null && rightKnee > 0) {
-            content = populateJointData(content, i, "Right knee", rightKnee);
+            content = populateJointData(content, i, "Right knee", "at0010", rightKnee);
             i++;
         }
         if (leftElbow != null && leftElbow > 0) {
-            content = populateJointData(content, i, "Left elbow", leftElbow);
+            content = populateJointData(content, i, "Left elbow", "at0007", leftElbow);
             i++;
         }
         if (rightElbow != null && rightElbow > 0) {
-            content = populateJointData(content, i, "Right elbow", rightElbow);
+            content = populateJointData(content, i, "Right elbow", "at0008", rightElbow);
             i++;
         }
         if (leftAnkle != null && leftAnkle > 0) {
-            content = populateJointData(content, i, "Left ankle", leftAnkle);
+            content = populateJointData(content, i, "Left ankle", "at0011", leftAnkle);
             i++;
         }
         if (rightAnkle != null && rightAnkle > 0) {
-            content = populateJointData(content, i, "Right ankle", rightAnkle);
+            content = populateJointData(content, i, "Right ankle", "at0012", rightAnkle);
         }
 
         content.put(JOINT_SCORE_PREFIX + "overall_score", jointScore.getTotalScore());
@@ -106,8 +106,8 @@ public class OpenEHRJointScoreStore extends AbstractOpenEhrService implements Jo
     }
 
     private Map<String, Object> populateJointData(Map<String, Object> content, int index,
-                                                  String jointName, Integer jointScore) {
-        content.put(JOINT_SCORE_PREFIX + "per-joint_assessment:" + index + "/joint_name|code", "at0009");
+                                                  String jointName, String jointCode, Integer jointScore) {
+        content.put(JOINT_SCORE_PREFIX + "per-joint_assessment:" + index + "/joint_name|code", jointCode);
         content.put(JOINT_SCORE_PREFIX + "per-joint_assessment:" + index + "/joint_name|value", jointName);
         content.put(JOINT_SCORE_PREFIX + "per-joint_assessment:" + index + "/joint_score", jointScore);
 
