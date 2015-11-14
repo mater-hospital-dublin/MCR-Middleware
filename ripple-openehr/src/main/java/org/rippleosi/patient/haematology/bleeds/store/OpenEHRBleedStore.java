@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.camel.Consume;
-import org.apache.commons.lang3.StringUtils;
 import org.rippleosi.common.service.AbstractOpenEhrService;
 import org.rippleosi.common.service.CreateStrategy;
 import org.rippleosi.common.service.DefaultStoreStrategy;
@@ -75,15 +74,15 @@ public class OpenEHRBleedStore extends AbstractOpenEhrService implements BleedSt
 
         content.put(BLEED_PREFIX + "time", dateRecorded);
         content.put(BLEED_PREFIX + "symptom_sign:0/symptom_sign_name", "Bleed event");
-        content.put(BLEED_PREFIX + "symptom_sign:0/body_site:0", StringUtils.stripEnd(site, " "));
+        content.put(BLEED_PREFIX + "symptom_sign:0/body_site:0", site);
         content.put(BLEED_PREFIX + "symptom_sign:0/severity_category|code", "at0024");
-        content.put(BLEED_PREFIX + "symptom_sign:0/severity_category|value", StringUtils.stripEnd(severity, " "));
+        content.put(BLEED_PREFIX + "symptom_sign:0/severity_category|value", severity);
         content.put(BLEED_PREFIX + "symptom_sign:0/severity_rating:0|magnitude", pain);
         content.put(BLEED_PREFIX + "symptom_sign:0/severity_rating:0|unit", 1);
         content.put(BLEED_PREFIX + "symptom_sign:0/joint_bleed_self_assessment:0/cause_of_bleed|code", "at0007");
-        content.put(BLEED_PREFIX + "symptom_sign:0/joint_bleed_self_assessment:0/cause_of_bleed|value", StringUtils.stripEnd(cause, " "));
+        content.put(BLEED_PREFIX + "symptom_sign:0/joint_bleed_self_assessment:0/cause_of_bleed|value", cause);
         content.put(BLEED_PREFIX + "symptom_sign:0/joint_bleed_self_assessment:0/type_of_bleed|code", "at0012");
-        content.put(BLEED_PREFIX + "symptom_sign:0/joint_bleed_self_assessment:0/type_of_bleed|value", StringUtils.stripEnd(type, " "));
+        content.put(BLEED_PREFIX + "symptom_sign:0/joint_bleed_self_assessment:0/type_of_bleed|value", type);
 
         return content;
     }
