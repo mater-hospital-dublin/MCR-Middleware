@@ -42,7 +42,7 @@ public class NotConfiguredMedicationSearch implements MedicationSearch {
     }
 
     @Override
-    public List<MedicationSummary> findAllMedication(String patientId) {
+    public List<MedicationSummary> findAllMedications(String patientId) {
         throw ConfigurationException.unimplementedTransaction(MedicationSearch.class);
     }
 

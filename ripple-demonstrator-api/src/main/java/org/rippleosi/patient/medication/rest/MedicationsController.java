@@ -32,8 +32,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- */
 @RestController
 @RequestMapping("/patients/{patientId}/medications")
 public class MedicationsController {
@@ -48,14 +46,22 @@ public class MedicationsController {
     public List<MedicationSummary> findAllMedications(@PathVariable("patientId") String patientId,
                                                       @RequestParam(required = false) String source) {
         MedicationSearch medicationSearch = medicationSearchFactory.select(source);
+        List<MedicationSummary> medications = medicationSearch.findAllMedications(patientId);
 
-        return medicationSearch.findAllMedication(patientId);
+        MedicationSearch legacySearch = medicationSearchFactory.select("Crimson Tide iOS");
+        medications.addAll(legacySearch.findAllMedications(patientId));
+
+        return medications;
     }
 
     @RequestMapping(value = "/headlines", method = RequestMethod.GET)
     public List<MedicationHeadline> findMedicationHeadlines(@PathVariable("patientId") String patientId,
                                                             @RequestParam(required = false) String source) {
         MedicationSearch medicationSearch = medicationSearchFactory.select(source);
+        List<MedicationHeadline> medications = medicationSearch.findMedicationHeadlines(patientId);
+
+        MedicationSearch legacySearch = medicationSearchFactory.select("Crimson Tide iOS");
+        medications.addAll(legacySearch.findMedicationHeadlines(patientId));
 
         return medicationSearch.findMedicationHeadlines(patientId);
     }

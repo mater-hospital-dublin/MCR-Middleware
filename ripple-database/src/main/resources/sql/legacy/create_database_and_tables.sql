@@ -112,12 +112,28 @@ CREATE TABLE poc_legacy.problems (
   id                BIGINT        NOT NULL    AUTO_INCREMENT,
   patient_id        VARCHAR(30)   NOT NULL,
   problem           VARCHAR(256)  NULL,
-  date_of_onset     DATE          NULL,
+  date_of_onset     DATETIME      NULL,
   description       VARCHAR(200)  NULL,
   terminology       VARCHAR(30)   NULL,
   terminology_code  VARCHAR(30)   NULL,
   author            VARCHAR(60)   NULL,
-  date_created      DATE          NULL,
+  date_created      DATETIME      NULL,
+  PRIMARY KEY       (id)
+);
+
+CREATE TABLE poc_legacy.medications (
+  id                BIGINT        NOT NULL    AUTO_INCREMENT,
+  patient_id        VARCHAR(30)   NOT NULL,
+  name              VARCHAR(60)   NULL,
+  dose_amount       VARCHAR(30)   NULL,
+  dose_directions   VARCHAR(150)  NULL,
+  dose_timing       VARCHAR(150)  NULL,
+  route             VARCHAR(60)   NULL,
+  start_datetime    DATETIME      NULL,
+  terminology       VARCHAR(30)   NULL,
+  terminology_code  VARCHAR(30)   NULL,
+  author            VARCHAR(60)   NULL,
+  date_created      DATETIME      NULL,
   PRIMARY KEY       (id)
 );
 

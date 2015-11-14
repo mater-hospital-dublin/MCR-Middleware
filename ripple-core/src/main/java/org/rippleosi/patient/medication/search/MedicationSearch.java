@@ -28,7 +28,7 @@ public interface MedicationSearch extends Repository {
 
     List<MedicationHeadline> findMedicationHeadlines(String patientId);
 
-    List<MedicationSummary> findAllMedication(String patientId);
+    List<MedicationSummary> findAllMedications(String patientId);
 
     MedicationDetails findMedication(String patientId, String medicationId);
 }

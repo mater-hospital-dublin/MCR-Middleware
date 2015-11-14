@@ -44,7 +44,7 @@ public class NotConfiguredMedicationSearchTest {
 
     @Test(expected = ConfigurationException.class)
     public void shouldThrowExceptionWhenTryingToFindAllMedication() {
-        medicationSearch.findAllMedication(null);
+        medicationSearch.findAllMedications(null);
     }
 
     @Test(expected = ConfigurationException.class)

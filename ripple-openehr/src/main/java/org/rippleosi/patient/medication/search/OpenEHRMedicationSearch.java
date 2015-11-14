@@ -36,7 +36,7 @@ public class OpenEHRMedicationSearch extends AbstractOpenEhrService implements M
     }
 
     @Override
-    public List<MedicationSummary> findAllMedication(String patientId) {
+    public List<MedicationSummary> findAllMedications(String patientId) {
         MedicationSummaryQueryStrategy query = new MedicationSummaryQueryStrategy(patientId);
 
         return findData(query);

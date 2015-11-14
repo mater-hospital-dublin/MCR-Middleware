@@ -133,6 +133,9 @@ public class PatientEntityToDetailsTransformer implements Transformer<PatientEnt
 
             List<MedicationHeadline> medications = medicationSearch.findMedicationHeadlines(patientId);
 
+            MedicationSearch legacySearch = medicationSearchFactory.select("Crimson Tide iOS");
+            medications.addAll(legacySearch.findMedicationHeadlines(patientId));
+
             return CollectionUtils.collect(medications, new MedicationTransformer(), new ArrayList<>());
         } catch (DataNotFoundException ignore) {
             return Collections.emptyList();

@@ -93,6 +93,7 @@ public class PatientEntityToDetailsTransformerTest {
         when(mockAllergySearchFactory.select(null)).thenReturn(mockAllergySearch);
         when(mockContactSearchFactory.select(null)).thenReturn(mockContactSearch);
         when(mockMedicationSearchFactory.select(null)).thenReturn(mockMedicationSearch);
+        when(mockMedicationSearchFactory.select("Crimson Tide iOS")).thenReturn(mockMedicationSearch);
         when(mockProblemSearchFactory.select(null)).thenReturn(mockProblemSearch);
         when(mockProblemSearchFactory.select("vista")).thenReturn(mockProblemSearch);
         when(mockProblemSearchFactory.select("ClinTech")).thenReturn(mockProblemSearch);
