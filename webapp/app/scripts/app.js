@@ -150,7 +150,7 @@ angular
       })
 
       .state('medications-detail', {
-        url: '/patients/{patientId:int}/medications/{medicationIndex}?filter&page&reportType&searchString&queryType',
+        url: '/patients/{patientId:int}/medications/{medicationIndex}?filter&page&reportType&searchString&queryType&source',
         views: {
           'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
           actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },

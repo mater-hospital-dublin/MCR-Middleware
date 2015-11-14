@@ -15,7 +15,7 @@ angular.module('rippleDemonstrator')
 
     $scope.pageChangeHandler = function (newPage) {
       $scope.currentPage = newPage;
-    }
+    };
 
     if ($stateParams.page) {
       $scope.currentPage = $stateParams.page;
@@ -34,10 +34,11 @@ angular.module('rippleDemonstrator')
       usSpinnerService.stop('patientSummary-spinner');
     });
 
-    $scope.go = function (id) {
+    $scope.go = function (id, medicationSource) {
       $state.go('medications-detail', {
         patientId: $scope.patient.id,
         medicationIndex: id,
+        source: medicationSource,
         filter: $scope.query.$,
         page: $scope.currentPage,
         reportType: $stateParams.reportType,
