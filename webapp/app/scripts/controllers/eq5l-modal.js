@@ -48,10 +48,11 @@ angular.module('rippleDemonstrator')
       'I am extremely anxious or depressed'
       ];
 
-    if (modal.title === 'Edit Eq5l') {
+    if (modal.title === 'Edit EQ5L') {
       $scope.eq5l.dateRecorded = new Date($scope.eq5l.dateRecorded).toISOString().slice(0, 10);
     } else {
       $scope.eq5l.dateRecorded = new Date().toISOString().slice(0, 10);
+      $scope.eq5l.lifeScore = 0;
     }
 
     $scope.ok = function (eq5lForm, eq5l) {

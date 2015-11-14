@@ -64,7 +64,7 @@ angular.module('rippleDemonstrator')
         resolve: {
           modal: function () {
             return {
-              title: 'Create Eq5l'
+              title: 'Create EQ5L'
             };
           },
           eq5l: function () {

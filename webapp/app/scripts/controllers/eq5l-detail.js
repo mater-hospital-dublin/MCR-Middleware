@@ -23,7 +23,7 @@ angular.module('rippleDemonstrator')
         resolve: {
           modal: function () {
             return {
-              title: 'Edit Eq5l'
+              title: 'Edit EQ5L'
             };
           },
           eq5l: function () {
