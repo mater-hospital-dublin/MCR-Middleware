@@ -8,46 +8,6 @@ angular.module('rippleDemonstrator')
     $scope.patient = patient;
     $scope.modal = modal;
 
-    $scope.MobilityOptions = [
-      'I have no problems in walking about',
-      'I have slight problems in walking about',
-      'I have moderate problems in walking about',
-      'I have severe problems in walking about',
-      'I am unable to walk about',
-      ];
-
-    $scope.SelfCareOptions = [
-      'I have no problems washing or dressing myself',
-      'I have slight problems washing or dressing myself',
-      'I have moderate problems washing or dressing myself',
-      'I have severe problems washing or dressing myself',
-      'I am unable to wash or dress myself'
-      ];
-
-    $scope.ActivitiesOptions = [
-      'I have no problems doing my usual activities',
-      'I have slight problems doing my usual activities',
-      'I have moderate problems doing my usual activities',
-      'I have severe problems doing my usual activities',
-      'I am unable to do my usual activities'
-      ];
-
-    $scope.PainOptions = [
-      'I have no pain or discomfort',
-      'I have slight pain or discomfort',
-      'I have moderate pain or discomfort',
-      'I have severe pain or discomfort',
-      'I have extreme pain or discomfort'
-      ];
-
-    $scope.AnxietyOptions = [
-      'I am not anxious or depressed',
-      'I am slightly anxious or depressed',
-      'I am moderately anxious or depressed',
-      'I am severely anxious or depressed',
-      'I am extremely anxious or depressed'
-      ];
-
     if (modal.title === 'Edit EQ5L') {
       $scope.eq5l.dateRecorded = new Date($scope.eq5l.dateRecorded).toISOString().slice(0, 10);
     } else {
