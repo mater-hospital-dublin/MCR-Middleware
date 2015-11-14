@@ -30,10 +30,10 @@ angular.module('rippleDemonstrator')
         toBeReturned = 'I have slight problems in walking about';
         break;
       case 'Moderate problems':
-        toBeReturned = 'procedures';
+        toBeReturned = 'I have moderate problems in walking about';
         break;
       case 'Severe problems':
-        toBeReturned = 'medications';
+        toBeReturned = 'I have severe problems in walking about';
         break;
       case 'Unable to walk about.':
         toBeReturned = 'I am unable to walk about';
@@ -71,7 +71,7 @@ angular.module('rippleDemonstrator')
         toBeReturned = 'I have no problems doing my usual activities'
         break;
       case 'Slight problems':
-        toBeReturned = 'I have slight problems doing my usual activitiese';
+        toBeReturned = 'I have slight problems doing my usual activities';
         break;
       case 'Moderate problems':
         toBeReturned = 'I have moderate problems doing my usual activities';
@@ -94,16 +94,16 @@ angular.module('rippleDemonstrator')
         toBeReturned = 'I have no pain or discomfort'
         break;
       case 'Slight pain or discomfort':
-        toBeReturned = 'I have slight problems doing my usual activitiese';
+        toBeReturned = 'I have slight pain or discomfort';
         break;
       case 'Moderate pain or discomfort':
-        toBeReturned = 'I have moderate problems doing my usual activities';
+        toBeReturned = 'I have moderate pain or discomfort';
         break;
       case 'Severe pain or discomfort':
-        toBeReturned = 'I have severe problems doing my usual activities';
+        toBeReturned = 'I have severe pain or discomfort';
         break;
         case 'Extreme pain or discomfort':
-        toBeReturned = 'I am unable to do my usual activities';
+        toBeReturned = 'I have extreme pain or discomfort';
         break;
       }
       return toBeReturned;
