@@ -8,6 +8,7 @@ angular.module('rippleDemonstrator')
     $scope.patient = patient;
     $scope.modal = modal;
 
+<<<<<<< Updated upstream
     $scope.causes = [
       'Activity',
       'Dental',
@@ -38,6 +39,8 @@ angular.module('rippleDemonstrator')
       'Mod',
       'Severe'
     ];
+=======
+>>>>>>> Stashed changes
 
     if (modal.title === 'Edit Bleed'){
       $scope.bleed.dateRecorded = new Date($scope.bleed.dateRecorded).toISOString().slice(0, 10);

@@ -30,13 +30,13 @@
               <div class="input-group">
                 <select class="form-control input-sm" id="cause" name="cause" ng-model="bleed.cause" required>
                   <option value="">-- Cause --</option>
-                  <option>Unspecfied</option>
-                  <option>Activity</option>
-                  <option>Dental</option>
-                  <option>Surgery</option>
-                  <option>Spontaneous</option>
-                  <option>Trauma</option>
-                  <option>Other</option>
+                  <option value="Unspecfied">Unspecfied</option>
+                  <option value="Activity">Activity</option>
+                  <option value="Dental">Dental</option>
+                  <option value="Surgery">Surgery</option>
+                  <option value="Spontaneous">Spontaneous</option>
+                  <option value="Trauma">Trauma</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
               <span class="help-block animate-fade" ng-show="formSubmitted && bleedForm.cause.$error.required">You must enter a value.</span>
@@ -49,13 +49,13 @@
               <div class="input-group">
                 <select class="form-control input-sm" id="type" name="type" ng-model="bleed.type" required>
                   <option value="">-- Type --</option>
-                  <option>Unspecfied</option>
-                  <option>Head</option>
-                  <option>Joint</option>
-                  <option>Mucosal</option>
-                  <option>Muscle</option>
-                  <option>Tissue</option>
-                  <option>Other</option>
+                  <option value="Unspecfied">Unspecfied</option>
+                  <option value="Head">Head</option>
+                  <option value="Joint">Joint</option>
+                  <option value="Mucosal">Mucosal</option>
+                  <option value="Muscle">Muscle</option>
+                  <option value="Tissue">Tissue</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
               <span class="help-block animate-fade" ng-show="formSubmitted && bleedForm.type.$error.required">You must enter a value.</span>
@@ -68,10 +68,10 @@
               <div class="input-group">
                 <select class="form-control input-sm" id="site" name="site" ng-model="bleed.site" required>
                   <option value="">-- Site --</option>
-                  <option>Left elbow</option>
-                  <option>Right elbow</option>
-                  <option>Left knee</option>
-                  <option>Right knee</option>
+                  <option value="Left elbow">Left elbow</option>
+                  <option value="Right elbow">Right elbow</option>
+                  <option value="Left knee">Left knee</option>
+                  <option value="Right knee">Right knee</option>
                 </select>
               </div>
               <span class="help-block animate-fade" ng-show="formSubmitted && bleedForm.site.$error.required">You must enter a value.</span>
@@ -94,9 +94,9 @@
               <div class="input-group">
                 <select class="form-control input-sm" id="severity" name="severity" ng-model="bleed.severity" required>
                   <option value="">-- Severity --</option>
-                  <option>Mild</option>
-                  <option>Mod</option>
-                  <option>Severe</option>
+                  <option value="Mild">Mild</option>
+                  <option value="Mod">Mod</option>
+                  <option value="Severe">Severe</option>
                 </select>
               </div>
               <span class="help-block animate-fade" ng-show="formSubmitted && bleedForm.severity.$error.required">You must enter a value.</span>
