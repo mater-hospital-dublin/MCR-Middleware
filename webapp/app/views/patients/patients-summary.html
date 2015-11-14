@@ -97,7 +97,7 @@
         <table class="table table-striped clickable">
           <tbody>
             <tr ng-repeat="transfer in transferofCareComposition">
-              <td ng-click="go('tranfser', '{{transfer.sourceId}}', {{transfer.source}})">
+              <td ng-click="go('tranfser', '{{transfer.sourceId}}', '{{transfer.source}}')">
                 <span class="glyphicon glyphicon-chevron-right"></span> From {{transfer.from}}
                 <br> to {{transfer.to}}
                 <br> {{transfer.dateOfTransfer | date:'dd-MMM-y' }}
