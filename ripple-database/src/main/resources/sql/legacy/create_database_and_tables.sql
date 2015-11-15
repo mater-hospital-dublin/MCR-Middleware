@@ -51,6 +51,7 @@ CREATE TABLE poc_legacy.patients (
   department_id   BIGINT          NOT NULL,
   gp_id           BIGINT          NOT NULL,
   PRIMARY KEY     (id),
+  UNIQUE          (nhs_number),
   FOREIGN KEY     (department_id) REFERENCES  poc_legacy.medical_departments(id),
   FOREIGN KEY     (gp_id)         REFERENCES  poc_legacy.general_practitioners(id)
 );
@@ -129,7 +130,7 @@ CREATE TABLE poc_legacy.medications (
   dose_directions   VARCHAR(150)  NULL,
   dose_timing       VARCHAR(150)  NULL,
   route             VARCHAR(60)   NULL,
-  start_datetime    DATETIME      NULL,
+  start_date        DATETIME      NULL,
   terminology       VARCHAR(30)   NULL,
   terminology_code  VARCHAR(30)   NULL,
   author            VARCHAR(60)   NULL,

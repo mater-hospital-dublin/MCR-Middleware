@@ -1,7 +1,7 @@
 LOCK TABLES poc_legacy.medications WRITE;
 
 INSERT INTO poc_legacy.medications
-  (id,    patient_id,  name,        dose_amount,  dose_directions,  dose_timing,  route,                start_datetime,                           terminology,    terminology_code,   author,              date_created                        )
+  (id,    patient_id,  name,        dose_amount,  dose_directions,  dose_timing,  route,                start_date,                               terminology,    terminology_code,   author,              date_created                        )
 VALUES
   (1,     9999999000,  'Advate',    '1500',       'IV/Vial',        'PRN',        'IV Intra Venous',    TIMESTAMP('2015-04-30 16:37:00.000'),     'NDC',          '00944-2941',       'Dr Barry White',    TIMESTAMP('2005-12-09 00:00:00.000')),
   (2,     9999999001,  'Advate',    '2000',       'IV/Vial',        'PRN',        'IV Intra Venous',    TIMESTAMP('2011-08-12 16:26:14.000'),     'NDC',          '00944-2941',       'Dr Barry White',    TIMESTAMP('2009-10-08 15:18:14.000')),
