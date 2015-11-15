@@ -35,7 +35,7 @@ public class MedicationEntity {
     @Column(name = "route")
     private String route;
 
-    @Column(name = "start_datetime")
+    @Column(name = "start_date")
     private Date startDatetime;
 
     @Column(name = "terminology")
