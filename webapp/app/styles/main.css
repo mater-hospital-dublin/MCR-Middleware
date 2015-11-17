@@ -2138,3 +2138,16 @@ input#author.form-control.joint-score-author.input-sm{
 .eq5lForm .col-md-9 div.input-group {
   width: 100%;
 }
+
+.clinicalNoteForm .col-md-12 div.input-group {
+  width: 100%;
+  padding-top: 8px;
+}
+
+.clinicalNoteForm .col-md-6 {
+  padding-top: 8px;
+}
+
+.clinicalNoteForm textarea {
+  height: 120px;
+}

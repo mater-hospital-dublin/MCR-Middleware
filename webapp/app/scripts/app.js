@@ -16,367 +16,401 @@ angular
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/');
+      $urlRouterProvider.otherwise('/');
 
-    $stateProvider
-      .state('patients-list', {
-        url: '/patients?ageRange&department&order&reverse',
-        views: {
-          main: { templateUrl: 'views/patients/patients-list.html', controller: 'PatientsListCtrl' }
-        }
-      })
+      $stateProvider
+        .state('patients-list', {
+          url: '/patients?ageRange&department&order&reverse',
+          views: {
+            main: {templateUrl: 'views/patients/patients-list.html', controller: 'PatientsListCtrl'}
+          }
+        })
 
-      .state('patients-list-full', {
-        url: '/patients-full-details?ageFrom&ageTo&orderType&pageNumber&reportType&searchString&queryType',
-        views: {
-          main: { templateUrl: 'views/search/patients-list-full.html', controller: 'PatientsListFullCtrl' }
-        }
-      })
+        .state('patients-list-full', {
+          url: '/patients-full-details?ageFrom&ageTo&orderType&pageNumber&reportType&searchString&queryType',
+          views: {
+            main: {templateUrl: 'views/search/patients-list-full.html', controller: 'PatientsListFullCtrl'}
+          }
+        })
 
-      .state('patients-charts', {
-         url: '/',
-        views: {
-          main: { templateUrl: 'views/patients/patients-charts.html', controller: 'PatientsChartsCtrl' }
-        }
-      })
+        .state('patients-charts', {
+          url: '/',
+          views: {
+            main: {templateUrl: 'views/patients/patients-charts.html', controller: 'PatientsChartsCtrl'}
+          }
+        })
 
-      .state('search-report', {
-         url: '/search-report?searchString',
-        views: {
-          main: { templateUrl: 'views/search/report-chart.html', controller: 'ReportChartsCtrl' }
-        }
-      })
+        .state('search-report', {
+          url: '/search-report?searchString',
+          views: {
+            main: {templateUrl: 'views/search/report-chart.html', controller: 'ReportChartsCtrl'}
+          }
+        })
 
-      .state('patients-lookup', {
-        url: '/lookup',
-        views: {
-          actions: { templateUrl: 'views/home-sidebar.html' },
-          main: { controller: 'PatientsLookupCtrl' }
-        }
-      })
+        .state('patients-lookup', {
+          url: '/lookup',
+          views: {
+            actions: {templateUrl: 'views/home-sidebar.html'},
+            main: {controller: 'PatientsLookupCtrl'}
+          }
+        })
 
-      .state('patients-summary', {
-        url: '/patients/{patientId:int}/patients-summary?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/patients/patients-summary.html', controller: 'PatientsSummaryCtrl' }
-        }
-      })
+        .state('patients-summary', {
+          url: '/patients/{patientId:int}/patients-summary?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/patients/patients-summary.html', controller: 'PatientsSummaryCtrl'}
+          }
+        })
 
-      .state('diagnoses-list', {
-        url: '/patients/{patientId:int}/diagnoses?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/diagnoses/diagnoses-list.html', controller: 'DiagnosesListCtrl' }
-        }
-      })
+        .state('diagnoses-list', {
+          url: '/patients/{patientId:int}/diagnoses?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/diagnoses/diagnoses-list.html', controller: 'DiagnosesListCtrl'}
+          }
+        })
 
-      .state('diagnoses-detail', {
-        url: '/patients/{patientId:int}/diagnoses/{diagnosisIndex}?filter&page&reportType&searchString&queryType&source',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/diagnoses/diagnoses-list.html', controller: 'DiagnosesListCtrl' },
-          detail: { templateUrl: 'views/diagnoses/diagnoses-detail.html', controller: 'DiagnosesDetailCtrl' }
-        }
-      })
+        .state('diagnoses-detail', {
+          url: '/patients/{patientId:int}/diagnoses/{diagnosisIndex}?filter&page&reportType&searchString&queryType&source',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/diagnoses/diagnoses-list.html', controller: 'DiagnosesListCtrl'},
+            detail: {templateUrl: 'views/diagnoses/diagnoses-detail.html', controller: 'DiagnosesDetailCtrl'}
+          }
+        })
 
-      .state('allergies', {
-        url: '/patients/{patientId:int}/allergies?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/allergies/allergies-list.html', controller: 'AllergiesListCtrl' }
-        }
-      })
+        .state('allergies', {
+          url: '/patients/{patientId:int}/allergies?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/allergies/allergies-list.html', controller: 'AllergiesListCtrl'}
+          }
+        })
 
-      .state('eq5l', {
-        url: '/patients/{patientId:int}/eq5l?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/eq5l/eq5l-list.html', controller: 'Eq5lListCtrl' }
-        }
-      })
+        .state('eq5l', {
+          url: '/patients/{patientId:int}/eq5l?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/eq5l/eq5l-list.html', controller: 'Eq5lListCtrl'}
+          }
+        })
 
-      .state('eq5l-detail', {
-        url: '/patients/{patientId:int}/eq5l/{eq5lIndex}?filter&page&reportType&searchString&queryType&source',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/eq5l/eq5l-list.html', controller: 'Eq5lListCtrl' },
-          detail: { templateUrl: 'views/eq5l/eq5l-detail.html', controller: 'Eq5lDetailCtrl' }
-        }
-      })
+        .state('eq5l-detail', {
+          url: '/patients/{patientId:int}/eq5l/{eq5lIndex}?filter&page&reportType&searchString&queryType&source',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/eq5l/eq5l-list.html', controller: 'Eq5lListCtrl'},
+            detail: {templateUrl: 'views/eq5l/eq5l-detail.html', controller: 'Eq5lDetailCtrl'}
+          }
+        })
 
-      .state('jointScore', {
-        url: '/patients/{patientId:int}/jointscore?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/joint-score/joint-score-list.html', controller: 'JointScoreListCtrl' }
-        }
-      })
+        .state('jointScore', {
+          url: '/patients/{patientId:int}/jointscore?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/joint-score/joint-score-list.html', controller: 'JointScoreListCtrl'}
+          }
+        })
 
-      .state('jointScore-detail', {
-        url: '/patients/{patientId:int}/jointscore/{jointScoreIndex}?filter&page&reportType&searchString&queryType&source',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/joint-score/joint-score-list.html', controller: 'JointScoreListCtrl' },
-          detail: { templateUrl: 'views/joint-score/joint-score-detail.html', controller: 'JointScoreDetailCtrl' }
-        }
-      })
+        .state('jointScore-detail', {
+          url: '/patients/{patientId:int}/jointscore/{jointScoreIndex}?filter&page&reportType&searchString&queryType&source',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/joint-score/joint-score-list.html', controller: 'JointScoreListCtrl'},
+            detail: {templateUrl: 'views/joint-score/joint-score-detail.html', controller: 'JointScoreDetailCtrl'}
+          }
+        })
 
-      .state('allergies-detail', {
-        url: '/patients/{patientId:int}/allergies/{allergyIndex}?filter&page&reportType&searchString&queryType&source',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/allergies/allergies-list.html', controller: 'AllergiesListCtrl' },
-          detail: { templateUrl: 'views/allergies/allergies-detail.html', controller: 'AllergiesDetailCtrl' }
-        }
-      })
+        .state('allergies-detail', {
+          url: '/patients/{patientId:int}/allergies/{allergyIndex}?filter&page&reportType&searchString&queryType&source',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/allergies/allergies-list.html', controller: 'AllergiesListCtrl'},
+            detail: {templateUrl: 'views/allergies/allergies-detail.html', controller: 'AllergiesDetailCtrl'}
+          }
+        })
 
-      .state('medications', {
-        url: '/patients/{patientId:int}/medications?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/medications/medications-list.html', controller: 'MedicationsListCtrl' }
-        }
-      })
+        .state('medications', {
+          url: '/patients/{patientId:int}/medications?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/medications/medications-list.html', controller: 'MedicationsListCtrl'}
+          }
+        })
 
-      .state('medications-detail', {
-        url: '/patients/{patientId:int}/medications/{medicationIndex}?filter&page&reportType&searchString&queryType&source',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/medications/medications-list.html', controller: 'MedicationsListCtrl' },
-          detail: { templateUrl: 'views/medications/medications-detail.html', controller: 'MedicationsDetailCtrl' }
-        }
-      })
+        .state('medications-detail', {
+          url: '/patients/{patientId:int}/medications/{medicationIndex}?filter&page&reportType&searchString&queryType&source',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/medications/medications-list.html', controller: 'MedicationsListCtrl'},
+            detail: {templateUrl: 'views/medications/medications-detail.html', controller: 'MedicationsDetailCtrl'}
+          }
+        })
 
-      .state('contacts', {
-        url: '/patients/{patientId:int}/contacts?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/contacts/contacts-list.html', controller: 'ContactsListCtrl' }
-        }
-      })
+        .state('contacts', {
+          url: '/patients/{patientId:int}/contacts?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/contacts/contacts-list.html', controller: 'ContactsListCtrl'}
+          }
+        })
 
-      .state('contacts-detail', {
-        url: '/patients/{patientId:int}/contacts/{contactIndex}?filter&page&reportType&searchString&queryType&source',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/contacts/contacts-list.html', controller: 'ContactsListCtrl' },
-          detail: { templateUrl: 'views/contacts/contacts-detail.html', controller: 'ContactsDetailCtrl' }
-        }
-      })
+        .state('contacts-detail', {
+          url: '/patients/{patientId:int}/contacts/{contactIndex}?filter&page&reportType&searchString&queryType&source',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/contacts/contacts-list.html', controller: 'ContactsListCtrl'},
+            detail: {templateUrl: 'views/contacts/contacts-detail.html', controller: 'ContactsDetailCtrl'}
+          }
+        })
 
-      .state('transferOfCare', {
-        url: '/patients/{patientId:int}/transfer-of-care-list?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/transfer-of-care/transfer-of-care-list.html', controller: 'TransferOfCareListCtrl' }
-        }
-      })
+        .state('transferOfCare', {
+          url: '/patients/{patientId:int}/transfer-of-care-list?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/transfer-of-care/transfer-of-care-list.html', controller: 'TransferOfCareListCtrl'}
+          }
+        })
 
-      .state('transferOfCare-detail', {
-        url: '/patients/{patientId:int}/transfer-of-care-detail/{transferOfCareIndex}?filter&page&reportType&searchString&queryType&source',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/transfer-of-care/transfer-of-care-list.html', controller: 'TransferOfCareListCtrl' },
-          detail: { templateUrl: 'views/transfer-of-care/transfer-of-care-detail.html', controller: 'TransferOfCareDetailCtrl' }
-        }
-      })
+        .state('transferOfCare-detail', {
+          url: '/patients/{patientId:int}/transfer-of-care-detail/{transferOfCareIndex}?filter&page&reportType&searchString&queryType&source',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {
+              templateUrl: 'views/transfer-of-care/transfer-of-care-list.html',
+              controller: 'TransferOfCareListCtrl'
+            },
+            detail: {
+              templateUrl: 'views/transfer-of-care/transfer-of-care-detail.html',
+              controller: 'TransferOfCareDetailCtrl'
+            }
+          }
+        })
 
-      .state('transferOfCare-create', {
-        url: '/patients/{patientId:int}/transfer-of-care-create?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { controller: 'TransferOfCareCtrl' }
-        }
-      })
+        .state('transferOfCare-create', {
+          url: '/patients/{patientId:int}/transfer-of-care-create?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {controller: 'TransferOfCareCtrl'}
+          }
+        })
 
-    .state('cancerMdt', {
-      url: '/patients/{patientId:int}/cancer-mdt-list?reportType&searchString&queryType',
-      views: {
-        'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-        actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-        main: { templateUrl: 'views/cancer-mdt/cancermdt-list.html', controller: 'CancerMdtListCtrl' }
-      }
+        .state('cancerMdt', {
+          url: '/patients/{patientId:int}/cancer-mdt-list?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/cancer-mdt/cancermdt-list.html', controller: 'CancerMdtListCtrl'}
+          }
+        })
+
+        .state('cancerMdt-detail', {
+          url: '/patients/{patientId:int}/cancer-mdt-detail/{cancerMdtIndex}?filter&page&reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/cancer-mdt/cancermdt-list.html', controller: 'CancerMdtListCtrl'},
+            detail: {templateUrl: 'views/cancer-mdt/cancer-mdt-detail.html', controller: 'CancerMdtDetailCtrl'}
+          }
+        })
+
+        .state('procedures', {
+          url: '/patients/{patientId:int}/procedures?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/procedures/procedures-list.html', controller: 'ProceduresListCtrl'}
+          }
+        })
+
+        .state('procedures-detail', {
+          url: '/patients/{patientId:int}/procedures/{procedureId}?filter&page&reportType&searchString&queryType&source',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/procedures/procedures-list.html', controller: 'ProceduresListCtrl'},
+            detail: {templateUrl: 'views/procedures/procedures-detail.html', controller: 'ProceduresDetailCtrl'}
+          }
+        })
+
+        .state('referrals', {
+          url: '/patients/{patientId:int}/referrals?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/referrals/referrals-list.html', controller: 'ReferralsListCtrl'}
+          }
+        })
+
+        .state('referrals-detail', {
+          url: '/patients/{patientId:int}/referrals/{referralId}?filter&page&reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/referrals/referrals-list.html', controller: 'ReferralsListCtrl'},
+            detail: {templateUrl: 'views/referrals/referrals-detail.html', controller: 'ReferralsDetailCtrl'}
+          }
+        })
+
+        .state('eolcareplans', {
+          url: '/patients/{patientId:int}/eolcareplans?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/care-plans/eolcareplans-list.html', controller: 'EolcareplansListCtrl'}
+          }
+        })
+
+        .state('eolcareplans-detail', {
+          url: '/patients/{patientId:int}/eolcareplans/{eolcareplansIndex}?filter&page&reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/care-plans/eolcareplans-list.html', controller: 'EolcareplansListCtrl'},
+            detail: {templateUrl: 'views/care-plans/eolcareplans-detail.html', controller: 'EolcareplansDetailCtrl'}
+          }
+        })
+
+        .state('appointments', {
+          url: '/patients/{patientId:int}/appointments?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/appointments/appointments-list.html', controller: 'AppointmentsListCtrl'}
+          }
+        })
+
+        .state('appointments-detail', {
+          url: '/patients/{patientId:int}/appointments/{appointmentIndex}?filter&page&reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/appointments/appointments-list.html', controller: 'AppointmentsListCtrl'},
+            detail: {templateUrl: 'views/appointments/appointments-detail.html', controller: 'AppointmentsDetailCtrl'}
+          }
+        })
+
+        .state('orders', {
+          url: '/patients/{patientId:int}/orders?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/orders/orders-list.html', controller: 'OrdersListCtrl'}
+          }
+        })
+
+        .state('orders-detail', {
+          url: '/patients/{patientId:int}/orders/{orderId}?filter&page&reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/orders/orders-list.html', controller: 'OrdersListCtrl'},
+            detail: {templateUrl: 'views/orders/orders-detail.html', controller: 'OrdersDetailCtrl'}
+          }
+        })
+
+        .state('bleeds', {
+          url: '/patients/{patientId:int}/bleeds?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/bleeds/bleed-list.html', controller: 'BleedsListCtrl'}
+          }
+        })
+
+        .state('bleeds-detail', {
+          url: '/patients/{patientId:int}/bleeds/{bleedIndex}?filter&page&reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/bleeds/bleed-list.html', controller: 'BleedsListCtrl'},
+            detail: {templateUrl: 'views/bleeds/bleed-detail.html', controller: 'BleedsDetailCtrl'}
+          }
+        })
+
+        .state('heightAndWeights', {
+          url: '/patients/{patientId:int}/heightAndWeights?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {
+              templateUrl: 'views/heightAndWeights/heightAndWeight-list.html',
+              controller: 'HeightAndWeightsListCtrl'
+            }
+          }
+        })
+
+        .state('heightAndWeights-detail', {
+          url: '/patients/{patientId:int}/heightAndWeights/{heightAndWeightIndex}?filter&page&reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {
+              templateUrl: 'views/heightAndWeights/heightAndWeight-list.html',
+              controller: 'HeightAndWeightsListCtrl'
+            },
+            detail: {
+              templateUrl: 'views/heightAndWeights/heightAndWeight-detail.html',
+              controller: 'HeightAndWeightsDetailCtrl'
+            }
+          }
+        })
+
+        .state('results', {
+          url: '/patients/{patientId:int}/results?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/results/results-list.html', controller: 'ResultsListCtrl'}
+          }
+        })
+
+        .state('results-detail', {
+          url: '/patients/{patientId:int}/results/{resultIndex}?filter&page&reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/results/results-list.html', controller: 'ResultsListCtrl'},
+            detail: {templateUrl: 'views/results/results-detail.html', controller: 'ResultsDetailCtrl'}
+          }
+        })
+
+        .state('clinicalNotes', {
+          url: '/patients/{patientId:int}/clinicalNotes?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/clinical-notes/clinicalnotes-list.html', controller: 'ClinicalNotesListCtrl'}
+          }
+        })
+
+        .state('clinicalNotes-detail', {
+          url: '/patients/{patientId:int}/clinicalNotes/{clinicalNoteIndex}?filter&page&reportType&searchString&queryType&source',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/clinical-notes/clinicalnotes-list.html', controller: 'ClinicalNotesListCtrl'},
+            detail: {templateUrl: 'views/clinical-notes/clinicalnotes-detail.html', controller: 'ClinicalNotesDetailCtrl'}
+          }
+        });
     })
-
-      .state('cancerMdt-detail', {
-        url: '/patients/{patientId:int}/cancer-mdt-detail/{cancerMdtIndex}?filter&page&reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/cancer-mdt/cancermdt-list.html', controller: 'CancerMdtListCtrl' },
-          detail: { templateUrl: 'views/cancer-mdt/cancer-mdt-detail.html', controller: 'CancerMdtDetailCtrl' }
-        }
-      })
-
-     .state('procedures', {
-        url: '/patients/{patientId:int}/procedures?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/procedures/procedures-list.html', controller: 'ProceduresListCtrl' }
-        }
-      })
-
-      .state('procedures-detail', {
-        url: '/patients/{patientId:int}/procedures/{procedureId}?filter&page&reportType&searchString&queryType&source',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/procedures/procedures-list.html', controller: 'ProceduresListCtrl' },
-          detail: { templateUrl: 'views/procedures/procedures-detail.html', controller: 'ProceduresDetailCtrl' }
-        }
-      })
-
-    .state('referrals', {
-        url: '/patients/{patientId:int}/referrals?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/referrals/referrals-list.html', controller: 'ReferralsListCtrl' }
-        }
-      })
-
-      .state('referrals-detail', {
-        url: '/patients/{patientId:int}/referrals/{referralId}?filter&page&reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/referrals/referrals-list.html', controller: 'ReferralsListCtrl' },
-          detail: { templateUrl: 'views/referrals/referrals-detail.html', controller: 'ReferralsDetailCtrl' }
-        }
-      })
-
-    .state('eolcareplans', {
-        url: '/patients/{patientId:int}/eolcareplans?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/care-plans/eolcareplans-list.html', controller: 'EolcareplansListCtrl' }
-        }
-      })
-
-      .state('eolcareplans-detail', {
-        url: '/patients/{patientId:int}/eolcareplans/{eolcareplansIndex}?filter&page&reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/care-plans/eolcareplans-list.html', controller: 'EolcareplansListCtrl' },
-          detail: { templateUrl: 'views/care-plans/eolcareplans-detail.html', controller: 'EolcareplansDetailCtrl' }
-        }
-      })
-
-     .state('appointments', {
-        url: '/patients/{patientId:int}/appointments?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/appointments/appointments-list.html', controller: 'AppointmentsListCtrl' }
-        }
-      })
-
-      .state('appointments-detail', {
-        url: '/patients/{patientId:int}/appointments/{appointmentIndex}?filter&page&reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/appointments/appointments-list.html', controller: 'AppointmentsListCtrl' },
-          detail: { templateUrl: 'views/appointments/appointments-detail.html', controller: 'AppointmentsDetailCtrl' }
-        }
-      })
-
-      .state('orders', {
-        url: '/patients/{patientId:int}/orders?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/orders/orders-list.html', controller: 'OrdersListCtrl' }
-        }
-      })
-
-      .state('orders-detail', {
-        url: '/patients/{patientId:int}/orders/{orderId}?filter&page&reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/orders/orders-list.html', controller: 'OrdersListCtrl' },
-          detail: { templateUrl: 'views/orders/orders-detail.html', controller: 'OrdersDetailCtrl' }
-        }
-      })
-
-      .state('bleeds', {
-        url: '/patients/{patientId:int}/bleeds?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/bleeds/bleed-list.html', controller: 'BleedsListCtrl' }
-        }
-      })
-
-      .state('bleeds-detail', {
-        url: '/patients/{patientId:int}/bleeds/{bleedIndex}?filter&page&reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/bleeds/bleed-list.html', controller: 'BleedsListCtrl' },
-          detail: { templateUrl: 'views/bleeds/bleed-detail.html', controller: 'BleedsDetailCtrl' }
-        }
-      })
-
-      .state('heightAndWeights', {
-        url: '/patients/{patientId:int}/heightAndWeights?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/heightAndWeights/heightAndWeight-list.html', controller: 'HeightAndWeightsListCtrl' }
-        }
-      })
-
-      .state('heightAndWeights-detail', {
-        url: '/patients/{patientId:int}/heightAndWeights/{heightAndWeightIndex}?filter&page&reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/heightAndWeights/heightAndWeight-list.html', controller: 'HeightAndWeightsListCtrl' },
-          detail: { templateUrl: 'views/heightAndWeights/heightAndWeight-detail.html', controller: 'HeightAndWeightsDetailCtrl' }
-        }
-      })
-
-       .state('results', {
-        url: '/patients/{patientId:int}/results?reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/results/results-list.html', controller: 'ResultsListCtrl' }
-        }
-      })
-
-      .state('results-detail', {
-        url: '/patients/{patientId:int}/results/{resultIndex}?filter&page&reportType&searchString&queryType',
-        views: {
-          'user-context': { templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl' },
-          actions: { templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl' },
-          main: { templateUrl: 'views/results/results-list.html', controller: 'ResultsListCtrl' },
-          detail: { templateUrl: 'views/results/results-detail.html', controller: 'ResultsDetailCtrl' }
-        }
-      });
-  })
 
   .directive('datepickerPopup', function () {
     return {
