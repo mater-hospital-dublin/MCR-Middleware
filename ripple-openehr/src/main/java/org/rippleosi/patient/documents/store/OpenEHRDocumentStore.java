@@ -83,12 +83,12 @@ public class OpenEHRDocumentStore extends AbstractOpenEhrService implements Docu
             
             content.put("ctx/language", "en");
             content.put("ctx/territory", "GB");
-            content.put("ctx/composer_name", (String)xPath.compile("//MSH.4/HD.1").evaluate(hl7Document));
-            content.put("ctx/health_care_facility|id", (String)xPath.compile("//MSH.4/HD.2").evaluate(hl7Document));
-            content.put("ctx/time", (String)xPath.compile("//MSH.7/TS.1").evaluate(hl7Document));
+            content.put("ctx/composer_name", (String)xPath.compile("//*:MSH.4/*:HD.1").evaluate(hl7Document));
+            content.put("ctx/health_care_facility|id", (String)xPath.compile("//*:MSH.4/*:HD.2").evaluate(hl7Document));
+            content.put("ctx/time", (String)xPath.compile("//*:MSH.7/*:TS.1").evaluate(hl7Document));
             
-            content.put(REFERRAL_REQUEST_PREFIX + "referred_to_provider/identifier", (String)xPath.compile("//MSH.6/HD.1").evaluate(hl7Document));
-            content.put(REFERRAL_REQUEST_PREFIX + "referral_control_number", (String)xPath.compile("//MSH.10").evaluate(hl7Document));
+            content.put(REFERRAL_REQUEST_PREFIX + "referred_to_provider/identifier", (String)xPath.compile("//*:MSH.6/*:HD.1").evaluate(hl7Document));
+            content.put(REFERRAL_REQUEST_PREFIX + "referral_control_number", (String)xPath.compile("//*:MSH.10").evaluate(hl7Document));
             
             
         } catch (Exception e){
