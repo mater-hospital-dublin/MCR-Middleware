@@ -15,7 +15,7 @@
  */
 package org.rippleosi.patient.documents.rest;
 
-import org.rippleosi.patient.documents.model.DocumentDetails;
+import org.rippleosi.patient.documents.model.GenericDocument;
 import org.rippleosi.patient.documents.store.DocumentStore;
 import org.rippleosi.patient.documents.store.DocumentStoreFactory;
 
@@ -37,12 +37,26 @@ public class DocumentsController {
     private DocumentStoreFactory documentStoreFactory;
 
     @RequestMapping(value = "/referral", method = RequestMethod.POST, consumes = "application/xml")
-    public void createContact(@PathVariable("patientId") String patientId,
+    public void createReferral(@PathVariable("patientId") String patientId,
                               @RequestParam(required = false) String source,
                               @RequestBody String body) {
         
-        DocumentDetails document = new DocumentDetails();
+        GenericDocument document = new GenericDocument();
         document.setDocumentType("hl7Referral");
+        document.setOrigionalSource(source);
+        document.setDocumentContent(body);
+        
+        DocumentStore contactStore = documentStoreFactory.select(source);
+        contactStore.create(patientId, document);
+    }
+    
+    @RequestMapping(value = "/discharge", method = RequestMethod.POST, consumes = "application/xml")
+    public void createDischarge(@PathVariable("patientId") String patientId,
+                              @RequestParam(required = false) String source,
+                              @RequestBody String body) {
+        
+        GenericDocument document = new GenericDocument();
+        document.setDocumentType("hl7Discharge");
         document.setOrigionalSource(source);
         document.setDocumentContent(body);
         
