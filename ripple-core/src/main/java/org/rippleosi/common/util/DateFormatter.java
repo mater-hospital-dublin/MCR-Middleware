@@ -89,7 +89,15 @@ public final class DateFormatter {
 
         return DateFormatUtils.format(input, "yyyy-MM-dd'T'HH:mm:ss.SSSZ");
     }
-    
+
+    public static String toDateTimeString(Date input) {
+        if (input == null) {
+            return null;
+        }
+
+        return DateFormatUtils.format(input, "yyyy-MM-dd'T'HH:mm");
+    }
+        
     public static String toSimpleDateString(Date input) {
         if (input == null) {
             return null;
