@@ -13,18 +13,25 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.rippleosi.patient.documents.discharge.model;
+package org.rippleosi.patient.documents.model;
 
 /**
  */
-public class DischargeDocumentDetails {
+public interface GenericDocumentSummary {
     
-    private String documentType;
-    private String documentSource;
-    private String documentOrigionalSource;
-    
-    private String documentDate;
+    public String getSourceId();
 
-    private String dischargeDate;
-    
+    public void setSourceId(String sourceId);
+
+    public String getDocumentType();
+
+    public void setDocumentType(String documentType);
+
+    public String getDocumentSource();
+
+    public void setDocumentSource(String documentSource);
+
+    public String getDocumentDate();
+
+    public void setDocumentDate(String documentDate);
 }

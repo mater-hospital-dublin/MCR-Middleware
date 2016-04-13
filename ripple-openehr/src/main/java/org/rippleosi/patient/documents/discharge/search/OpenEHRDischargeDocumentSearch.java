@@ -17,31 +17,27 @@ package org.rippleosi.patient.documents.discharge.search;
 
 import java.util.List;
 
-import org.rippleosi.common.exception.ConfigurationException;
+import org.rippleosi.common.service.AbstractOpenEhrService;
 import org.rippleosi.patient.documents.discharge.model.DischargeDocumentDetails;
 import org.rippleosi.patient.documents.model.GenericDocumentSummary;
+import org.springframework.stereotype.Service;
 
 /**
  */
-public class NotConfiguredDischargeDocumentSearch implements DischargeDocumentSearch {
-
-    @Override
-    public String getSource() {
-        return "not configured";
-    }
-
-    @Override
-    public int getPriority() {
-        return Integer.MAX_VALUE;
-    }
+@Service
+public class OpenEHRDischargeDocumentSearch extends AbstractOpenEhrService implements DischargeDocumentSearch {
 
     @Override
     public List<GenericDocumentSummary> findAllDischargeDocuments(String patientId) {
-        throw ConfigurationException.unimplementedTransaction(DischargeDocumentSearch.class);
+        DischargeDocumentSummaryQueryStrategy query = new DischargeDocumentSummaryQueryStrategy(patientId);
+
+        return findData(query);
     }
 
     @Override
     public DischargeDocumentDetails findDischargeDocument(String patientId, String documentId) {
-        throw ConfigurationException.unimplementedTransaction(DischargeDocumentSearch.class);
+        DischargeDocumentDetailsQueryStrategy query = new DischargeDocumentDetailsQueryStrategy(patientId, documentId);
+
+        return findData(query);
     }
 }

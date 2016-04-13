@@ -15,7 +15,14 @@
  */
 package org.rippleosi.patient.documents.rest;
 
+import java.util.List;
+import org.rippleosi.patient.documents.discharge.search.DischargeDocumentSearch;
+import org.rippleosi.patient.documents.discharge.search.DischargeDocumentSearchFactory;
+
 import org.rippleosi.patient.documents.model.GenericDocument;
+import org.rippleosi.patient.documents.model.GenericDocumentSummary;
+import org.rippleosi.patient.documents.referral.search.ReferralDocumentSearch;
+import org.rippleosi.patient.documents.referral.search.ReferralDocumentSearchFactory;
 import org.rippleosi.patient.documents.store.DocumentStore;
 import org.rippleosi.patient.documents.store.DocumentStoreFactory;
 
@@ -36,6 +43,12 @@ public class DocumentsController {
     @Autowired
     private DocumentStoreFactory documentStoreFactory;
 
+    @Autowired
+    private DischargeDocumentSearchFactory dischargeDocumentSearchFactory;
+    
+    @Autowired
+    private ReferralDocumentSearchFactory referralDocumentSearchFactory;
+    
     @RequestMapping(value = "/referral", method = RequestMethod.POST, consumes = "application/xml")
     public void createReferral(@PathVariable("patientId") String patientId,
                               @RequestParam(required = false) String source,
@@ -64,4 +77,20 @@ public class DocumentsController {
         contactStore.create(patientId, document);
     }
 
+    @RequestMapping(method = RequestMethod.GET)
+    public List<GenericDocumentSummary> findAllDocuments(@PathVariable("patientId") String patientId, @RequestParam(required = false) String source) {
+        
+        DischargeDocumentSearch dischargeDocumentSearch = dischargeDocumentSearchFactory.select(source);
+        List<GenericDocumentSummary> dischargeDocuments = dischargeDocumentSearch.findAllDischargeDocuments(patientId);
+        
+        ReferralDocumentSearch referralDocumentSearch = referralDocumentSearchFactory.select(source);
+        List<GenericDocumentSummary> referralDocuments = referralDocumentSearch.findAllReferralDocuments(patientId);
+        
+        List<GenericDocumentSummary> returnList = dischargeDocuments;
+        returnList.addAll(referralDocuments);
+        
+        // Add a sort to arrange by date
+        
+        return returnList;
+    }
 }

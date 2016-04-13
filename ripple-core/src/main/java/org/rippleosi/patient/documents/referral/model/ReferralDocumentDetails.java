@@ -18,5 +18,12 @@ package org.rippleosi.patient.documents.referral.model;
 /**
  */
 public class ReferralDocumentDetails {
+        
+    private String documentType;
+    private String documentSource;
+    private String documentOrigionalSource;
     
+    private String documentDate;
+
+    private String dischargeDate;
 }
