@@ -404,24 +404,31 @@ public class OpenEHRDocumentStore extends AbstractOpenEhrService implements Docu
             content.put("ctx/territory", "GB");
             content.put("ctx/id_namespace", "iEHR");
             content.put("ctx/id_scheme", "iEHR");
-            content.put("ctx/health_care_facility|name", (String)xPath.compile("//*:MSH/*:MSH.4/*:HD.1").evaluate(hl7Document));
-            content.put("ctx/health_care_facility|id", (String)xPath.compile("//*:MSH/*:MSH.4/*:HD.2").evaluate(hl7Document));
             
-            content.put("ctx/composer_name", (String)xPath.compile("//*:MSH/*:MSH.6/*:HD.1").evaluate(hl7Document));
-            content.put("ctx/composer_id", (String)xPath.compile("//*:MSH/*:MSH.6/*:HD.2").evaluate(hl7Document));
-            content.put("discharge_summary/composer|id_scheme", (String)xPath.compile("//*:MSH/*:MSH.6/*:HD.3").evaluate(hl7Document));
+            if(!((String)xPath.compile("//*:MSH/*:MSH.4").evaluate(hl7Document)).isEmpty()){
+                content.put("ctx/health_care_facility|name", (String)xPath.compile("//*:MSH/*:MSH.4/*:HD.1").evaluate(hl7Document));
+                content.put("ctx/health_care_facility|id", (String)xPath.compile("//*:MSH/*:MSH.4/*:HD.2").evaluate(hl7Document));
+            }
+            
+            if(!((String)xPath.compile("//*:MSH/*:MSH.6").evaluate(hl7Document)).isEmpty()){
+                content.put("ctx/composer_name", (String)xPath.compile("//*:MSH/*:MSH.6/*:HD.1").evaluate(hl7Document));
+                content.put("ctx/composer_id", (String)xPath.compile("//*:MSH/*:MSH.6/*:HD.2").evaluate(hl7Document));
+                content.put("discharge_summary/composer|id_scheme", (String)xPath.compile("//*:MSH/*:MSH.6/*:HD.3").evaluate(hl7Document));
+            }
             
             
-            String time = (String)xPath.compile("//*:MSH.7/*:TS.1").evaluate(hl7Document);
-            if(time != null && !time.isEmpty()){
-                if(time.length() == 8){
-                    time = toSimpleDateString(DATE_FORMAT.parse(time));
-                } else if (time.length() == 12){
-                    time = toSimpleDateString(DATE_TIME_FORMAT_SHORT.parse(time));
-                } else if (time.length() == 14){
-                    time = toSimpleDateString(DATE_TIME_FORMAT.parse(time));
+            if(!((String)xPath.compile("//*:MSH.7/*:TS.1").evaluate(hl7Document)).isEmpty()){
+                String time = (String)xPath.compile("//*:MSH.7/*:TS.1").evaluate(hl7Document);
+                if(time != null && !time.isEmpty()){
+                    if(time.length() == 8){
+                        time = toSimpleDateString(DATE_FORMAT.parse(time));
+                    } else if (time.length() == 12){
+                        time = toSimpleDateString(DATE_TIME_FORMAT_SHORT.parse(time));
+                    } else if (time.length() == 14){
+                        time = toSimpleDateString(DATE_TIME_FORMAT.parse(time));
+                    }
+                    content.put("ctx/time", time);
                 }
-                content.put("ctx/time", time);
             }
             
             int numberOfPID3 = ((Double)xPath.compile("count(//*:PID/*:PID.3)").evaluate(hl7Document, XPathConstants.NUMBER)).intValue();
@@ -456,7 +463,6 @@ public class OpenEHRDocumentStore extends AbstractOpenEhrService implements Docu
                 
             }
             
-            // Count DG1
             int diagnosisIndex = 0;
             int numberOfDG1Segments = ((Double)xPath.compile("count(//*:DG1)").evaluate(hl7Document, XPathConstants.NUMBER)).intValue();
             for(int dg1Index = 1; dg1Index <= numberOfDG1Segments; dg1Index++){
@@ -488,7 +494,9 @@ public class OpenEHRDocumentStore extends AbstractOpenEhrService implements Docu
                 content.put(DISCHARGE_DETAILS_UK_PREFIX + "responsible_professional/professional_name/name", (String)xPath.compile("//*:REF_I12.PATIENT_VISIT/*:PV1/*:PV1.7/*:XCN.2/*:FN.1").evaluate(hl7Document));
             }
             
-            content.put("discharge_summary/clinical_summary/clinical_synopsis/synopsis", (String)xPath.compile("//*:NTE/*:NTE.3").evaluate(hl7Document));
+            if(!((String)xPath.compile("//*:NTE/*:NTE.3").evaluate(hl7Document)).isEmpty()){
+                content.put("discharge_summary/clinical_summary/clinical_synopsis/synopsis", (String)xPath.compile("//*:NTE/*:NTE.3").evaluate(hl7Document));
+            }
             
         } catch (Exception e){
             content = null;
