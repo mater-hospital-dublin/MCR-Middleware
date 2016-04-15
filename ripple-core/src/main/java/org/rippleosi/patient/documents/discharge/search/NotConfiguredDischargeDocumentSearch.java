@@ -19,7 +19,7 @@ import java.util.List;
 
 import org.rippleosi.common.exception.ConfigurationException;
 import org.rippleosi.patient.documents.discharge.model.DischargeDocumentDetails;
-import org.rippleosi.patient.documents.model.GenericDocumentSummary;
+import org.rippleosi.patient.documents.common.model.AbstractDocumentSummary;
 
 /**
  */
@@ -36,7 +36,7 @@ public class NotConfiguredDischargeDocumentSearch implements DischargeDocumentSe
     }
 
     @Override
-    public List<GenericDocumentSummary> findAllDischargeDocuments(String patientId) {
+    public List<AbstractDocumentSummary> findAllDischargeDocuments(String patientId) {
         throw ConfigurationException.unimplementedTransaction(DischargeDocumentSearch.class);
     }
 

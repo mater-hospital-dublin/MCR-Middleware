@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.rippleosi.patient.documents.model;
+package org.rippleosi.patient.documents.common.model;
 
 import java.io.Serializable;
 
@@ -23,7 +23,7 @@ public class GenericDocument implements Serializable {
 
     private String documentType;        // Possibly be an enum for supported document types
     private Object documentContent;     // Payload of document, XML, binary etc.
-    private String origionalSource;     // Sending system which the document origionated from
+    private String originalSource;     // Sending system which the document origionated from
 
     public String getDocumentType() {
         return documentType;
@@ -41,13 +41,11 @@ public class GenericDocument implements Serializable {
         this.documentContent = documentContent;
     }
 
-    public String getOrigionalSource() {
-        return origionalSource;
+    public String getOriginalSource() {
+        return originalSource;
     }
 
-    public void setOrigionalSource(String origionalSource) {
-        this.origionalSource = origionalSource;
+    public void setOriginalSource(String originalSource) {
+        this.originalSource = originalSource;
     }
-
-    
 }

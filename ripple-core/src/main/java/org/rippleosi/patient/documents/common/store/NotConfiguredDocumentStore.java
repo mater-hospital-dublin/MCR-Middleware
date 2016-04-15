@@ -13,12 +13,12 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.rippleosi.patient.documents.store;
+package org.rippleosi.patient.documents.common.store;
 
 import org.apache.camel.Body;
 import org.apache.camel.Header;
 import org.rippleosi.common.exception.ConfigurationException;
-import org.rippleosi.patient.documents.model.GenericDocument;
+import org.rippleosi.patient.documents.common.model.GenericDocument;
 
 /**
  */

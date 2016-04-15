@@ -16,18 +16,17 @@
 package org.rippleosi.patient.documents.rest;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import org.rippleosi.common.util.DateFormatter;
 import org.rippleosi.patient.documents.discharge.search.DischargeDocumentSearch;
 import org.rippleosi.patient.documents.discharge.search.DischargeDocumentSearchFactory;
 
-import org.rippleosi.patient.documents.model.GenericDocument;
-import org.rippleosi.patient.documents.model.GenericDocumentSummary;
+import org.rippleosi.patient.documents.common.model.GenericDocument;
+import org.rippleosi.patient.documents.common.model.AbstractDocumentSummary;
 import org.rippleosi.patient.documents.referral.search.ReferralDocumentSearch;
 import org.rippleosi.patient.documents.referral.search.ReferralDocumentSearchFactory;
-import org.rippleosi.patient.documents.store.DocumentStore;
-import org.rippleosi.patient.documents.store.DocumentStoreFactory;
+import org.rippleosi.patient.documents.common.store.DocumentStore;
+import org.rippleosi.patient.documents.common.store.DocumentStoreFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,18 +47,18 @@ public class DocumentsController {
 
     @Autowired
     private DischargeDocumentSearchFactory dischargeDocumentSearchFactory;
-    
+
     @Autowired
     private ReferralDocumentSearchFactory referralDocumentSearchFactory;
-    
+
     @RequestMapping(value = "/referral", method = RequestMethod.POST, consumes = "application/xml")
     public void createReferral(@PathVariable("patientId") String patientId,
-                              @RequestParam(required = false) String source,
-                              @RequestBody String body) {
-        
+                               @RequestParam(required = false) String source,
+                               @RequestBody String body) {
+
         GenericDocument document = new GenericDocument();
         document.setDocumentType("hl7Referral");
-        document.setOrigionalSource(source);
+        document.setOriginalSource(source);
         document.setDocumentContent(body);
         
         DocumentStore contactStore = documentStoreFactory.select(source);
@@ -68,12 +67,12 @@ public class DocumentsController {
     
     @RequestMapping(value = "/discharge", method = RequestMethod.POST, consumes = "application/xml")
     public void createDischarge(@PathVariable("patientId") String patientId,
-                              @RequestParam(required = false) String source,
-                              @RequestBody String body) {
-        
+                                @RequestParam(required = false) String source,
+                                @RequestBody String body) {
+
         GenericDocument document = new GenericDocument();
         document.setDocumentType("hl7Discharge");
-        document.setOrigionalSource(source);
+        document.setOriginalSource(source);
         document.setDocumentContent(body);
         
         DocumentStore contactStore = documentStoreFactory.select(source);
@@ -81,25 +80,19 @@ public class DocumentsController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<GenericDocumentSummary> findAllDocuments(@PathVariable("patientId") String patientId, @RequestParam(required = false) String source) {
-        
+    public List<AbstractDocumentSummary> findAllDocuments(@PathVariable("patientId") String patientId,
+                                                          @RequestParam(required = false) String source) {
+
         DischargeDocumentSearch dischargeDocumentSearch = dischargeDocumentSearchFactory.select(source);
-        List<GenericDocumentSummary> dischargeDocuments = dischargeDocumentSearch.findAllDischargeDocuments(patientId);
-        
+        List<AbstractDocumentSummary> documents = dischargeDocumentSearch.findAllDischargeDocuments(patientId);
+
         ReferralDocumentSearch referralDocumentSearch = referralDocumentSearchFactory.select(source);
-        List<GenericDocumentSummary> referralDocuments = referralDocumentSearch.findAllReferralDocuments(patientId);
-        
-        List<GenericDocumentSummary> returnList = dischargeDocuments;
-        returnList.addAll(referralDocuments);
-        
+        documents.addAll(referralDocumentSearch.findAllReferralDocuments(patientId));
+
         // Sort by date
-        Collections.sort(returnList, new Comparator<GenericDocumentSummary>(){
-            @Override
-            public int compare(GenericDocumentSummary gds1, GenericDocumentSummary gds2){
-                return DateFormatter.toDate(gds2.getDocumentDate()).compareTo(DateFormatter.toDate(gds1.getDocumentDate()));
-            }
-         });
-        
-        return returnList;
+        Collections.sort(documents, (gds1, gds2) ->
+            DateFormatter.toDate(gds2.getDocumentDate()).compareTo(DateFormatter.toDate(gds1.getDocumentDate())));
+
+        return documents;
     }
 }

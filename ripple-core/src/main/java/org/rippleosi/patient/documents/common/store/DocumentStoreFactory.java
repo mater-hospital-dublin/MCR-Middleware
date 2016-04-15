@@ -13,23 +13,12 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.rippleosi.patient.documents.store;
+package org.rippleosi.patient.documents.common.store;
 
-import org.rippleosi.common.repo.AbstractRepositoryFactory;
-import org.springframework.stereotype.Service;
+import org.rippleosi.common.repo.RepositoryFactory;
 
 /**
  */
-@Service
-public class DefaultDocumentStoreFactory extends AbstractRepositoryFactory<DocumentStore> implements DocumentStoreFactory {
-
-    @Override
-    protected DocumentStore defaultRepository() {
-        return new NotConfiguredDocumentStore();
-    }
-
-    @Override
-    protected Class<DocumentStore> repositoryClass() {
-        return DocumentStore.class;
-    }
+@FunctionalInterface
+public interface DocumentStoreFactory extends RepositoryFactory<DocumentStore> {
 }

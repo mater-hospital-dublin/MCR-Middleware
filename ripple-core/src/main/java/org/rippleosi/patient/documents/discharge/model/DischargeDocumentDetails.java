@@ -17,14 +17,11 @@ package org.rippleosi.patient.documents.discharge.model;
 
 import java.util.List;
 
+import org.rippleosi.patient.documents.common.model.AbstractDocumentSummary;
+
 /**
  */
-public class DischargeDocumentDetails {
-    
-    private String sourceId;
-    private String documentType;
-    private String documentSource;
-    private String documentDate;
+public class DischargeDocumentDetails extends AbstractDocumentSummary {
     
     private String date_time;
     
@@ -43,9 +40,9 @@ public class DischargeDocumentDetails {
     
     private String dateOfAdmission;
     
-    private String responseableProfessional_name;
-    private String responseableProfessional_id;
-    private String responseableProfessional_idType;
+    private String responsibleProfessional_name;
+    private String responsibleProfessional_id;
+    private String responsibleProfessional_idType;
     
     private String dischargingOrganisation;
     
@@ -54,38 +51,6 @@ public class DischargeDocumentDetails {
     List<ProblemDetails> diagnosisList;
 
     private String clinicalSynopsis;
-
-    public String getSourceId() {
-        return sourceId;
-    }
-
-    public void setSourceId(String sourceId) {
-        this.sourceId = sourceId;
-    }
-
-    public String getDocumentType() {
-        return documentType;
-    }
-
-    public void setDocumentType(String documentType) {
-        this.documentType = documentType;
-    }
-
-    public String getDocumentSource() {
-        return documentSource;
-    }
-
-    public void setDocumentSource(String documentSource) {
-        this.documentSource = documentSource;
-    }
-
-    public String getDocumentDate() {
-        return documentDate;
-    }
-
-    public void setDocumentDate(String documentDate) {
-        this.documentDate = documentDate;
-    }
 
     public String getDate_time() {
         return date_time;
@@ -183,28 +148,28 @@ public class DischargeDocumentDetails {
         this.dateOfAdmission = dateOfAdmission;
     }
 
-    public String getResponseableProfessional_name() {
-        return responseableProfessional_name;
+    public String getResponsibleProfessional_name() {
+        return responsibleProfessional_name;
     }
 
-    public void setResponseableProfessional_name(String responseableProfessional_name) {
-        this.responseableProfessional_name = responseableProfessional_name;
+    public void setResponsibleProfessional_name(String responsibleProfessional_name) {
+        this.responsibleProfessional_name = responsibleProfessional_name;
     }
 
-    public String getResponseableProfessional_id() {
-        return responseableProfessional_id;
+    public String getResponsibleProfessional_id() {
+        return responsibleProfessional_id;
     }
 
-    public void setResponseableProfessional_id(String responseableProfessional_id) {
-        this.responseableProfessional_id = responseableProfessional_id;
+    public void setResponsibleProfessional_id(String responsibleProfessional_id) {
+        this.responsibleProfessional_id = responsibleProfessional_id;
     }
 
-    public String getResponseableProfessional_idType() {
-        return responseableProfessional_idType;
+    public String getResponsibleProfessional_idType() {
+        return responsibleProfessional_idType;
     }
 
-    public void setResponseableProfessional_idType(String responseableProfessional_idType) {
-        this.responseableProfessional_idType = responseableProfessional_idType;
+    public void setResponsibleProfessional_idType(String responsibleProfessional_idType) {
+        this.responsibleProfessional_idType = responsibleProfessional_idType;
     }
 
     public String getDischargingOrganisation() {
