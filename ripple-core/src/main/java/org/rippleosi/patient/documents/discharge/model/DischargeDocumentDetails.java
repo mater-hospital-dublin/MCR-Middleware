@@ -15,6 +15,8 @@
  */
 package org.rippleosi.patient.documents.discharge.model;
 
+import java.util.List;
+
 /**
  */
 public class DischargeDocumentDetails {
@@ -49,9 +51,8 @@ public class DischargeDocumentDetails {
     
     private String dateTimeOfDischarge;
     
-    private String dischargeDiagnosis_name;
-    private String dischargeDiagnosis_time;
-    
+    List<ProblemDetails> diagnosisList;
+
     private String clinicalSynopsis;
 
     public String getSourceId() {
@@ -222,20 +223,12 @@ public class DischargeDocumentDetails {
         this.dateTimeOfDischarge = dateTimeOfDischarge;
     }
 
-    public String getDischargeDiagnosis_name() {
-        return dischargeDiagnosis_name;
+    public List<ProblemDetails> getDiagnosisList() {
+        return diagnosisList;
     }
 
-    public void setDischargeDiagnosis_name(String dischargeDiagnosis_name) {
-        this.dischargeDiagnosis_name = dischargeDiagnosis_name;
-    }
-
-    public String getDischargeDiagnosis_time() {
-        return dischargeDiagnosis_time;
-    }
-
-    public void setDischargeDiagnosis_time(String dischargeDiagnosis_time) {
-        this.dischargeDiagnosis_time = dischargeDiagnosis_time;
+    public void setDiagnosisList(List<ProblemDetails> diagnosisList) {
+        this.diagnosisList = diagnosisList;
     }
 
     public String getClinicalSynopsis() {
@@ -245,4 +238,5 @@ public class DischargeDocumentDetails {
     public void setClinicalSynopsis(String clinicalSynopsis) {
         this.clinicalSynopsis = clinicalSynopsis;
     }
+
 }

@@ -15,12 +15,10 @@
  */
 package org.rippleosi.patient.documents.discharge.search;
 
-import java.util.Date;
 import java.util.Map;
 
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.collections4.Transformer;
-import org.rippleosi.common.util.DateFormatter;
 import org.rippleosi.patient.documents.discharge.model.DischargeDocumentDetails;
 
 /**
@@ -30,17 +28,13 @@ public class DischargeDocumentDetailsTransformer implements Transformer<Map<Stri
     @Override
     public DischargeDocumentDetails transform(Map<String, Object> input) {
 
-        String startDateTimeAsString = MapUtils.getString(input, "start_date");
-        String dateCreatedAsString = MapUtils.getString(input, "date_created");
-
-        Date startDate = DateFormatter.toDateOnly(startDateTimeAsString);
-        Date startTime = DateFormatter.toTimeOnly(startDateTimeAsString);
-        Date dateCreated = DateFormatter.toDate(dateCreatedAsString);
-
         DischargeDocumentDetails dischargeDocument = new DischargeDocumentDetails();
-        //dischargeDocument.setAuthor(MapUtils.getString(input, "author"));
-        //dischargeDocument.setDateCreated(dateCreated);
-
+        dischargeDocument.setDocumentSource("openEHR");
+        dischargeDocument.setSourceId(MapUtils.getString(input, "uid"));
+        dischargeDocument.setDocumentType(MapUtils.getString(input, "documentType"));
+        dischargeDocument.setDocumentDate(MapUtils.getString(input, "dischargeDate"));
+        
+        
         return dischargeDocument;
     }
 }

@@ -35,35 +35,14 @@ public class DischargeDocumentDetailsQueryStrategy extends AbstractQueryStrategy
 
     @Override
     public String getQuery(String namespace, String patientId) {
-        return "select a/uid/value as uid, " +
-                "a/composer/name as author, " +
-                "a/context/start_time/value as date_created, " +
-                "a_a/items/items/data[at0001]/items/items[at0001]/value/value as name, " +
-                "a_a/items/items/data[at0001]/items/items[at0001]/value/defining_code/code_string as medication_code, " +
-                "a_a/items/items/data[at0001]/items/items[at0001]/value/defining_code/terminology_id/value as medication_terminology, " +
-                "a_a/items/items/data[at0001]/items/items[at0002]/value/defining_code/code_string as route, " +
-                "a_a/items/items/data[at0001]/items/items[at0003]/value/value as dose_directions, " +
-                "a_a/items/items/data[at0001]/items/items[at0020]/value/value as dose_amount, " +
-                "a_a/items/items/data[at0001]/items/items[at0021]/value/value as dose_timing, " +
-                "a_a/items/items/data[at0001]/items/items[at0046]/items/value/value as start_date " +
-                "from EHR e " +
-                "contains COMPOSITION a[openEHR-EHR-COMPOSITION.care_summary.v0] " +
-                "contains SECTION a_a[openEHR-EHR-SECTION.medication_medical_devices_rcp.v1] " +
-                "where a/name/value='Current medication list' " +
-                "and a/uid/value='" + documentId + "' " +
-                "and e/ehr_status/subject/external_ref/namespace = '" + namespace + "' " +
-                "and e/ehr_status/subject/external_ref/id/value = '" + patientId + "'";
-        
-        /*
-            return  "select a/uid/value as uid, " +
+        return  "select a/uid/value as uid, " +
                 "a/name/value as documentType, " +
-                "a_a/items/data[at0001]/items[at0006]/value/value as dischargeDate " +
+                "a/context/start_time/value as dischargeDate " +
                 "from EHR e " +
                 "contains COMPOSITION a[openEHR-EHR-COMPOSITION.transfer_summary.v1] " +
-                "contains SECTION a_a[openEHR-EHR-SECTION.adhoc.v1] " +
-                "where e/ehr_status/subject/external_ref/namespace = '" + namespace + "' " +
+                "where a/name/value='Discharge summary' " +
+                "and e/ehr_status/subject/external_ref/namespace = '" + namespace + "' " +
                 "and e/ehr_status/subject/external_ref/id/value = '" + patientId + "'";
-        */
     }
 
     @Override
@@ -74,7 +53,6 @@ public class DischargeDocumentDetailsQueryStrategy extends AbstractQueryStrategy
         }
 
         Map<String, Object> data = resultSet.get(0);
-
         return new DischargeDocumentDetailsTransformer().transform(data);
     }
 }
