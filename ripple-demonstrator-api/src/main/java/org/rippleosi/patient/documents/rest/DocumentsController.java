@@ -27,6 +27,7 @@ import org.rippleosi.patient.documents.referral.search.ReferralDocumentSearch;
 import org.rippleosi.patient.documents.referral.search.ReferralDocumentSearchFactory;
 import org.rippleosi.patient.documents.common.store.DocumentStore;
 import org.rippleosi.patient.documents.common.store.DocumentStoreFactory;
+import org.rippleosi.patient.documents.discharge.model.DischargeDocumentDetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -94,5 +95,14 @@ public class DocumentsController {
             DateFormatter.toDate(gds2.getDocumentDate()).compareTo(DateFormatter.toDate(gds1.getDocumentDate())));
 
         return documents;
+    }
+    
+    @RequestMapping(value = "/discharge/{documentId}", method = RequestMethod.GET)
+    public DischargeDocumentDetails findDischargeDocument(@PathVariable("patientId") String patientId,
+                                      @PathVariable("documentId") String documentId,
+                                      @RequestParam(required = false) String source) {
+        DischargeDocumentSearch documentSearch = dischargeDocumentSearchFactory.select(source);
+
+        return documentSearch.findDischargeDocument(patientId, documentId);
     }
 }
