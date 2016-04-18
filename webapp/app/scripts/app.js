@@ -159,6 +159,25 @@ angular
           }
         })
 
+        .state('documents', {
+          url: '/patients/{patientId:int}/documents?reportType&searchString&queryType',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/documents/documents-list.html', controller: 'DocumentsListCtrl'}
+          }
+        })
+
+        .state('documents-detail', {
+          url: '/patients/{patientId:int}/documents/{documentIndex}?filter&page&reportType&searchString&queryType&documentType&source',
+          views: {
+            'user-context': {templateUrl: 'views/patients/patients-context.html', controller: 'PatientsDetailCtrl'},
+            actions: {templateUrl: 'views/patients/patients-sidebar.html', controller: 'PatientsDetailCtrl'},
+            main: {templateUrl: 'views/documents/documents-list.html', controller: 'DocumentsListCtrl'},
+            detail: {templateUrl: 'views/documents/documents-detail.html', controller: 'DocumentsDetailCtrl'}
+          }
+        })
+
         .state('contacts', {
           url: '/patients/{patientId:int}/contacts?reportType&searchString&queryType',
           views: {

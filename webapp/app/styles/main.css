@@ -2151,3 +2151,7 @@ input#author.form-control.joint-score-author.input-sm{
 .clinicalNoteForm textarea {
   height: 120px;
 }
+
+.import-record {
+  cursor: pointer;
+}
