@@ -28,6 +28,7 @@ import org.rippleosi.patient.documents.referral.search.ReferralDocumentSearchFac
 import org.rippleosi.patient.documents.common.store.DocumentStore;
 import org.rippleosi.patient.documents.common.store.DocumentStoreFactory;
 import org.rippleosi.patient.documents.discharge.model.DischargeDocumentDetails;
+import org.rippleosi.patient.documents.referral.model.ReferralDocumentDetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -104,5 +105,14 @@ public class DocumentsController {
         DischargeDocumentSearch documentSearch = dischargeDocumentSearchFactory.select(source);
 
         return documentSearch.findDischargeDocument(patientId, documentId);
+    }
+    
+    @RequestMapping(value = "/referral/{documentId}", method = RequestMethod.GET)
+    public ReferralDocumentDetails findReferralDocument(@PathVariable("patientId") String patientId,
+                                      @PathVariable("documentId") String documentId,
+                                      @RequestParam(required = false) String source) {
+        ReferralDocumentSearch documentSearch = referralDocumentSearchFactory.select(source);
+
+        return documentSearch.findReferralDocument(patientId, documentId);
     }
 }
