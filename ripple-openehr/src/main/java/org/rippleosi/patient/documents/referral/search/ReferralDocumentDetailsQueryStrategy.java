@@ -93,9 +93,6 @@ public class ReferralDocumentDetailsQueryStrategy extends AbstractQueryStrategy<
         if (resultSet.isEmpty()) {
             throw new DataNotFoundException("No results found");
         }
-
-        Map<String, Object> data = resultSet.get(0);
-
-        return new ReferralDocumentDetailsTransformer().transform(data);
+        return new ReferralDocumentDetailsTransformer().transformWithRepeatingGroups(resultSet);
     }
 }

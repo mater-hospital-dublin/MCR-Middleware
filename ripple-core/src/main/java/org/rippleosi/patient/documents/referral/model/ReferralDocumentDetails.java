@@ -16,6 +16,7 @@
 package org.rippleosi.patient.documents.referral.model;
 
 import java.util.List;
+import java.util.Date;
 import org.rippleosi.patient.documents.common.model.AbstractDocumentSummary;
 
 /**
@@ -23,13 +24,12 @@ import org.rippleosi.patient.documents.common.model.AbstractDocumentSummary;
 public class ReferralDocumentDetails extends AbstractDocumentSummary {
         
     private String documentOriginalSource;
-    private String dischargeDate;
     
     private String composerName;
     private String facility;
     private String providerId;
     
-    private String referralDateTime;
+    private Date referralDateTime;
     private String referralType;
     private List<String> reasonForReferral;         // Repeating element
     private String referralComments;
@@ -90,14 +90,6 @@ public class ReferralDocumentDetails extends AbstractDocumentSummary {
         this.documentOriginalSource = documentOriginalSource;
     }
 
-    public String getDischargeDate() {
-        return dischargeDate;
-    }
-
-    public void setDischargeDate(String dischargeDate) {
-        this.dischargeDate = dischargeDate;
-    }
-
     public String getComposerName() {
         return composerName;
     }
@@ -122,11 +114,11 @@ public class ReferralDocumentDetails extends AbstractDocumentSummary {
         this.providerId = providerId;
     }
 
-    public String getReferralDateTime() {
+    public Date getReferralDateTime() {
         return referralDateTime;
     }
 
-    public void setReferralDateTime(String referralDateTime) {
+    public void setReferralDateTime(Date referralDateTime) {
         this.referralDateTime = referralDateTime;
     }
 
