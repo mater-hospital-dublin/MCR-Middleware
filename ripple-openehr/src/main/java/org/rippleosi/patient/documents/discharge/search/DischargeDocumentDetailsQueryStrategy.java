@@ -46,18 +46,18 @@ public class DischargeDocumentDetailsQueryStrategy extends AbstractQueryStrategy
                 "a/content[openEHR-EHR-SECTION.clinical_summary_rcp.v1]/items[openEHR-EHR-EVALUATION.clinical_synopsis.v1]/data[at0001]/items[at0002]/value/value as synopsis " +
                 "from EHR e contains COMPOSITION a[openEHR-EHR-COMPOSITION.transfer_summary.v1] " +
                 "where a/name/value='Discharge summary' " +
-                "and a/uid/value='" + documentId + "' " +
-                "and e/ehr_status/subject/external_ref/namespace = '" + namespace + "' " +
-                "and e/ehr_status/subject/external_ref/id/value = '" + patientId + "'";
+                "and a/uid/value='"+documentId+"' " +
+                "and e/ehr_status/subject/external_ref/namespace='" + namespace + "' " +
+                "and e/ehr_status/subject/external_ref/id/value='" + patientId + "'";
     }
     
     public String getIdentifierQuery(String namespace, String patientId) {
         return "select a/uid/value as uid, b_a/items[at0016|MRN|]/value/id as patientIdMrn, b_a/items[at0016|MRN|]/value/type as patientIdMrnType " +
                 "from EHR e contains COMPOSITION a[openEHR-EHR-COMPOSITION.transfer_summary.v1] contains CLUSTER b_a[openEHR-EHR-CLUSTER.individual_personal_uk.v1] " +
                 "where a/name/value='Discharge summary'" +
-                "and a/uid/value='" + documentId + "' " +
-                "and e/ehr_status/subject/external_ref/namespace = '" + namespace + "' " +
-                "and e/ehr_status/subject/external_ref/id/value = '" + patientId + "'";
+                "and a/uid/value='"+documentId+"' " +
+                "and e/ehr_status/subject/external_ref/namespace='" + namespace + "' " +
+                "and e/ehr_status/subject/external_ref/id/value='" + patientId + "'";
     }
     
     public String getDiagnosisQuery(String namespace, String patientId) {
@@ -66,10 +66,10 @@ public class DischargeDocumentDetailsQueryStrategy extends AbstractQueryStrategy
                 "a/content[openEHR-EHR-SECTION.diagnoses_rcp.v1]/items[openEHR-EHR-EVALUATION.problem_diagnosis.v1]/data[at0001]/items[at0003, 'Diagnosis Date/time']/value/value as diagnosisTime " +
                 "from EHR e " +
                 "contains COMPOSITION a[openEHR-EHR-COMPOSITION.transfer_summary.v1] " +
-                "where a/name/value='Discharge summary ' " +
-                "and a/uid/value='" + documentId + "' " +
-                "and e/ehr_status/subject/external_ref/namespace = '" + namespace + "' " +
-                "and e/ehr_status/subject/external_ref/id/value = '" + patientId + "'";
+                "where a/name/value='Discharge summary' " +
+                "and a/uid/value='"+documentId+"' " +
+                "and e/ehr_status/subject/external_ref/namespace='" + namespace + "' " +
+                "and e/ehr_status/subject/external_ref/id/value='" + patientId + "'";
     }
 
     @Override

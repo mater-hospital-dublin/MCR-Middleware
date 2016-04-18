@@ -67,12 +67,15 @@ public class DischargeDocumentDetailsTransformer implements Transformer<Map<Stri
             if(mrnSet == false && "MRN".equalsIgnoreCase(type)){
                 currentDocumentDetails.setPatientIdentifier_mrn(id);
                 currentDocumentDetails.setPatientIdentifier_mrnType(type);
+                mrnSet=true;
             } else if(othSet == false && "OTH".equalsIgnoreCase(type)){
                 currentDocumentDetails.setPatientIdentifier_oth(id);
                 currentDocumentDetails.setPatientIdentifier_othType(type);
+                othSet=true;
             } else if(gmsSet == false && "GMS".equalsIgnoreCase(type)){
                 currentDocumentDetails.setPatientIdentifier_gms(id);
                 currentDocumentDetails.setPatientIdentifier_gmsType(type);
+                gmsSet=true;
             }
         }
         
