@@ -35,7 +35,7 @@ public class ReferralDocumentDetailsQueryStrategy extends AbstractQueryStrategy<
 
     @Override
     public String getQuery(String namespace, String patientId) {
-        return "a/uid/value as uid, a/context/start_time/value as referralDateTime, a/composer/name as authorName, a/context/health_care_facility/name as facility, " +
+        return "select a/uid/value as uid, a/context/start_time/value as referralDateTime, a/composer/name as authorName, a/context/health_care_facility/name as facility, " +
                 "a/content[openEHR-EHR-SECTION.referral_details_rcp.v1]/items[openEHR-EHR-INSTRUCTION.request.v0]/activities[at0001]/description[at0009]/items[at0121, 'Referral type']/value/value as referralType, " +
                 "a/content[openEHR-EHR-SECTION.referral_details_rcp.v1|Referral details|]/items[openEHR-EHR-INSTRUCTION.request.v0|Service request|]/activities[at0001|Request|]/description[at0009]/items[at0062|Reason for referral|]/value/value as reasonForReferral, " +
                 "a/content[openEHR-EHR-SECTION.referral_details_rcp.v1|Referral details|]/items[openEHR-EHR-INSTRUCTION.request.v0|Service request|]/activities[at0001|Request|]/description[at0009]/items[at0135|Comments|]/value/value as referralComment, " +

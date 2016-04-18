@@ -15,7 +15,6 @@
  */
 package org.rippleosi.patient.documents.referral.search;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -66,33 +65,32 @@ public class ReferralDocumentDetailsTransformer implements Transformer<Map<Strin
             case "531": referralDocument.setReferralStatus_mapped("Expired"); break;
         }
 
-        /*
-                clinicalNarrative, " +
-                presentIllness, " +
-                clinicalSynopsis, " +
-                previousHospitalAttendance, " +
-                anticoagulationUse, " +
-                tobaccoUse, " +
-                alcoholUse, " +
-                physicalMobility, " + 
-                systolicBP, " +
-                systolicBPUnits, " +
-                diastolicBP, " +
-                diastolicBPUnits,	" +
-                 pulseRate, " +
-                pulseRateUnits, " +
-                height, " +
-                heightUnits, " +
-                weight, " +
-                weightUnits, " +
-                bodyMassIndex, " + 
-                bodyMassIndexUnits, " +
-                OtherFindings " +
-        */
+        referralDocument.setClinicalNarrative(MapUtils.getString(input, "clinicalNarrative"));
+        referralDocument.setPresentIllness(MapUtils.getString(input, "presentIllness"));
+        referralDocument.setClinicalSynopsisComments(MapUtils.getString(input, "clinicalSynopsis"));
+        referralDocument.setPreviousHospitalAttendance(MapUtils.getString(input, "previousHospitalAttendance"));
+        referralDocument.setMedication_anticoagulation_use(MapUtils.getString(input, "anticoagulationUse"));
+        referralDocument.setTobaccoUse(MapUtils.getString(input, "tobaccoUse"));
+        referralDocument.setAlcholUse(MapUtils.getString(input, "alcoholUse"));
+        referralDocument.setPhysicalImparement(MapUtils.getString(input, "physicalMobility"));
+        referralDocument.setSystolicBP(MapUtils.getString(input, "systolicBP"));
+        referralDocument.setSystolicBP_units(MapUtils.getString(input, "systolicBPUnits"));
+        referralDocument.setDiastolicBP(MapUtils.getString(input, "diastolicBP"));
+        referralDocument.setDiastolicBP_units(MapUtils.getString(input, "diastolicBPUnits"));
+        referralDocument.setPulse(MapUtils.getString(input, "pulseRate"));
+        referralDocument.setPulse_units(MapUtils.getString(input, "pulseRateUnits"));
+        referralDocument.setHeight(MapUtils.getString(input, "height"));
+        referralDocument.setHeight_units(MapUtils.getString(input, "heightUnits"));
+        referralDocument.setWeight(MapUtils.getString(input, "weight"));
+        referralDocument.setWeight_units(MapUtils.getString(input, "weightUnits"));
+        referralDocument.setBodyMass(MapUtils.getString(input, "bodyMassIndex"));
+        referralDocument.setBodyMass_units(MapUtils.getString(input, "bodyMassIndexUnits"));
+        referralDocument.setOtherExaminationFindings(MapUtils.getString(input, "OtherFindings"));
         
-        // referralDocument.setReasonForReferral(MapUtils.getString(input, "reasonForReferral"));   //Repeating element
         /*
-        pastIllness, " +
+                referralDocument.setReasonForReferral(MapUtils.getString(input, "reasonForReferral"));   //Repeating element
+        
+                pastIllness, " +
                 pastIllnessDateTime, " +
                 surgicalProcedure, " +
                 surgicalProcedureTime,	" +

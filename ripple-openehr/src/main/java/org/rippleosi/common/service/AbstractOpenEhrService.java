@@ -27,6 +27,7 @@ import org.rippleosi.common.exception.DataNotFoundException;
 import org.rippleosi.common.exception.UpdateFailedException;
 import org.rippleosi.common.model.ActionRestResponse;
 import org.rippleosi.common.model.EhrResponse;
+import org.rippleosi.common.model.Query;
 import org.rippleosi.common.model.QueryResponse;
 import org.rippleosi.common.repo.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,8 +68,11 @@ public abstract class AbstractOpenEhrService implements Repository {
     protected <T> T findData(QueryStrategy<T> queryStrategy) {
 
         String query = queryStrategy.getQuery(openEhrSubjectNamespace, queryStrategy.getPatientId());
-
-        ResponseEntity<QueryResponse> response = requestProxy.getWithoutSession(getQueryURI(query), QueryResponse.class);
+        
+        Query queryBody = new Query();
+        queryBody.setAql(queryStrategy.getQuery(openEhrSubjectNamespace, queryStrategy.getPatientId()));
+        
+        ResponseEntity<QueryResponse> response = requestProxy.postWithoutSession(getQueryURI(query), QueryResponse.class, queryBody);
 
         List<Map<String, Object>> results = new ArrayList<>();
 
@@ -119,7 +123,6 @@ public abstract class AbstractOpenEhrService implements Repository {
     private String getQueryURI(String query) {
         UriComponents components = UriComponentsBuilder
                                     .fromHttpUrl(openEhrAddress + "/query")
-                                    .queryParam("aql", query)
                                     .build();
         return components.toUriString();
     }
