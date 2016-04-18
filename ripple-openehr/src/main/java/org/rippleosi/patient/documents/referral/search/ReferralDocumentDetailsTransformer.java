@@ -42,7 +42,7 @@ public class ReferralDocumentDetailsTransformer implements Transformer<Map<Strin
 
         referralDocument.setSource("openehr");
         referralDocument.setSourceId(MapUtils.getString(input, "uid"));
-        referralDocument.setDocumentType(MapUtils.getString(input, "Referral"));
+        referralDocument.setDocumentType("Healthlink " + MapUtils.getString(input, "documentType"));
 
         referralDocument.setReferralDateTime(DateFormatter.toDate(MapUtils.getString(input, "referralDateTime")));
         referralDocument.setComposerName(MapUtils.getString(input, "authorName"));
