@@ -17,6 +17,7 @@ package org.rippleosi.patient.documents.referral.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  */
@@ -103,4 +104,59 @@ public class AllergyDetails implements Serializable {
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 31 * hash + Objects.hashCode(this.sourceId);
+        hash = 31 * hash + Objects.hashCode(this.cause);
+        hash = 31 * hash + Objects.hashCode(this.causeCode);
+        hash = 31 * hash + Objects.hashCode(this.causeTerminology);
+        hash = 31 * hash + Objects.hashCode(this.terminologyCode);
+        hash = 31 * hash + Objects.hashCode(this.reaction);
+        hash = 31 * hash + Objects.hashCode(this.source);
+        hash = 31 * hash + Objects.hashCode(this.author);
+        hash = 31 * hash + Objects.hashCode(this.dateCreated);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AllergyDetails other = (AllergyDetails) obj;
+        if (!Objects.equals(this.sourceId, other.sourceId)) {
+            return false;
+        }
+        if (!Objects.equals(this.cause, other.cause)) {
+            return false;
+        }
+        if (!Objects.equals(this.causeCode, other.causeCode)) {
+            return false;
+        }
+        if (!Objects.equals(this.causeTerminology, other.causeTerminology)) {
+            return false;
+        }
+        if (!Objects.equals(this.terminologyCode, other.terminologyCode)) {
+            return false;
+        }
+        if (!Objects.equals(this.reaction, other.reaction)) {
+            return false;
+        }
+        if (!Objects.equals(this.source, other.source)) {
+            return false;
+        }
+        if (!Objects.equals(this.author, other.author)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateCreated, other.dateCreated)) {
+            return false;
+        }
+        return true;
+    }
+    
 }

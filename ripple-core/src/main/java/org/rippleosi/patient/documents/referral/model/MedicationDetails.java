@@ -17,6 +17,7 @@ package org.rippleosi.patient.documents.referral.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  */
@@ -139,4 +140,75 @@ public class MedicationDetails implements Serializable {
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 11 * hash + Objects.hashCode(this.sourceId);
+        hash = 11 * hash + Objects.hashCode(this.source);
+        hash = 11 * hash + Objects.hashCode(this.name);
+        hash = 11 * hash + Objects.hashCode(this.doseAmount);
+        hash = 11 * hash + Objects.hashCode(this.doseDirections);
+        hash = 11 * hash + Objects.hashCode(this.doseTiming);
+        hash = 11 * hash + Objects.hashCode(this.route);
+        hash = 11 * hash + Objects.hashCode(this.startDate);
+        hash = 11 * hash + Objects.hashCode(this.startTime);
+        hash = 11 * hash + Objects.hashCode(this.medicationCode);
+        hash = 11 * hash + Objects.hashCode(this.medicationTerminology);
+        hash = 11 * hash + Objects.hashCode(this.author);
+        hash = 11 * hash + Objects.hashCode(this.dateCreated);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MedicationDetails other = (MedicationDetails) obj;
+        if (!Objects.equals(this.sourceId, other.sourceId)) {
+            return false;
+        }
+        if (!Objects.equals(this.source, other.source)) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.doseAmount, other.doseAmount)) {
+            return false;
+        }
+        if (!Objects.equals(this.doseDirections, other.doseDirections)) {
+            return false;
+        }
+        if (!Objects.equals(this.doseTiming, other.doseTiming)) {
+            return false;
+        }
+        if (!Objects.equals(this.route, other.route)) {
+            return false;
+        }
+        if (!Objects.equals(this.startDate, other.startDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.startTime, other.startTime)) {
+            return false;
+        }
+        if (!Objects.equals(this.medicationCode, other.medicationCode)) {
+            return false;
+        }
+        if (!Objects.equals(this.medicationTerminology, other.medicationTerminology)) {
+            return false;
+        }
+        if (!Objects.equals(this.author, other.author)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateCreated, other.dateCreated)) {
+            return false;
+        }
+        return true;
+    }
+    
 }

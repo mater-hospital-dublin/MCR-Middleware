@@ -23,6 +23,8 @@ import java.util.Map;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.collections4.Transformer;
 import org.rippleosi.common.util.DateFormatter;
+import org.rippleosi.patient.documents.referral.model.AllergyDetails;
+import org.rippleosi.patient.documents.referral.model.MedicationDetails;
 import org.rippleosi.patient.documents.referral.model.NameDateElement;
 import org.rippleosi.patient.documents.referral.model.ReferralDocumentDetails;
 
@@ -97,6 +99,8 @@ public class ReferralDocumentDetailsTransformer implements Transformer<Map<Strin
         HashSet referralReasons = new HashSet();
         HashSet pastIllnesses = new HashSet();
         HashSet surgicalProcedures = new HashSet();
+        HashSet medications = new HashSet();
+        HashSet allergies = new HashSet();
         
         for(Map<String, Object> row : resultSet){
             
@@ -111,18 +115,24 @@ public class ReferralDocumentDetailsTransformer implements Transformer<Map<Strin
             surgicalProcedure.setDate(MapUtils.getString(input, "pastIllnessDateTime"));
             surgicalProcedure.setValue(MapUtils.getString(input, "pastIllness"));
             surgicalProcedures.add(surgicalProcedure);
-        /*
-                medication, " +
-                medicationDateTime, " +
             
-                allergy, " +
-                allergyDateTime, " +
-        */
+            MedicationDetails medication = new MedicationDetails();
+            medication.setName(MapUtils.getString(input, "medication"));
+            medication.setStartDate(DateFormatter.toDate(MapUtils.getString(input, "medicationDateTime")));
+            medication.setStartTime(DateFormatter.toDate(MapUtils.getString(input, "medicationDateTime")));
+            medications.add(medication);
+            
+            AllergyDetails allergy = new AllergyDetails();
+            allergy.setCause(MapUtils.getString(input, "allergy"));
+            allergy.setDateCreated(DateFormatter.toDate(MapUtils.getString(input, "allergyDateTime")));
+            allergies.add(allergy);
         }
         
         referralDocument.setReasonForReferral(new ArrayList(referralReasons));
         referralDocument.setPastIllensses(new ArrayList(pastIllnesses));
         referralDocument.setSurgicalProcedures(new ArrayList(surgicalProcedures));
+        referralDocument.setMedications(new ArrayList(medications));
+        referralDocument.setAllergies(new ArrayList(allergies));
         
         return referralDocument;
     }

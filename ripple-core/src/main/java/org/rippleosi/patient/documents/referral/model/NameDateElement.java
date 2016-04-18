@@ -15,6 +15,8 @@
  */
 package org.rippleosi.patient.documents.referral.model;
 
+import java.util.Objects;
+
 /**
  */
 public class NameDateElement {
@@ -37,5 +39,32 @@ public class NameDateElement {
     public void setDate(String date) {
         this.date = date;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.value);
+        hash = 71 * hash + Objects.hashCode(this.date);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final NameDateElement other = (NameDateElement) obj;
+        if (!Objects.equals(this.value, other.value)) {
+            return false;
+        }
+        if (!Objects.equals(this.date, other.date)) {
+            return false;
+        }
+        return true;
+    }
+    
     
 }
