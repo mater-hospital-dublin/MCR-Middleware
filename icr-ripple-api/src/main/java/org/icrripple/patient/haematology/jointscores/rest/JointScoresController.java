@@ -22,8 +22,8 @@ import org.icrripple.patient.haematology.jointscores.search.JointScoreSearch;
 import org.icrripple.patient.haematology.jointscores.search.JointScoreSearchFactory;
 import org.icrripple.patient.haematology.jointscores.store.JointScoreStore;
 import org.icrripple.patient.haematology.jointscores.store.JointScoreStoreFactory;
-import org.rippleosi.common.types.RepoSource;
 import org.rippleosi.common.types.RepoSourceType;
+import org.rippleosi.common.types.lookup.RepoSourceLookupFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +38,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class JointScoresController {
 
     @Autowired
+    private RepoSourceLookupFactory repoSourceLookup;
+    
+    @Autowired
     private JointScoreSearchFactory jointScoreSearchFactory;
 
     @Autowired
@@ -46,7 +49,7 @@ public class JointScoresController {
     @RequestMapping(method = RequestMethod.GET)
     public List<JointScoreSummary> findAllJointScores(@PathVariable("patientId") String patientId,
                                                       @RequestParam(required = false) String source) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         JointScoreSearch search = jointScoreSearchFactory.select(sourceType);
 
         return search.findAllJointScores(patientId);
@@ -56,7 +59,7 @@ public class JointScoresController {
     public JointScoreDetails findJointScore(@PathVariable("patientId") String patientId,
                                             @PathVariable("jointScoreId") String jointScoreId,
                                             @RequestParam(required = false) String source) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         JointScoreSearch search = jointScoreSearchFactory.select(sourceType);
 
         return search.findJointScore(patientId, jointScoreId);
@@ -66,7 +69,7 @@ public class JointScoresController {
     public void createJointScore(@PathVariable("patientId") String patientId,
                                  @RequestParam(required = false) String source,
                                  @RequestBody JointScoreDetails jointScore) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         JointScoreStore store = jointScoreStoreFactory.select(sourceType);
 
         store.create(patientId, jointScore);
@@ -76,7 +79,7 @@ public class JointScoresController {
     public void updateJointScore(@PathVariable("patientId") String patientId,
                                  @RequestParam(required = false) String source,
                                  @RequestBody JointScoreDetails jointScore) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         JointScoreStore store = jointScoreStoreFactory.select(sourceType);
 
         store.update(patientId, jointScore);

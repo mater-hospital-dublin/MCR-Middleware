@@ -19,14 +19,14 @@ import java.util.List;
 
 import org.rippleosi.common.exception.ConfigurationException;
 import org.icrripple.patient.heightandweight.model.HeightAndWeightDetails;
-import org.rippleosi.common.types.RepoSource;
 import org.rippleosi.common.types.RepoSourceType;
+import org.rippleosi.common.types.RepoSourceTypes;
 
 public class NotConfiguredHeightAndWeightSearch implements HeightAndWeightSearch {
 
     @Override
-    public RepoSource getSource() {
-        return RepoSourceType.NONE;
+    public RepoSourceType getSource() {
+        return RepoSourceTypes.NONE;
     }
 
     @Override

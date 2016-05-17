@@ -20,14 +20,14 @@ import java.util.List;
 import org.rippleosi.common.exception.ConfigurationException;
 import org.icrripple.patient.haematology.eq5l.model.EQ5LDetails;
 import org.icrripple.patient.haematology.eq5l.model.EQ5LSummary;
-import org.rippleosi.common.types.RepoSource;
 import org.rippleosi.common.types.RepoSourceType;
+import org.rippleosi.common.types.RepoSourceTypes;
 
 public class NotConfiguredEQ5LSearch implements EQ5LSearch {
 
     @Override
-    public RepoSource getSource() {
-        return RepoSourceType.NONE;
+    public RepoSourceType getSource() {
+        return RepoSourceTypes.NONE;
     }
 
     @Override

@@ -22,8 +22,8 @@ import org.icrripple.patient.clinicalnotes.search.ClinicalNoteSearch;
 import org.icrripple.patient.clinicalnotes.search.ClinicalNoteSearchFactory;
 import org.icrripple.patient.clinicalnotes.store.ClinicalNoteStore;
 import org.icrripple.patient.clinicalnotes.store.ClinicalNoteStoreFactory;
-import org.rippleosi.common.types.RepoSource;
 import org.rippleosi.common.types.RepoSourceType;
+import org.rippleosi.common.types.lookup.RepoSourceLookupFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +38,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClinicalNotesController {
 
     @Autowired
+    private RepoSourceLookupFactory repoSourceLookup;
+    
+    @Autowired
     private ClinicalNoteSearchFactory clinicalNoteSearchFactory;
 
     @Autowired
@@ -46,7 +49,7 @@ public class ClinicalNotesController {
     @RequestMapping(method = RequestMethod.GET)
     public List<ClinicalNoteSummary> findAllClinicalNotes(@PathVariable("patientId") String patientId,
                                                           @RequestParam(required = false) String source) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         ClinicalNoteSearch search = clinicalNoteSearchFactory.select(sourceType);
 
         return search.findAllClinicalNotes(patientId);
@@ -56,7 +59,7 @@ public class ClinicalNotesController {
     public ClinicalNoteDetails findClinicalNote(@PathVariable("patientId") String patientId,
                                                 @PathVariable("clinicalNoteId") String clinicalNoteId,
                                                 @RequestParam(required = false) String source) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         ClinicalNoteSearch search = clinicalNoteSearchFactory.select(sourceType);
 
         return search.findClinicalNote(patientId, clinicalNoteId);
@@ -66,7 +69,7 @@ public class ClinicalNotesController {
     public void createClinicalNote(@PathVariable("patientId") String patientId,
                                    @RequestParam(required = false) String source,
                                    @RequestBody ClinicalNoteDetails clinicalNote) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         ClinicalNoteStore store = clinicalNoteStoreFactory.select(sourceType);
 
         store.create(patientId, clinicalNote);
@@ -76,7 +79,7 @@ public class ClinicalNotesController {
     public void updateClinicalNote(@PathVariable("patientId") String patientId,
                                    @RequestParam(required = false) String source,
                                    @RequestBody ClinicalNoteDetails clinicalNote) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         ClinicalNoteStore store = clinicalNoteStoreFactory.select(sourceType);
 
         store.update(patientId, clinicalNote);

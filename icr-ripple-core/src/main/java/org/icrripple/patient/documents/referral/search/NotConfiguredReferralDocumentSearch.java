@@ -20,16 +20,16 @@ import java.util.List;
 import org.rippleosi.common.exception.ConfigurationException;
 import org.icrripple.patient.documents.common.model.AbstractDocumentSummary;
 import org.icrripple.patient.documents.referral.model.ReferralDocumentDetails;
-import org.rippleosi.common.types.RepoSource;
 import org.rippleosi.common.types.RepoSourceType;
+import org.rippleosi.common.types.RepoSourceTypes;
 
 /**
  */
 public class NotConfiguredReferralDocumentSearch implements ReferralDocumentSearch {
 
     @Override
-    public RepoSource getSource() {
-        return RepoSourceType.NONE;
+    public RepoSourceType getSource() {
+        return RepoSourceTypes.NONE;
     }
 
     @Override

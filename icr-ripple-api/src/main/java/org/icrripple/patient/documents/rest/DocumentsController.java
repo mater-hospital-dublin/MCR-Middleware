@@ -27,8 +27,8 @@ import org.icrripple.patient.documents.discharge.search.DischargeDocumentSearchF
 import org.icrripple.patient.documents.referral.model.ReferralDocumentDetails;
 import org.icrripple.patient.documents.referral.search.ReferralDocumentSearch;
 import org.icrripple.patient.documents.referral.search.ReferralDocumentSearchFactory;
-import org.rippleosi.common.types.RepoSource;
 import org.rippleosi.common.types.RepoSourceType;
+import org.rippleosi.common.types.lookup.RepoSourceLookupFactory;
 import org.rippleosi.common.util.DateFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +46,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class DocumentsController {
 
     @Autowired
+    private RepoSourceLookupFactory repoSourceLookup;
+    
+    @Autowired
     private DocumentStoreFactory documentStoreFactory;
 
     @Autowired
@@ -58,7 +61,7 @@ public class DocumentsController {
     public void createReferral(@PathVariable("patientId") String patientId,
                                @RequestParam(required = false) String source,
                                @RequestBody String body) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
 
         GenericDocument document = new GenericDocument();
         document.setDocumentType("hl7Referral");
@@ -73,7 +76,7 @@ public class DocumentsController {
     public void createDischarge(@PathVariable("patientId") String patientId,
                                 @RequestParam(required = false) String source,
                                 @RequestBody String body) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
 
         GenericDocument document = new GenericDocument();
         document.setDocumentType("hl7Discharge");
@@ -87,7 +90,7 @@ public class DocumentsController {
     @RequestMapping(method = RequestMethod.GET)
     public List<AbstractDocumentSummary> findAllDocuments(@PathVariable("patientId") String patientId,
                                                           @RequestParam(required = false) String source) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
 
         DischargeDocumentSearch dischargeDocumentSearch = dischargeDocumentSearchFactory.select(sourceType);
         List<AbstractDocumentSummary> documents = dischargeDocumentSearch.findAllDischargeDocuments(patientId);
@@ -106,7 +109,7 @@ public class DocumentsController {
     public DischargeDocumentDetails findDischargeDocument(@PathVariable("patientId") String patientId,
                                       @PathVariable("documentId") String documentId,
                                       @RequestParam(required = false) String source) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         DischargeDocumentSearch documentSearch = dischargeDocumentSearchFactory.select(sourceType);
 
         return documentSearch.findDischargeDocument(patientId, documentId);
@@ -116,7 +119,7 @@ public class DocumentsController {
     public ReferralDocumentDetails findReferralDocument(@PathVariable("patientId") String patientId,
                                       @PathVariable("documentId") String documentId,
                                       @RequestParam(required = false) String source) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         ReferralDocumentSearch documentSearch = referralDocumentSearchFactory.select(sourceType);
 
         return documentSearch.findReferralDocument(patientId, documentId);

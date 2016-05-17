@@ -21,8 +21,8 @@ import org.icrripple.patient.heightandweight.search.HeightAndWeightSearch;
 import org.icrripple.patient.heightandweight.search.HeightAndWeightSearchFactory;
 import org.icrripple.patient.heightandweight.store.HeightAndWeightStore;
 import org.icrripple.patient.heightandweight.store.HeightAndWeightStoreFactory;
-import org.rippleosi.common.types.RepoSource;
 import org.rippleosi.common.types.RepoSourceType;
+import org.rippleosi.common.types.lookup.RepoSourceLookupFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +37,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class HeightAndWeightController {
 
     @Autowired
+    private RepoSourceLookupFactory repoSourceLookup;
+    
+    @Autowired
     private HeightAndWeightSearchFactory heightAndWeightSearchFactory;
 
     @Autowired
@@ -45,7 +48,7 @@ public class HeightAndWeightController {
     @RequestMapping(method = RequestMethod.GET)
     public List<HeightAndWeightDetails> findAllHeightsAndWeights(@PathVariable("patientId") String patientId,
                                                                  @RequestParam(required = false) String source) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         HeightAndWeightSearch search = heightAndWeightSearchFactory.select(sourceType);
 
         return search.findAllHeightsAndWeights(patientId);
@@ -55,7 +58,7 @@ public class HeightAndWeightController {
     public HeightAndWeightDetails findHeightAndWeight(@PathVariable("patientId") String patientId,
                                                       @PathVariable("heightAndWeightId") String heightAndWeightId,
                                                       @RequestParam(required = false) String source) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         HeightAndWeightSearch search = heightAndWeightSearchFactory.select(sourceType);
 
         return search.findHeightAndWeight(patientId, heightAndWeightId);
@@ -65,7 +68,7 @@ public class HeightAndWeightController {
     public void createHeightAndWeight(@PathVariable("patientId") String patientId,
                                       @RequestParam(required = false) String source,
                                       @RequestBody HeightAndWeightDetails heightAndWeight) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         HeightAndWeightStore store = heightAndWeightStoreFactory.select(sourceType);
 
         store.create(patientId, heightAndWeight);
@@ -75,7 +78,7 @@ public class HeightAndWeightController {
     public void updateHeightAndWeight(@PathVariable("patientId") String patientId,
                                       @RequestParam(required = false) String source,
                                       @RequestBody HeightAndWeightDetails heightAndWeight) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         HeightAndWeightStore store = heightAndWeightStoreFactory.select(sourceType);
 
         store.update(patientId, heightAndWeight);

@@ -17,8 +17,8 @@ package org.icrripple.patient.haematology.bleeds.store;
 
 import org.apache.camel.Produce;
 import org.icrripple.patient.haematology.bleeds.model.BleedDetails;
-import org.rippleosi.common.types.RepoSource;
 import org.rippleosi.common.types.RepoSourceType;
+import org.rippleosi.common.types.RepoSourceTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,8 +39,8 @@ public class ActiveMQProxyBleedStore implements BleedStore {
     private BleedStore updateTopic;
 
     @Override
-    public RepoSource getSource() {
-        return RepoSourceType.ACTIVEMQ;
+    public RepoSourceType getSource() {
+        return RepoSourceTypes.ACTIVEMQ;
     }
 
     @Override

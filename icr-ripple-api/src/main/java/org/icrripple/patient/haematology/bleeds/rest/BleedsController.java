@@ -22,8 +22,9 @@ import org.icrripple.patient.haematology.bleeds.search.BleedSearch;
 import org.icrripple.patient.haematology.bleeds.search.BleedSearchFactory;
 import org.icrripple.patient.haematology.bleeds.store.BleedStore;
 import org.icrripple.patient.haematology.bleeds.store.BleedStoreFactory;
-import org.rippleosi.common.types.RepoSource;
 import org.rippleosi.common.types.RepoSourceType;
+import org.rippleosi.common.types.lookup.RepoSource;
+import org.rippleosi.common.types.lookup.RepoSourceLookupFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class BleedsController {
 
     @Autowired
+    private RepoSourceLookupFactory repoSourceLookup;
+    
+    @Autowired
     private BleedSearchFactory bleedSearchFactory;
 
     @Autowired
@@ -46,7 +50,7 @@ public class BleedsController {
     @RequestMapping(method = RequestMethod.GET)
     public List<BleedSummary> findAllBleeds(@PathVariable("patientId") String patientId,
                                             @RequestParam(required = false) String source) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         BleedSearch search = bleedSearchFactory.select(sourceType);
 
         return search.findAllBleeds(patientId);
@@ -56,7 +60,7 @@ public class BleedsController {
     public BleedDetails findBleed(@PathVariable("patientId") String patientId,
                                   @PathVariable("bleedId") String bleedId,
                                   @RequestParam(required = false) String source) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         BleedSearch search = bleedSearchFactory.select(sourceType);
 
         return search.findBleed(patientId, bleedId);
@@ -66,7 +70,7 @@ public class BleedsController {
     public void createBleed(@PathVariable("patientId") String patientId,
                             @RequestParam(required = false) String source,
                             @RequestBody BleedDetails bleed) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         BleedStore store = bleedStoreFactory.select(sourceType);
 
         store.create(patientId, bleed);
@@ -76,7 +80,7 @@ public class BleedsController {
     public void updateBleed(@PathVariable("patientId") String patientId,
                             @RequestParam(required = false) String source,
                             @RequestBody BleedDetails bleed) {
-        final RepoSource sourceType = RepoSourceType.fromString(source);
+        final RepoSourceType sourceType = repoSourceLookup.lookup(source);
         BleedStore store = bleedStoreFactory.select(sourceType);
 
         store.update(patientId, bleed);

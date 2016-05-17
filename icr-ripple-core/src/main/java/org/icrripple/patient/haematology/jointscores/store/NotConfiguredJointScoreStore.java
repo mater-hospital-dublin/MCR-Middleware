@@ -19,14 +19,14 @@ import org.apache.camel.Body;
 import org.apache.camel.Header;
 import org.rippleosi.common.exception.ConfigurationException;
 import org.icrripple.patient.haematology.jointscores.model.JointScoreDetails;
-import org.rippleosi.common.types.RepoSource;
 import org.rippleosi.common.types.RepoSourceType;
+import org.rippleosi.common.types.RepoSourceTypes;
 
 public class NotConfiguredJointScoreStore implements JointScoreStore {
 
     @Override
-    public RepoSource getSource() {
-        return RepoSourceType.NONE;
+    public RepoSourceType getSource() {
+        return RepoSourceTypes.NONE;
     }
 
     @Override

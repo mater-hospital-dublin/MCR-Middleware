@@ -17,8 +17,8 @@ package org.icrripple.patient.clinicalnotes.store;
 
 import org.apache.camel.Produce;
 import org.icrripple.patient.clinicalnotes.model.ClinicalNoteDetails;
-import org.rippleosi.common.types.RepoSource;
 import org.rippleosi.common.types.RepoSourceType;
+import org.rippleosi.common.types.RepoSourceTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,8 +39,8 @@ public class ActiveMQProxyClinicalNoteStore implements ClinicalNoteStore {
     private ClinicalNoteStore updateTopic;
 
     @Override
-    public RepoSource getSource() {
-        return RepoSourceType.ACTIVEMQ;
+    public RepoSourceType getSource() {
+        return RepoSourceTypes.ACTIVEMQ;
     }
 
     @Override
