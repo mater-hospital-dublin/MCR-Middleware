@@ -95,6 +95,12 @@
             
             <dependency>
                 <groupId>org.icrripple</groupId>
+                <artifactId>icr-ripple-openehr</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.icrripple</groupId>
                 <artifactId>icr-ripple-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
