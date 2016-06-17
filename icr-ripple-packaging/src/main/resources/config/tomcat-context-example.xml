@@ -21,6 +21,7 @@
     <Environment name="c4hOpenEHR.password"         type="java.lang.String" override="false" value="InDeCoMP"/>
     <Environment name="c4hOpenEHR.subjectNamespace" type="java.lang.String" override="false" value="uk.nhs.nhs_number"/>
 
+    <Environment name="repository.config.c4hOpenEHR"        type="java.lang.Integer" override="false" value="800"/>
     <Environment name="c4hOpenEHR.allergiesTemplate"        type="java.lang.String" override="false" value="LCR Allergies List.v0"/>
     <Environment name="c4hOpenEHR.contactsTemplate"         type="java.lang.String" override="false" value="LCR Relevant Contacts List.v0"/>
     <Environment name="c4hOpenEHR.endOfLifeTemplate"        type="java.lang.String" override="false" value="IDCR - End of Life Patient Preferences.v0"/>
@@ -38,8 +39,8 @@
     <Environment name="c4hOpenEHR.jointScoresTemplate"      type="java.lang.String" override="false" value="NCHCD - Patient visit - Scores.v0"/>
     <Environment name="c4hOpenEHR.eq5lTemplate"             type="java.lang.String" override="false" value="NCHCD - Patient visit - Scores.v0"/>
     <Environment name="c4hOpenEHR.clinicalNotesTemplate"    type="java.lang.String" override="false" value="NCHCD - Clinical notes.v0"/>
-	<Environment name="c4hOpenEHR.referralDocumentTemplate" type="java.lang.String" override="false" value="iEHR - Healthlink - Referral.v0"/>
-	<Environment name="c4hOpenEHR.dischargeDocumentTemplate" type="java.lang.String" override="false" value="iEHR - Healthlink - Discharge Sumary.v0"/>
+    <Environment name="c4hOpenEHR.referralDocumentTemplate" type="java.lang.String" override="false" value="iEHR - Healthlink - Referral.v0"/>
+    <Environment name="c4hOpenEHR.dischargeDocumentTemplate" type="java.lang.String" override="false" value="iEHR - Healthlink - Discharge Sumary.v0"/>
 
     <Environment name="legacy.datasource.vendor"    type="java.lang.String"  override="false" value="mysql"/>
     <Environment name="legacy.datasource.host"      type="java.lang.String"  override="false" value="127.0.0.1"/>
