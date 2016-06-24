@@ -37,7 +37,7 @@ public class OpenEHRBleedStore extends AbstractOpenEhrService implements BleedSt
     private static final String BLEED_PREFIX = "patient_event_report/history:0/story_history:0/";
 
     @Override
-    @Consume(uri = "activemq:Consumer.C4HOpenEHR.VirtualTopic.Ripple.Bleeds.Create")
+    @Consume(uri = "activemq:Consumer.C4HOpenEHR.VirtualTopic.Marand.Bleeds.Create")
     public void create(String patientId, BleedDetails bleed) {
         Map<String, Object> content = createFlatJsonContent(bleed);
 
@@ -47,7 +47,7 @@ public class OpenEHRBleedStore extends AbstractOpenEhrService implements BleedSt
     }
 
     @Override
-    @Consume(uri = "activemq:Consumer.C4HOpenEHR.VirtualTopic.Ripple.Bleeds.Update")
+    @Consume(uri = "activemq:Consumer.C4HOpenEHR.VirtualTopic.Marand.Bleeds.Update")
     public void update(String patientId, BleedDetails bleed) {
         Map<String, Object> content = createFlatJsonContent(bleed);
 
