@@ -15,7 +15,6 @@
  */
 package org.rippleosi.config.broker;
 
-import org.apache.camel.spring.javaconfig.CamelConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,6 +22,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan("org.icrripple.common.routes")
-public class ICRBrokerConfig extends CamelConfiguration {
+public class ICRBrokerConfig extends BrokerConfig {
 
 }
