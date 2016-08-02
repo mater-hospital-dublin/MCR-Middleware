@@ -36,6 +36,12 @@
         <dependency>
             <groupId>org.rippleosi</groupId>
             <artifactId>ripple-api</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.rippleosi</groupId>
+                    <artifactId>ripple-ethercis</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

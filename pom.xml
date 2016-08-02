@@ -27,7 +27,7 @@
     <name>ICR Ripple</name>
 
     <scm>
-        <connection>scm:git:https://github.com/RippleOSI/Org-Ripple-core.git</connection>
+        <connection>scm:git:https://github.com/RippleOSI/IE-ICR-Core.git</connection>
         <tag>HEAD</tag>
     </scm>
     
