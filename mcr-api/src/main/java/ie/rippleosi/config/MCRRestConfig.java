@@ -13,23 +13,16 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package ie.mater.patient.documents.discharge.search;
+package ie.rippleosi.config;
 
-import org.rippleosi.common.repo.AbstractRepositoryFactory;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
  */
-@Service
-public class DefaultDischargeDocumentSearchFactory extends AbstractRepositoryFactory<DischargeDocumentSearch> implements DischargeDocumentSearchFactory {
+@Configuration
+@ComponentScan("org.mater")
+public class MCRRestConfig extends WebMvcConfigurerAdapter {
 
-    @Override
-    protected DischargeDocumentSearch defaultRepository() {
-        return new NotConfiguredDischargeDocumentSearch();
-    }
-
-    @Override
-    protected Class<DischargeDocumentSearch> repositoryClass() {
-        return DischargeDocumentSearch.class;
-    }
 }
