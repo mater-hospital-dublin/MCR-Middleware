@@ -129,7 +129,7 @@
                         <configuration>
                             <path>/</path>
                             <port>19191</port>
-                            <contextFile>${project.basedir}/../context-ripple.xml</contextFile>
+                            <contextFile>${project.basedir}/../context-mcr.xml</contextFile>
                         </configuration>
                     </plugin>
                 </plugins>

@@ -24,7 +24,7 @@
             <exclusions>
                 <exclusion>
                     <groupId>org.rippleosi</groupId>
-                    <artifactId>ripple-ethercis</artifactId>
+                    <artifactId>ripple-security</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
