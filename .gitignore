@@ -20,4 +20,4 @@ activemq-data/
 */activemq-data/
 
 # Config #
-context-ripple.xml
+context-mcr.xml

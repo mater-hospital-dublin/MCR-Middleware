@@ -19,15 +19,15 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.icrripple</groupId>
-    <artifactId>icr-ripple</artifactId>
-    <version>0.5.0.0-SNAPSHOT</version>
+    <groupId>ie.mater</groupId>
+    <artifactId>mcr-ripple</artifactId>
+    <version>0.0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>ICR Ripple</name>
+    <name>MCR Middleware</name>
 
     <scm>
-        <connection>scm:git:https://github.com/RippleOSI/IE-ICR-Core.git</connection>
+        <connection>scm:git:https://github.com/mater-hospital-dublin/MCR-Middleware.git</connection>
         <tag>HEAD</tag>
     </scm>
     
@@ -95,29 +95,29 @@
     </properties>
 
     <modules>
-        <module>icr-ripple-api</module>
-        <module>icr-ripple-core</module>
-        <module>icr-ripple-openehr</module>
-        <module>icr-ripple-packaging</module>
+        <module>mcr-api</module>
+        <module>mcr-core</module>
+        <module>mcr-openehr</module>
+        <module>mcr-packaging</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.icrripple</groupId>
-                <artifactId>icr-ripple-api</artifactId>
+                <groupId>ie.mater</groupId>
+                <artifactId>mcr-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             
             <dependency>
-                <groupId>org.icrripple</groupId>
-                <artifactId>icr-ripple-openehr</artifactId>
+                <groupId>ie.mater</groupId>
+                <artifactId>mcr-openehr</artifactId>
                 <version>${project.version}</version>
             </dependency>
             
             <dependency>
-                <groupId>org.icrripple</groupId>
-                <artifactId>icr-ripple-core</artifactId>
+                <groupId>ie.mater</groupId>
+                <artifactId>mcr-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             
