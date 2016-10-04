@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package ie.rippleosi.config;
+package org.rippleosi.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 /**
  */
 @Configuration
-@ComponentScan("org.mater")
+@ComponentScan("ie.mater")
 public class MCRRestConfig extends WebMvcConfigurerAdapter {
 
 }
