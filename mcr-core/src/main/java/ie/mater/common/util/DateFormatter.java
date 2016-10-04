@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Ripple OSI
+ * Copyright 2016 Mater Care Record
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
  *    limitations under the License.
  */
 package ie.mater.common.util;
-
 
 import org.apache.commons.lang3.StringUtils;
 
