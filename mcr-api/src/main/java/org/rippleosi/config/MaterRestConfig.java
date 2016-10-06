@@ -23,6 +23,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Configuration
 @ComponentScan("ie.mater")
-public class MCRRestConfig extends WebMvcConfigurerAdapter {
+public class MaterRestConfig extends WebMvcConfigurerAdapter {
 
 }
