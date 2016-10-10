@@ -31,12 +31,17 @@
     <dependencies>
         <dependency>
             <groupId>ie.mater</groupId>
+            <artifactId>mcr-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ie.mater</groupId>
             <artifactId>mcr-openehr</artifactId>
         </dependency>
         
         <dependency>
             <groupId>ie.mater</groupId>
-            <artifactId>mcr-api</artifactId>
+            <artifactId>mcr-tie</artifactId>
         </dependency>
 
         <dependency>
