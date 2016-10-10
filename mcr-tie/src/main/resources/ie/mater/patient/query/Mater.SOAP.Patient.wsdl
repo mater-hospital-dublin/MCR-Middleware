@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://10.78.8.19:57772/csp/samples" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://10.78.8.19:57772/csp/samples">
+    <types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://10.78.8.19:57772/csp/samples">
+            <s:element name="getPatient">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" name="PatientPIN" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="getPatientResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="getPatientResult" type="s0:PatientMaster"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="PatientMaster">
+                <s:sequence>
+                    <s:element name="PatientPIN" type="s:string"/>
+                    <s:element minOccurs="0" name="MRNNumber" type="s:string"/>
+                    <s:element minOccurs="0" name="address">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="150"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                    <s:element minOccurs="0" name="dateOfBirth" type="s:string"/>
+                    <s:element minOccurs="0" name="gender" type="s:string"/>
+                    <s:element minOccurs="0" name="name">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="80"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                    <s:element minOccurs="0" name="IHINumber" type="s:string"/>
+                    <s:element minOccurs="0" name="gpDetails">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="150"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                    <s:element minOccurs="0" name="pasNumber" type="s:string"/>
+                    <s:element minOccurs="0" name="telephone" type="s:string"/>
+                    <s:element minOccurs="0" name="id" type="s:string"/>
+                    <s:element minOccurs="0" name="allergies" type="s0:Allergies"/>
+                    <s:element minOccurs="0" name="contacts" type="s0:Contacts"/>
+                    <s:element minOccurs="0" name="medications" type="s0:Medications"/>
+                    <s:element minOccurs="0" name="problems" type="s0:Problems"/>
+                    <s:element minOccurs="0" name="transfers" type="s0:Transfers"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="Allergies">
+                <s:sequence>
+                    <s:element minOccurs="0" name="sourceId" type="s0:ArrayOfsourceIdItemPairOfsourceIdKeyString"/>
+                    <s:element minOccurs="0" name="source" type="s0:ArrayOfsourceItemPairOfsourceKeyString"/>
+                    <s:element minOccurs="0" name="text" type="s0:ArrayOftextItemPairOftextKeyString"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfsourceIdItemPairOfsourceIdKeyString">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="sourceIdItem" nillable="true" type="s0:PairOfsourceIdKeyString"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="PairOfsourceIdKeyString">
+                <s:simpleContent>
+                    <s:extension base="s:string">
+                        <s:attribute name="sourceIdKey" type="s:string" use="required"/>
+                    </s:extension>
+                </s:simpleContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfsourceItemPairOfsourceKeyString">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="sourceItem" nillable="true" type="s0:PairOfsourceKeyString"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="PairOfsourceKeyString">
+                <s:simpleContent>
+                    <s:extension base="s:string">
+                        <s:attribute name="sourceKey" type="s:string" use="required"/>
+                    </s:extension>
+                </s:simpleContent>
+            </s:complexType>
+            <s:complexType name="ArrayOftextItemPairOftextKeyString">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="textItem" nillable="true" type="s0:PairOftextKeyString"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="PairOftextKeyString">
+                <s:simpleContent>
+                    <s:extension base="s:string">
+                        <s:attribute name="textKey" type="s:string" use="required"/>
+                    </s:extension>
+                </s:simpleContent>
+            </s:complexType>
+            <s:complexType name="Contacts">
+                <s:sequence>
+                    <s:element minOccurs="0" name="sourceId" type="s0:ArrayOfsourceIdItemPairOfsourceIdKeyString"/>
+                    <s:element minOccurs="0" name="source" type="s0:ArrayOfsourceItemPairOfsourceKeyString"/>
+                    <s:element minOccurs="0" name="text" type="s0:ArrayOftextItemPairOftextKeyString"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="Medications">
+                <s:sequence>
+                    <s:element minOccurs="0" name="sourceId" type="s0:ArrayOfsourceIdItemPairOfsourceIdKeyString"/>
+                    <s:element minOccurs="0" name="source" type="s0:ArrayOfsourceItemPairOfsourceKeyString"/>
+                    <s:element minOccurs="0" name="text" type="s0:ArrayOftextItemPairOftextKeyString"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="Problems">
+                <s:sequence>
+                    <s:element minOccurs="0" name="sourceId" type="s0:ArrayOfsourceIdItemPairOfsourceIdKeyString"/>
+                    <s:element minOccurs="0" name="source" type="s0:ArrayOfsourceItemPairOfsourceKeyString"/>
+                    <s:element minOccurs="0" name="text" type="s0:ArrayOftextItemPairOftextKeyString"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="Transfers">
+                <s:sequence>
+                    <s:element minOccurs="0" name="dateOfTransfer" type="s0:ArrayOfdateOfTransferItemPairOfdateOfTransferKeyString"/>
+                    <s:element minOccurs="0" name="from" type="s0:ArrayOffromItemPairOffromKeyString"/>
+                    <s:element minOccurs="0" name="sourceId" type="s0:ArrayOfsourceIdItemPairOfsourceIdKeyString"/>
+                    <s:element minOccurs="0" name="source" type="s0:ArrayOfsourceItemPairOfsourceKeyString"/>
+                    <s:element minOccurs="0" name="to" type="s0:ArrayOftoItemPairOftoKeyString"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfdateOfTransferItemPairOfdateOfTransferKeyString">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="dateOfTransferItem" nillable="true" type="s0:PairOfdateOfTransferKeyString"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="PairOfdateOfTransferKeyString">
+                <s:simpleContent>
+                    <s:extension base="s:string">
+                        <s:attribute name="dateOfTransferKey" type="s:string" use="required"/>
+                    </s:extension>
+                </s:simpleContent>
+            </s:complexType>
+            <s:complexType name="ArrayOffromItemPairOffromKeyString">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="fromItem" nillable="true" type="s0:PairOffromKeyString"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="PairOffromKeyString">
+                <s:simpleContent>
+                    <s:extension base="s:string">
+                        <s:attribute name="fromKey" type="s:string" use="required"/>
+                    </s:extension>
+                </s:simpleContent>
+            </s:complexType>
+            <s:complexType name="ArrayOftoItemPairOftoKeyString">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="toItem" nillable="true" type="s0:PairOftoKeyString"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="PairOftoKeyString">
+                <s:simpleContent>
+                    <s:extension base="s:string">
+                        <s:attribute name="toKey" type="s:string" use="required"/>
+                    </s:extension>
+                </s:simpleContent>
+            </s:complexType>
+            <s:element name="getPatientSummary">
+                <s:complexType>
+                    <s:sequence/>
+                </s:complexType>
+            </s:element>
+            <s:element name="getPatientSummaryResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="getPatientSummaryResult" type="s0:ArrayOfPatientListArrayPatientListArray"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfPatientListArrayPatientListArray">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="PatientListArray" nillable="true" type="s0:PatientListArray"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="PatientListArray">
+                <s:sequence>
+                    <s:element name="PatientPIN" type="s:string"/>
+                    <s:element name="PatientEpNo" type="s:string"/>
+                    <s:element minOccurs="0" name="MRNNumber" type="s:string"/>
+                    <s:element minOccurs="0" name="address">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="150"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                    <s:element minOccurs="0" name="dateOfBirth" type="s:string"/>
+                    <s:element minOccurs="0" name="gender" type="s:string"/>
+                    <s:element minOccurs="0" name="name">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="80"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                    <s:element minOccurs="0" name="IHINumber" type="s:string"/>
+                    <s:element minOccurs="0" name="source" type="s:string"/>
+                    <s:element minOccurs="0" name="sourceId" type="s:string"/>
+                    <s:element minOccurs="0" name="Location" type="s:string"/>
+                    <s:element minOccurs="0" name="Specialty" type="s:string"/>
+                    <s:element minOccurs="0" name="Consultant" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+        </s:schema>
+    </types>
+    <message name="getPatientSoapIn">
+        <part name="parameters" element="s0:getPatient"/>
+    </message>
+    <message name="getPatientSoapOut">
+        <part name="parameters" element="s0:getPatientResponse"/>
+    </message>
+    <message name="getPatientSummarySoapIn">
+        <part name="parameters" element="s0:getPatientSummary"/>
+    </message>
+    <message name="getPatientSummarySoapOut">
+        <part name="parameters" element="s0:getPatientSummaryResponse"/>
+    </message>
+    <portType name="PatientServiceSoap">
+        <operation name="getPatient">
+            <input message="s0:getPatientSoapIn"/>
+            <output message="s0:getPatientSoapOut"/>
+        </operation>
+        <operation name="getPatientSummary">
+            <input message="s0:getPatientSummarySoapIn"/>
+            <output message="s0:getPatientSummarySoapOut"/>
+        </operation>
+    </portType>
+    <binding name="PatientServiceSoap" type="s0:PatientServiceSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="getPatient">
+            <soap:operation soapAction="http://10.78.8.19:57772/csp/samples/Ripple.PatientService.getPatient" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getPatientSummary">
+            <soap:operation soapAction="http://10.78.8.19:57772/csp/samples/Ripple.PatientService.getPatientSummary" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="PatientService">
+        <port name="PatientServiceSoap" binding="s0:PatientServiceSoap"/>
+    </service>
+</definitions>
