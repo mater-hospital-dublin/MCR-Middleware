@@ -44,4 +44,9 @@
 
     <Environment name="orthancServer.address"               type="java.lang.String"  override="false" value="http://ripple-orthanc.answerappcloud.com"/>
 
+    <Environment name="mater.tie.address"                   type="java.lang.String"  override="false" value="http://10.78.8.19:57772"/>
+    <Environment name="mater.tie.patientServiceUrl"         type="java.lang.String"  override="false" value="/csp/samples/Ripple.PatientService.cls"/>
+    <Environment name="mater.tie.orderServiceUrl"           type="java.lang.String"  override="false" value="/csp/samples/Ripple.OrderService.cls"/>
+    <Environment name="mater.tie.resultServiceUrl"          type="java.lang.String"  override="false" value="/csp/samples/Ripple.ResultService.cls"/>
+
 </Context>
