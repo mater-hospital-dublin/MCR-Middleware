@@ -160,7 +160,7 @@ public class MaterPatientToPatientDetailsTransformer implements Transformer<Pati
 
         LabResultSearch labResultSearch = labResultSearchFactory.select(sourceType);
 
-        List<LabResultSummary> labResults = labResultSearch.findAllLabResults("9999999000");
+        List<LabResultSummary> labResults = labResultSearch.findAllLabResults(ihiNumber);
 
         return CollectionUtils.collect(labResults, new LabResultToPatientHeadlineTransformer(), new ArrayList<>());
     }

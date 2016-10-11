@@ -40,7 +40,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MaterPatientSearch extends AbstractMaterService implements PatientSearch {
 
-    private static final Logger log = LoggerFactory.getLogger(MaterPatientSearch.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MaterPatientSearch.class);
 
     @Autowired
     private PatientServiceSoap patientSearch;

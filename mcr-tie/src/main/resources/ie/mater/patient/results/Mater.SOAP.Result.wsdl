@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://10.78.8.19:57772/csp/samples" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://10.78.8.19:57772/csp/samples">
+    <types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://10.78.8.19:57772/csp/samples">
+            <s:element name="getResultDetails">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" name="OrderNo" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="getResultDetailsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="getResultDetailsResult" type="s0:OCRRResultInfo"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="OCRRResultInfo">
+                <s:sequence>
+                    <s:element name="orderNumber" type="s:string"/>
+                    <s:element minOccurs="0" name="author">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="80"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                    <s:element minOccurs="0" name="conclusion" type="s:string"/>
+                    <s:element minOccurs="0" name="source" type="s:string"/>
+                    <s:element minOccurs="0" name="sourceId" type="s:string"/>
+                    <s:element minOccurs="0" name="status" type="s:string"/>
+                    <s:element minOccurs="0" name="dateCreated" type="s:string"/>
+                    <s:element minOccurs="0" name="dateProcessed" type="s:string"/>
+                    <s:element minOccurs="0" name="testName">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="150"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                    <s:element minOccurs="0" name="testResults" type="s0:ArrayOfTestResultsTestResults"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfTestResultsTestResults">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="TestResults" nillable="true" type="s0:TestResults"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="TestResults">
+                <s:sequence>
+                    <s:element minOccurs="0" name="ID" type="s:string"/>
+                    <s:element minOccurs="0" name="comment">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="100"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                    <s:element minOccurs="0" name="normalRange" type="s:string"/>
+                    <s:element minOccurs="0" name="result">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="100"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                    <s:element minOccurs="0" name="unit" type="s:string"/>
+                    <s:element minOccurs="0" name="value" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="getResultSummary">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" name="PatientPIN" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="getResultSummaryResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="getResultSummaryResult" type="s0:ArrayOfOCRRResultsArrayOCRRResultsArray"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfOCRRResultsArrayOCRRResultsArray">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="OCRRResultsArray" nillable="true" type="s0:OCRRResultsArray"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="OCRRResultsArray">
+                <s:sequence>
+                    <s:element name="PatientPIN" type="s:string"/>
+                    <s:element minOccurs="0" name="department" type="s:string"/>
+                    <s:element minOccurs="0" name="source" type="s:string"/>
+                    <s:element name="sourceId" type="s:string"/>
+                    <s:element minOccurs="0" name="dateCreated" type="s:string"/>
+                    <s:element minOccurs="0" name="dateProcessed" type="s:string"/>
+                    <s:element minOccurs="0" name="testName">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="150"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="getResultsHeadline">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" name="PatientPIN" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="getResultsHeadlineResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="getResultsHeadlineResult" type="s0:ArrayOfOCRRResultsArrayOCRRResultsArray"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+        </s:schema>
+    </types>
+    <message name="getResultDetailsSoapIn">
+        <part name="parameters" element="s0:getResultDetails"/>
+    </message>
+    <message name="getResultDetailsSoapOut">
+        <part name="parameters" element="s0:getResultDetailsResponse"/>
+    </message>
+    <message name="getResultSummarySoapIn">
+        <part name="parameters" element="s0:getResultSummary"/>
+    </message>
+    <message name="getResultSummarySoapOut">
+        <part name="parameters" element="s0:getResultSummaryResponse"/>
+    </message>
+    <message name="getResultsHeadlineSoapIn">
+        <part name="parameters" element="s0:getResultsHeadline"/>
+    </message>
+    <message name="getResultsHeadlineSoapOut">
+        <part name="parameters" element="s0:getResultsHeadlineResponse"/>
+    </message>
+    <portType name="ResultServiceSoap">
+        <operation name="getResultDetails">
+            <input message="s0:getResultDetailsSoapIn"/>
+            <output message="s0:getResultDetailsSoapOut"/>
+        </operation>
+        <operation name="getResultSummary">
+            <input message="s0:getResultSummarySoapIn"/>
+            <output message="s0:getResultSummarySoapOut"/>
+        </operation>
+        <operation name="getResultsHeadline">
+            <input message="s0:getResultsHeadlineSoapIn"/>
+            <output message="s0:getResultsHeadlineSoapOut"/>
+        </operation>
+    </portType>
+    <binding name="ResultServiceSoap" type="s0:ResultServiceSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="getResultDetails">
+            <soap:operation soapAction="http://10.78.8.19:57772/csp/samples/Ripple.ResultService.getResultDetails" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getResultSummary">
+            <soap:operation soapAction="http://10.78.8.19:57772/csp/samples/Ripple.ResultService.getResultSummary" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getResultsHeadline">
+            <soap:operation soapAction="http://10.78.8.19:57772/csp/samples/Ripple.ResultService.getResultsHeadline" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ResultService">
+        <port name="ResultServiceSoap" binding="s0:ResultServiceSoap"/>
+    </service>
+</definitions>

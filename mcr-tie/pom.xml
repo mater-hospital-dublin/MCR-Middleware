@@ -31,7 +31,8 @@
 
     <properties>
         <patientServiceWsdlLocation>ie/mater/patient/query/Mater.SOAP.Patient.wsdl</patientServiceWsdlLocation>
-        <orderServiceWsdlLocation>ie/mater/patient/orders/Mater.SOAP.Orders.wsdl</orderServiceWsdlLocation>
+        <orderServiceWsdlLocation>ie/mater/patient/orders/Mater.SOAP.Order.wsdl</orderServiceWsdlLocation>
+        <resultServiceWsdlLocation>ie/mater/patient/results/Mater.SOAP.Result.wsdl</resultServiceWsdlLocation>
     </properties>
 
     <dependencies>
@@ -109,6 +110,15 @@
                                     <extraargs>
                                         <extraarg>-p</extraarg>
                                         <extraarg>ie.mater.patient.orders</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                                <!-- Results WSDL -->
+                                <wsdlOption>
+                                    <wsdl>${basedir}/src/main/resources/${resultServiceWsdlLocation}</wsdl>
+                                    <wsdlLocation>classpath:${resultServiceWsdlLocation}</wsdlLocation>
+                                    <extraargs>
+                                        <extraarg>-p</extraarg>
+                                        <extraarg>ie.mater.patient.results</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                                 <!-- Add More WSDL Definitions as Defined Above -->
