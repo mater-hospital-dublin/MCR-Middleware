@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2016 Mater Care Record
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://10.78.8.19:57772/csp/samples" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://10.78.8.19:57772/csp/samples">
+    <types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://10.78.8.19:57772/csp/samples">
+            <s:element name="getOrderDetails">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" name="OrderNo" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="getOrderDetailsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="getOrderDetailsResult" type="s0:OCRROrderInfo"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="OCRROrderInfo">
+                <s:sequence>
+                    <s:element name="orderNumber" type="s:string"/>
+                    <s:element minOccurs="0" name="author">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="80"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                    <s:element minOccurs="0" name="code" type="s:string"/>
+                    <s:element minOccurs="0" name="source" type="s:string"/>
+                    <s:element minOccurs="0" name="sourceId" type="s:string"/>
+                    <s:element minOccurs="0" name="orderDate" type="s:string"/>
+                    <s:element minOccurs="0" name="dateCreated" type="s:string"/>
+                    <s:element minOccurs="0" name="name" type="s:string"/>
+                    <s:element minOccurs="0" name="terminology" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="getOrderSummary">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" name="PatientPIN" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="getOrderSummaryResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="getOrderSummaryResult" type="s0:ArrayOfOCRROrdersArrayOCRROrdersArray"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfOCRROrdersArrayOCRROrdersArray">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="OCRROrdersArray" nillable="true" type="s0:OCRROrdersArray"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="OCRROrdersArray">
+                <s:sequence>
+                    <s:element name="PatientPIN" type="s:string"/>
+                    <s:element minOccurs="0" name="department" type="s:string"/>
+                    <s:element minOccurs="0" name="source" type="s:string"/>
+                    <s:element name="sourceId" type="s:string"/>
+                    <s:element minOccurs="0" name="orderDate" type="s:string"/>
+                    <s:element minOccurs="0" name="name">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="150"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="getOrdersHeadline">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" name="PatientPIN" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="getOrdersHeadlineResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="getOrdersHeadlineResult" type="s0:ArrayOfOCRROrdersArrayOCRROrdersArray"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+        </s:schema>
+    </types>
+    <message name="getOrderDetailsSoapIn">
+        <part name="parameters" element="s0:getOrderDetails"/>
+    </message>
+    <message name="getOrderDetailsSoapOut">
+        <part name="parameters" element="s0:getOrderDetailsResponse"/>
+    </message>
+    <message name="getOrderSummarySoapIn">
+        <part name="parameters" element="s0:getOrderSummary"/>
+    </message>
+    <message name="getOrderSummarySoapOut">
+        <part name="parameters" element="s0:getOrderSummaryResponse"/>
+    </message>
+    <message name="getOrdersHeadlineSoapIn">
+        <part name="parameters" element="s0:getOrdersHeadline"/>
+    </message>
+    <message name="getOrdersHeadlineSoapOut">
+        <part name="parameters" element="s0:getOrdersHeadlineResponse"/>
+    </message>
+    <portType name="OrderServiceSoap">
+        <operation name="getOrderDetails">
+            <input message="s0:getOrderDetailsSoapIn"/>
+            <output message="s0:getOrderDetailsSoapOut"/>
+        </operation>
+        <operation name="getOrderSummary">
+            <input message="s0:getOrderSummarySoapIn"/>
+            <output message="s0:getOrderSummarySoapOut"/>
+        </operation>
+        <operation name="getOrdersHeadline">
+            <input message="s0:getOrdersHeadlineSoapIn"/>
+            <output message="s0:getOrdersHeadlineSoapOut"/>
+        </operation>
+    </portType>
+    <binding name="OrderServiceSoap" type="s0:OrderServiceSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="getOrderDetails">
+            <soap:operation soapAction="http://10.78.8.19:57772/csp/samples/Ripple.OrderService.getOrderDetails" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getOrderSummary">
+            <soap:operation soapAction="http://10.78.8.19:57772/csp/samples/Ripple.OrderService.getOrderSummary" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getOrdersHeadline">
+            <soap:operation soapAction="http://10.78.8.19:57772/csp/samples/Ripple.OrderService.getOrdersHeadline" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="OrderService">
+        <port name="OrderServiceSoap" binding="s0:OrderServiceSoap"/>
+    </service>
+</definitions>
