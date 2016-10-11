@@ -37,11 +37,14 @@ public abstract class AbstractMaterService implements Repository {
     }
 
     protected String addTrailingSpacesToPatientId(String patientId) {
-        final int lengthRequired = 7;
-        int currentLength = patientId.length();
+        if (patientId == null) {
+            return null;
+        }
 
-        for (int i = currentLength; i < lengthRequired; i++) {
-            if (lengthRequired - i != 0) {
+        final int patientPinLength = 7;
+
+        for (int i = patientId.length(); i < patientPinLength; i++) {
+            if (patientPinLength - i != 0) {
                 patientId = StringUtils.join("0", patientId);
             }
         }

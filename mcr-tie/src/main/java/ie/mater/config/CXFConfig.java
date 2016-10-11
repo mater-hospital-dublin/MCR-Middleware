@@ -15,6 +15,7 @@
  */
 package ie.mater.config;
 
+import ie.mater.patient.orders.OrderServiceSoap;
 import ie.mater.patient.query.PatientServiceSoap;
 import org.apache.cxf.jaxws.spring.JaxWsProxyFactoryBeanDefinitionParser.JAXWSSpringClientProxyFactoryBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,9 +33,17 @@ public class CXFConfig {
     @Value("${mater.tie.patientServiceUrl}")
     private String patientServiceUrl;
 
+    @Value("${mater.tie.orderServiceUrl}")
+    private String orderServiceUrl;
+
     @Bean
     public PatientServiceSoap patientService() {
         return createJAXWSService(PatientServiceSoap.class, patientServiceUrl);
+    }
+
+    @Bean
+    public OrderServiceSoap ordersService() {
+        return createJAXWSService(OrderServiceSoap.class, orderServiceUrl);
     }
 
     public <T> T createJAXWSService(Class<T> serviceClass, String serviceUrl) {
