@@ -15,16 +15,20 @@
  */
 package ie.mater.patient.query.search;
 
+import javax.xml.ws.soap.SOAPFaultException;
+
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import ie.mater.common.service.AbstractMaterService;
+import ie.mater.patient.query.ArrayOfPatientListArrayPatientListArray;
 import ie.mater.patient.query.PatientListArray;
 import ie.mater.patient.query.PatientMaster;
 import ie.mater.patient.query.PatientServiceSoap;
 import org.apache.commons.collections4.CollectionUtils;
 import org.rippleosi.common.exception.ConfigurationException;
+import org.rippleosi.common.util.DateFormatter;
 import org.rippleosi.patient.summary.model.PatientDetails;
 import org.rippleosi.patient.summary.model.PatientQueryParams;
 import org.rippleosi.patient.summary.model.PatientSummary;
@@ -50,9 +54,19 @@ public class MaterPatientSearch extends AbstractMaterService implements PatientS
 
     @Override
     public List<PatientSummary> findAllPatients() {
-        List<PatientListArray> patients = patientSearch.getPatientSummary().getPatientListArray();
+        try {
+            List<PatientListArray> patients = patientSearch.getPatientSummary().getPatientListArray();
 
-        return CollectionUtils.collect(patients, new MaterPatientListArrayToPatientSummaryTransformer(), new ArrayList<>());
+            return CollectionUtils.collect(patients, new MaterPatientListArrayToPatientSummaryTransformer(), new ArrayList<>());
+        }
+        catch (SOAPFaultException sfe) {
+            LOGGER.error("Could not parse patient list.");
+        }
+        catch (NullPointerException npe) {
+            LOGGER.error("Patient list was null.");
+        }
+
+        return new ArrayList<>();
     }
 
     @Override
@@ -62,11 +76,21 @@ public class MaterPatientSearch extends AbstractMaterService implements PatientS
 
     @Override
     public PatientDetails findPatient(String patientId) {
-        patientId = addTrailingSpacesToPatientId(patientId);
+        try {
+            patientId = addTrailingSpacesToPatientId(patientId);
 
-        PatientMaster materPatient = patientSearch.getPatient(patientId);
+            PatientMaster materPatient = patientSearch.getPatient(patientId);
 
-        return materPatientToPatientDetailsTransformer.transform(materPatient);
+            return materPatientToPatientDetailsTransformer.transform(materPatient);
+        }
+        catch (SOAPFaultException sfe) {
+            LOGGER.error("Could not parse details for patient " + patientId + ".");
+        }
+        catch (NullPointerException npe) {
+            LOGGER.error("Patient " + patientId + " was null.");
+        }
+
+        return new PatientDetails();
     }
 
     @Override
@@ -81,9 +105,21 @@ public class MaterPatientSearch extends AbstractMaterService implements PatientS
 
     @Override
     public PatientSummary findPatientSummary(String patientId) {
-        PatientMaster materPatient = patientSearch.getPatient(patientId);
+        try {
+            patientId = addTrailingSpacesToPatientId(patientId);
 
-        return new MaterPatientToPatientSummaryTransformer().transform(materPatient);
+            PatientMaster materPatient = patientSearch.getPatient(patientId);
+
+            return new MaterPatientToPatientSummaryTransformer().transform(materPatient);
+        }
+        catch (SOAPFaultException sfe) {
+            LOGGER.error("Could not parse summary for patient " + patientId + ".");
+        }
+        catch (NullPointerException npe) {
+            LOGGER.error("Patient " + patientId + " was null.");
+        }
+
+        return new PatientSummary();
     }
 
     @Override
@@ -98,8 +134,40 @@ public class MaterPatientSearch extends AbstractMaterService implements PatientS
 
     @Override
     public List<PatientSummary> findPatientsByQueryObject(PatientQueryParams patientQueryParams) {
-        PatientMaster patient = patientSearch.getPatient(patientQueryParams.getNhsNumber());
+        List<PatientSummary> patients = new ArrayList<>();
+        String patientId = patientQueryParams.getNhsNumber();
 
-        return CollectionUtils.collect(Arrays.asList(patient), new MaterPatientToPatientSummaryTransformer(), new ArrayList<>());
+        if (patientId != null) {
+            PatientSummary summary = findPatientSummary(patientId);
+
+            patients.add(summary);
+        }
+        else {
+            List<MaterPatientSummary> summaries = convertMaterPatientListArray(patientQueryParams);
+
+            patients.addAll(summaries);
+        }
+
+        return patients;
+    }
+
+    private List<MaterPatientSummary> convertMaterPatientListArray(PatientQueryParams params) {
+        String surname = params.getSurname();
+        String forename = params.getForename();
+        Date dateOfBirth = params.getDateOfBirth();
+        String gender = params.getGender();
+
+        try {
+            ArrayOfPatientListArrayPatientListArray search =
+                patientSearch.getAdvancedSearch(surname, forename, DateFormatter.toSimpleDateString(dateOfBirth), gender);
+
+            return CollectionUtils.collect(search.getPatientListArray(),
+                                           new MaterPatientListArrayToPatientSummaryTransformer(), new ArrayList<>());
+        }
+        catch (SOAPFaultException sfe) {
+            LOGGER.error("Could not parse summary list from advanced search.");
+        }
+
+        return new ArrayList<>();
     }
 }
