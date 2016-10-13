@@ -33,6 +33,7 @@
         <patientServiceWsdlLocation>ie/mater/patient/query/Mater.SOAP.Patient.wsdl</patientServiceWsdlLocation>
         <orderServiceWsdlLocation>ie/mater/patient/orders/Mater.SOAP.Order.wsdl</orderServiceWsdlLocation>
         <resultServiceWsdlLocation>ie/mater/patient/results/Mater.SOAP.Result.wsdl</resultServiceWsdlLocation>
+        <searchServiceWsdlLocation>ie/mater/search/patient/Mater.SOAP.Search.wsdl</searchServiceWsdlLocation>
     </properties>
 
     <dependencies>
@@ -119,6 +120,15 @@
                                     <extraargs>
                                         <extraarg>-p</extraarg>
                                         <extraarg>ie.mater.patient.results</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                                <!-- Search WSDL -->
+                                <wsdlOption>
+                                    <wsdl>${basedir}/src/main/resources/${searchServiceWsdlLocation}</wsdl>
+                                    <wsdlLocation>classpath:${searchServiceWsdlLocation}</wsdlLocation>
+                                    <extraargs>
+                                        <extraarg>-p</extraarg>
+                                        <extraarg>ie.mater.search.patient</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                                 <!-- Add More WSDL Definitions as Defined Above -->

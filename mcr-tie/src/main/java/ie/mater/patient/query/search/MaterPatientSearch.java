@@ -15,6 +15,8 @@
  */
 package ie.mater.patient.query.search;
 
+import javax.xml.ws.soap.SOAPFaultException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,12 +25,15 @@ import ie.mater.common.service.AbstractMaterService;
 import ie.mater.patient.query.PatientListArray;
 import ie.mater.patient.query.PatientMaster;
 import ie.mater.patient.query.PatientServiceSoap;
+import ie.mater.search.patient.ArrayOfPatientListArrayPatientListArray;
+import ie.mater.search.patient.PatientSearchServiceSoap;
 import org.apache.commons.collections4.CollectionUtils;
 import org.rippleosi.common.exception.ConfigurationException;
 import org.rippleosi.patient.summary.model.PatientDetails;
 import org.rippleosi.patient.summary.model.PatientQueryParams;
 import org.rippleosi.patient.summary.model.PatientSummary;
 import org.rippleosi.patient.summary.search.PatientSearch;
+import org.rippleosi.search.patient.stats.PatientStatsSearch;
 import org.rippleosi.search.patient.stats.model.PatientTableQuery;
 import org.rippleosi.search.reports.table.model.ReportTableQuery;
 import org.rippleosi.search.setting.table.model.SettingTableQuery;
@@ -43,14 +48,17 @@ public class MaterPatientSearch extends AbstractMaterService implements PatientS
     private static final Logger LOGGER = LoggerFactory.getLogger(MaterPatientSearch.class);
 
     @Autowired
-    private PatientServiceSoap patientSearch;
+    private PatientServiceSoap patientService;
+
+    @Autowired
+    private PatientSearchServiceSoap patientSearchService;
 
     @Autowired
     private MaterPatientToPatientDetailsTransformer materPatientToPatientDetailsTransformer;
 
     @Override
     public List<PatientSummary> findAllPatients() {
-        List<PatientListArray> patients = patientSearch.getPatientSummary().getPatientListArray();
+        List<PatientListArray> patients = patientService.getPatientSummary().getPatientListArray();
 
         return CollectionUtils.collect(patients, new MaterPatientListArrayToPatientSummaryTransformer(), new ArrayList<>());
     }
@@ -64,24 +72,40 @@ public class MaterPatientSearch extends AbstractMaterService implements PatientS
     public PatientDetails findPatient(String patientId) {
         patientId = addTrailingSpacesToPatientId(patientId);
 
-        PatientMaster materPatient = patientSearch.getPatient(patientId);
+        PatientMaster materPatient = patientService.getPatient(patientId);
 
         return materPatientToPatientDetailsTransformer.transform(materPatient);
     }
 
     @Override
     public List<PatientSummary> findPatientsBySearchString(PatientTableQuery tableQuery) {
-        throw ConfigurationException.unimplementedTransaction(PatientSearch.class);
+        try {
+            ArrayOfPatientListArrayPatientListArray patientList = patientSearchService.byName(tableQuery.getSearchString());
+
+            List<ie.mater.search.patient.PatientListArray> patients = patientList.getPatientListArray();
+
+            return CollectionUtils.collect(patients, new MaterPatientSearchListArrayToPatientSummaryTransformer(), new ArrayList<>());
+        }
+        catch (SOAPFaultException sfe) {
+            LOGGER.error("Could not parse patient summary list for search term '" + tableQuery.getSearchString() + "'.");
+        }
+        catch (NullPointerException npe) {
+            LOGGER.warn("Patient summary list relating to the search term '" + tableQuery.getSearchString() + "' was null.");
+        }
+
+        return new ArrayList<>();
     }
 
     @Override
     public Long countPatientsBySearchString(PatientTableQuery tableQuery) {
-        throw ConfigurationException.unimplementedTransaction(PatientSearch.class);
+        List<PatientSummary> patients = findPatientsBySearchString(tableQuery);
+
+        return (long) patients.size();
     }
 
     @Override
     public PatientSummary findPatientSummary(String patientId) {
-        PatientMaster materPatient = patientSearch.getPatient(patientId);
+        PatientMaster materPatient = patientService.getPatient(patientId);
 
         return new MaterPatientToPatientSummaryTransformer().transform(materPatient);
     }
@@ -98,7 +122,7 @@ public class MaterPatientSearch extends AbstractMaterService implements PatientS
 
     @Override
     public List<PatientSummary> findPatientsByQueryObject(PatientQueryParams patientQueryParams) {
-        PatientMaster patient = patientSearch.getPatient(patientQueryParams.getNhsNumber());
+        PatientMaster patient = patientService.getPatient(patientQueryParams.getNhsNumber());
 
         return CollectionUtils.collect(Arrays.asList(patient), new MaterPatientToPatientSummaryTransformer(), new ArrayList<>());
     }
