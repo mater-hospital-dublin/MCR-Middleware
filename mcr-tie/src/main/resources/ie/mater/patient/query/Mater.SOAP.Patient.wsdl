@@ -2,6 +2,57 @@
 <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://10.78.8.19:57772/csp/samples" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://10.78.8.19:57772/csp/samples">
     <types>
         <s:schema elementFormDefault="qualified" targetNamespace="http://10.78.8.19:57772/csp/samples">
+            <s:element name="getAdvancedSearch">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" name="Surname" type="s:string"/>
+                        <s:element minOccurs="0" name="Forename" type="s:string"/>
+                        <s:element minOccurs="0" name="dateOfBirth" type="s:string"/>
+                        <s:element minOccurs="0" name="Gender" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="getAdvancedSearchResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="getAdvancedSearchResult" type="s0:ArrayOfPatientListArrayPatientListArray"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfPatientListArrayPatientListArray">
+                <s:sequence>
+                    <s:element maxOccurs="unbounded" minOccurs="0" name="PatientListArray" nillable="true" type="s0:PatientListArray"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="PatientListArray">
+                <s:sequence>
+                    <s:element name="PatientPIN" type="s:string"/>
+                    <s:element name="PatientEpNo" type="s:string"/>
+                    <s:element minOccurs="0" name="MRNNumber" type="s:string"/>
+                    <s:element minOccurs="0" name="address">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="150"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                    <s:element minOccurs="0" name="dateOfBirth" type="s:string"/>
+                    <s:element minOccurs="0" name="gender" type="s:string"/>
+                    <s:element minOccurs="0" name="name">
+                        <s:simpleType>
+                            <s:restriction base="s:string">
+                                <s:maxLength value="80"/>
+                            </s:restriction>
+                        </s:simpleType>
+                    </s:element>
+                    <s:element minOccurs="0" name="IHINumber" type="s:string"/>
+                    <s:element minOccurs="0" name="source" type="s:string"/>
+                    <s:element minOccurs="0" name="sourceId" type="s:string"/>
+                    <s:element minOccurs="0" name="Location" type="s:string"/>
+                    <s:element minOccurs="0" name="Specialty" type="s:string"/>
+                    <s:element minOccurs="0" name="Consultant" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
             <s:element name="getPatient">
                 <s:complexType>
                     <s:sequence>
@@ -175,42 +226,14 @@
                     </s:sequence>
                 </s:complexType>
             </s:element>
-            <s:complexType name="ArrayOfPatientListArrayPatientListArray">
-                <s:sequence>
-                    <s:element maxOccurs="unbounded" minOccurs="0" name="PatientListArray" nillable="true" type="s0:PatientListArray"/>
-                </s:sequence>
-            </s:complexType>
-            <s:complexType name="PatientListArray">
-                <s:sequence>
-                    <s:element name="PatientPIN" type="s:string"/>
-                    <s:element name="PatientEpNo" type="s:string"/>
-                    <s:element minOccurs="0" name="MRNNumber" type="s:string"/>
-                    <s:element minOccurs="0" name="address">
-                        <s:simpleType>
-                            <s:restriction base="s:string">
-                                <s:maxLength value="150"/>
-                            </s:restriction>
-                        </s:simpleType>
-                    </s:element>
-                    <s:element minOccurs="0" name="dateOfBirth" type="s:string"/>
-                    <s:element minOccurs="0" name="gender" type="s:string"/>
-                    <s:element minOccurs="0" name="name">
-                        <s:simpleType>
-                            <s:restriction base="s:string">
-                                <s:maxLength value="80"/>
-                            </s:restriction>
-                        </s:simpleType>
-                    </s:element>
-                    <s:element minOccurs="0" name="IHINumber" type="s:string"/>
-                    <s:element minOccurs="0" name="source" type="s:string"/>
-                    <s:element minOccurs="0" name="sourceId" type="s:string"/>
-                    <s:element minOccurs="0" name="Location" type="s:string"/>
-                    <s:element minOccurs="0" name="Specialty" type="s:string"/>
-                    <s:element minOccurs="0" name="Consultant" type="s:string"/>
-                </s:sequence>
-            </s:complexType>
         </s:schema>
     </types>
+    <message name="getAdvancedSearchSoapIn">
+        <part name="parameters" element="s0:getAdvancedSearch"/>
+    </message>
+    <message name="getAdvancedSearchSoapOut">
+        <part name="parameters" element="s0:getAdvancedSearchResponse"/>
+    </message>
     <message name="getPatientSoapIn">
         <part name="parameters" element="s0:getPatient"/>
     </message>
@@ -224,6 +247,10 @@
         <part name="parameters" element="s0:getPatientSummaryResponse"/>
     </message>
     <portType name="PatientServiceSoap">
+        <operation name="getAdvancedSearch">
+            <input message="s0:getAdvancedSearchSoapIn"/>
+            <output message="s0:getAdvancedSearchSoapOut"/>
+        </operation>
         <operation name="getPatient">
             <input message="s0:getPatientSoapIn"/>
             <output message="s0:getPatientSoapOut"/>
@@ -235,6 +262,15 @@
     </portType>
     <binding name="PatientServiceSoap" type="s0:PatientServiceSoap">
         <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="getAdvancedSearch">
+            <soap:operation soapAction="http://10.78.8.19:57772/csp/samples/Ripple.PatientService.getAdvancedSearch" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
         <operation name="getPatient">
             <soap:operation soapAction="http://10.78.8.19:57772/csp/samples/Ripple.PatientService.getPatient" style="document"/>
             <input>
