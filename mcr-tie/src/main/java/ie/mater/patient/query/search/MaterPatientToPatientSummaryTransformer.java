@@ -28,9 +28,10 @@ public class MaterPatientToPatientSummaryTransformer implements Transformer<Pati
     public MaterPatientSummary transform(PatientMaster materPatient) {
         MaterPatientSummary patientSummary = new MaterPatientSummary();
 
-        patientSummary.setId(materPatient.getId());
+        patientSummary.setId(materPatient.getMRNNumber());
+        patientSummary.setNhsNumber(materPatient.getMRNNumber());
+        patientSummary.setMrnNumber(materPatient.getMRNNumber());
         patientSummary.setPatientPin(materPatient.getPatientPIN());
-        patientSummary.setNhsNumber(materPatient.getPatientPIN());
         patientSummary.setIhiNumber(materPatient.getIHINumber());
 
         Date dateOfBirth = DateFormatter.toDate(materPatient.getDateOfBirth());

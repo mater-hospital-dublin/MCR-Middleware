@@ -27,11 +27,11 @@ public class MaterPatientListArrayToPatientSummaryTransformer implements Transfo
     public MaterPatientSummary transform(PatientListArray materPatient) {
         MaterPatientSummary patientSummary = new MaterPatientSummary();
 
-        patientSummary.setId(materPatient.getPatientPIN());
-        patientSummary.setPatientPin(materPatient.getPatientPIN());
-        patientSummary.setNhsNumber(materPatient.getPatientPIN());
-        patientSummary.setIhiNumber(materPatient.getIHINumber());
+        patientSummary.setId(materPatient.getMRNNumber());
         patientSummary.setMrnNumber(materPatient.getMRNNumber());
+        patientSummary.setNhsNumber(materPatient.getMRNNumber());
+        patientSummary.setPatientPin(materPatient.getPatientPIN());
+        patientSummary.setIhiNumber(materPatient.getIHINumber());
 
         Date dateOfBirth = DateFormatter.toDate(materPatient.getDateOfBirth());
         patientSummary.setDateOfBirth(dateOfBirth);

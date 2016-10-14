@@ -76,9 +76,10 @@ public class MaterPatientToPatientDetailsTransformer implements Transformer<Pati
     public MaterPatientDetails transform(PatientMaster materPatient) {
         MaterPatientDetails patientDetails = new MaterPatientDetails();
 
-        patientDetails.setId(materPatient.getId());
+        patientDetails.setId(materPatient.getMRNNumber());
+        patientDetails.setMrnNumber(materPatient.getMRNNumber());
         patientDetails.setPatientPin(materPatient.getPatientPIN());
-        patientDetails.setNhsNumber(materPatient.getPatientPIN());
+        patientDetails.setNhsNumber(materPatient.getMRNNumber());
         patientDetails.setPasNumber(materPatient.getPasNumber());
         patientDetails.setIhiNumber(materPatient.getIHINumber());
 
@@ -93,19 +94,19 @@ public class MaterPatientToPatientDetailsTransformer implements Transformer<Pati
         String gpDetails = StringUtils.substring(materPatient.getGpDetails(), 0, 16);
         patientDetails.setGpDetails(gpDetails + " ...");
 
-        String ihiNumber = materPatient.getIHINumber();
+        String mrnNumber = materPatient.getMRNNumber();
 
-        patientDetails.setProblems(findProblems(ihiNumber));
-        patientDetails.setAllergies(findAllergies(ihiNumber));
-        patientDetails.setMedications(findMedications(ihiNumber));
-        patientDetails.setContacts(findContacts(ihiNumber));
-        patientDetails.setOrders(findOrders(ihiNumber));
-        patientDetails.setResults(findResults(ihiNumber));
+        patientDetails.setProblems(findProblems(mrnNumber));
+        patientDetails.setAllergies(findAllergies(mrnNumber));
+        patientDetails.setMedications(findMedications(mrnNumber));
+        patientDetails.setContacts(findContacts(mrnNumber));
+        patientDetails.setOrders(findOrders(mrnNumber));
+        patientDetails.setResults(findResults(mrnNumber));
 
         return patientDetails;
     }
 
-    private List<PatientHeadline> findProblems(String ihiNumber) {
+    private List<PatientHeadline> findProblems(String mrnNumber) {
         RepoSourceType sourceType = repoSourceLookup.lookup(null);
 
         ProblemSearch problemSearch = problemSearchFactory.select(sourceType);
@@ -115,7 +116,7 @@ public class MaterPatientToPatientDetailsTransformer implements Transformer<Pati
         return CollectionUtils.collect(problems, new ProblemHeadlineToPatientHeadlineTransformer(), new ArrayList<>());
     }
 
-    private List<PatientHeadline> findAllergies(String ihiNumber) {
+    private List<PatientHeadline> findAllergies(String mrnNumber) {
         RepoSourceType sourceType = repoSourceLookup.lookup(null);
 
         AllergySearch allergySearch = allergySearchFactory.select(sourceType);
@@ -125,7 +126,7 @@ public class MaterPatientToPatientDetailsTransformer implements Transformer<Pati
         return CollectionUtils.collect(allergies, new AllergyHeadlineToPatientHeadlineTransformer(), new ArrayList<>());
     }
 
-    private List<PatientHeadline> findMedications(String ihiNumber) {
+    private List<PatientHeadline> findMedications(String mrnNumber) {
         RepoSourceType sourceType = repoSourceLookup.lookup(null);
 
         MedicationSearch medicationSearch = medicationSearchFactory.select(sourceType);
@@ -135,7 +136,7 @@ public class MaterPatientToPatientDetailsTransformer implements Transformer<Pati
         return CollectionUtils.collect(medications, new MedicationHeadlineToPatientHeadlineTransformer(), new ArrayList<>());
     }
 
-    private List<PatientHeadline> findContacts(String ihiNumber) {
+    private List<PatientHeadline> findContacts(String mrnNumber) {
         RepoSourceType sourceType = repoSourceLookup.lookup(null);
 
         ContactSearch contactSearch = contactSearchFactory.select(sourceType);
@@ -145,22 +146,22 @@ public class MaterPatientToPatientDetailsTransformer implements Transformer<Pati
         return CollectionUtils.collect(contacts, new ContactHeadlineToPatientHeadlineTransformer(), new ArrayList<>());
     }
 
-    private List<PatientHeadline> findOrders(String ihiNumber) {
+    private List<PatientHeadline> findOrders(String mrnNumber) {
         RepoSourceType sourceType = repoSourceLookup.lookup(null);
 
         LabOrderSearch labOrderSearch = labOrderSearchFactory.select(sourceType);
 
-        List<LabOrderSummary> labOrders = labOrderSearch.findAllLabOrders(ihiNumber);
+        List<LabOrderSummary> labOrders = labOrderSearch.findAllLabOrders(mrnNumber);
 
         return CollectionUtils.collect(labOrders, new LabOrderToPatientHeadlineTransformer(), new ArrayList<>());
     }
 
-    private List<PatientHeadline> findResults(String ihiNumber) {
+    private List<PatientHeadline> findResults(String mrnNumber) {
         RepoSourceType sourceType = repoSourceLookup.lookup(null);
 
         LabResultSearch labResultSearch = labResultSearchFactory.select(sourceType);
 
-        List<LabResultSummary> labResults = labResultSearch.findAllLabResults(ihiNumber);
+        List<LabResultSummary> labResults = labResultSearch.findAllLabResults(mrnNumber);
 
         return CollectionUtils.collect(labResults, new LabResultToPatientHeadlineTransformer(), new ArrayList<>());
     }

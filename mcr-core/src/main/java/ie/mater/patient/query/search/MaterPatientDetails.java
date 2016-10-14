@@ -24,6 +24,7 @@ public class MaterPatientDetails extends PatientDetails {
 
     private String ihiNumber;
     private String patientPin;
+    private String mrnNumber;
 
     private List<PatientHeadline> orders;
     private List<PatientHeadline> results;
@@ -58,5 +59,13 @@ public class MaterPatientDetails extends PatientDetails {
 
     public void setResults(List<PatientHeadline> results) {
         this.results = results;
+    }
+
+    public String getMrnNumber() {
+        return mrnNumber;
+    }
+
+    public void setMrnNumber(String mrnNumber) {
+        this.mrnNumber = mrnNumber;
     }
 }

@@ -43,9 +43,9 @@ public class MaterResultSearch extends AbstractMaterService implements LabResult
 
     @Override
     public List<LabResultSummary> findAllLabResults(String patientId) {
-        patientId = addTrailingSpacesToPatientId(patientId);
-
         try {
+            patientId = addTrailingSpacesToPatientId(patientId);
+
             List<OCRRResultsArray> labResults = resultService.getResultSummary(patientId).getOCRRResultsArray();
 
             return CollectionUtils.collect(labResults, new MaterResultToResultSummaryTransformer(), new ArrayList<>());
@@ -63,6 +63,8 @@ public class MaterResultSearch extends AbstractMaterService implements LabResult
     @Override
     public LabResultDetails findLabResult(String patientId, String labResultId) {
         try {
+            patientId = addTrailingSpacesToPatientId(patientId);
+
             OCRRResultInfo labResult = resultService.getResultDetails(labResultId);
 
             return new MaterResultToResultDetailsTransformer().transform(labResult);

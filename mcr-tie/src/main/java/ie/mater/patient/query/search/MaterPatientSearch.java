@@ -18,15 +18,13 @@ package ie.mater.patient.query.search;
 import javax.xml.ws.soap.SOAPFaultException;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 import ie.mater.common.service.AbstractMaterService;
-import ie.mater.patient.query.ArrayOfPatientListArrayPatientListArray;
 import ie.mater.patient.query.PatientListArray;
 import ie.mater.patient.query.PatientMaster;
 import ie.mater.patient.query.PatientServiceSoap;
-import ie.mater.search.patient.ArrayOfPatientListArrayPatientListArray;
 import ie.mater.search.patient.PatientSearchServiceSoap;
 import org.apache.commons.collections4.CollectionUtils;
 import org.rippleosi.common.exception.ConfigurationException;
@@ -35,7 +33,6 @@ import org.rippleosi.patient.summary.model.PatientDetails;
 import org.rippleosi.patient.summary.model.PatientQueryParams;
 import org.rippleosi.patient.summary.model.PatientSummary;
 import org.rippleosi.patient.summary.search.PatientSearch;
-import org.rippleosi.search.patient.stats.PatientStatsSearch;
 import org.rippleosi.search.patient.stats.model.PatientTableQuery;
 import org.rippleosi.search.reports.table.model.ReportTableQuery;
 import org.rippleosi.search.setting.table.model.SettingTableQuery;
@@ -102,7 +99,8 @@ public class MaterPatientSearch extends AbstractMaterService implements PatientS
     @Override
     public List<PatientSummary> findPatientsBySearchString(PatientTableQuery tableQuery) {
         try {
-            ArrayOfPatientListArrayPatientListArray patientList = patientSearchService.byName(tableQuery.getSearchString());
+            ie.mater.search.patient.ArrayOfPatientListArrayPatientListArray patientList =
+                patientSearchService.byName(tableQuery.getSearchString());
 
             List<ie.mater.search.patient.PatientListArray> patients = patientList.getPatientListArray();
 
@@ -180,7 +178,7 @@ public class MaterPatientSearch extends AbstractMaterService implements PatientS
         String gender = params.getGender();
 
         try {
-            ArrayOfPatientListArrayPatientListArray search =
+            ie.mater.patient.query.ArrayOfPatientListArrayPatientListArray search =
                 patientService.getAdvancedSearch(surname, forename, DateFormatter.toSimpleDateString(dateOfBirth), gender);
 
             return CollectionUtils.collect(search.getPatientListArray(),
@@ -188,6 +186,9 @@ public class MaterPatientSearch extends AbstractMaterService implements PatientS
         }
         catch (SOAPFaultException sfe) {
             LOGGER.error("Could not parse summary list from advanced search.");
+        }
+        catch (NullPointerException npe) {
+            LOGGER.error("No patients could be found.");
         }
 
         return new ArrayList<>();

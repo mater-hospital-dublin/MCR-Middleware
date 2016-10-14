@@ -17,11 +17,14 @@ package ie.mater.search.patient.stats.search;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import ie.mater.common.service.AbstractMaterService;
+import org.apache.commons.collections4.CollectionUtils;
 import org.rippleosi.patient.summary.model.PatientSummary;
 import org.rippleosi.search.common.model.PageableTableQuery;
 import org.rippleosi.search.patient.stats.PatientStatsSearch;
+import org.rippleosi.search.patient.stats.model.SearchTablePatientDetails;
 import org.rippleosi.search.patient.stats.model.SearchTableResults;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +38,10 @@ public class MaterPatientStatsSearch extends AbstractMaterService implements Pat
         String totalPatients = String.valueOf(patientSummaries.size());
         searchTableResults.setTotalPatients(totalPatients);
 
-        searchTableResults.setPatientDetails(new ArrayList<>());
+        List<SearchTablePatientDetails> patientDetails =
+            CollectionUtils.collect(patientSummaries, new PatientSummaryToSearchTablePatientDetailsTransformer(), new ArrayList<>());
+
+        searchTableResults.setPatientDetails(patientDetails);
 
         return searchTableResults;
     }

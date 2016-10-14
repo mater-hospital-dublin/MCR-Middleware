@@ -43,9 +43,9 @@ public class MaterOrderSearch extends AbstractMaterService implements LabOrderSe
 
     @Override
     public List<LabOrderSummary> findAllLabOrders(String patientId) {
-        patientId = addTrailingSpacesToPatientId(patientId);
-
         try {
+            patientId = addTrailingSpacesToPatientId(patientId);
+
             List<OCRROrdersArray> orders = orderService.getOrderSummary(patientId).getOCRROrdersArray();
 
             return CollectionUtils.collect(orders, new MaterOrderToOrderSummaryTransformer(), new ArrayList<>());
@@ -63,6 +63,8 @@ public class MaterOrderSearch extends AbstractMaterService implements LabOrderSe
     @Override
     public LabOrderDetails findLabOrder(String patientId, String labOrderId) {
         try {
+            patientId = addTrailingSpacesToPatientId(patientId);
+
             OCRROrderInfo order = orderService.getOrderDetails(labOrderId);
 
             return new MaterOrderToOrderDetailsTransformer().transform(order);
