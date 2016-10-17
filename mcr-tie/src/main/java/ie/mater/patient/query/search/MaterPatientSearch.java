@@ -25,6 +25,7 @@ import ie.mater.common.service.AbstractMaterService;
 import ie.mater.patient.query.PatientListArray;
 import ie.mater.patient.query.PatientMaster;
 import ie.mater.patient.query.PatientServiceSoap;
+import ie.mater.search.patient.ArrayOfPatientListArrayPatientListArray;
 import ie.mater.search.patient.PatientSearchServiceSoap;
 import org.apache.commons.collections4.CollectionUtils;
 import org.rippleosi.common.exception.ConfigurationException;
@@ -144,12 +145,31 @@ public class MaterPatientSearch extends AbstractMaterService implements PatientS
 
     @Override
     public List<PatientSummary> findAllPatientsByDepartment(SettingTableQuery tableQuery) {
-        throw ConfigurationException.unimplementedTransaction(PatientSearch.class);
+        try {
+            ArrayOfPatientListArrayPatientListArray patientListArray = patientSearchService.byWard(tableQuery.getSearchString());
+
+            List<ie.mater.search.patient.PatientListArray> patients = patientListArray.getPatientListArray();
+
+            return CollectionUtils.collect(patients, new MaterPatientSearchListArrayToPatientSummaryTransformer(), new ArrayList<>());
+        }
+        catch (SOAPFaultException sfe) {
+            LOGGER.error("Could not parse patient summary list for ward '" + tableQuery.getSearchString() + "'.");
+        }
+        catch (NullPointerException npe) {
+            LOGGER.warn("Patient summary list relating to ward '" + tableQuery.getSearchString() + "' was null.");
+        }
+
+        return new ArrayList<>();
     }
 
     @Override
     public Long findPatientCountByDepartment(String department) {
-        throw ConfigurationException.unimplementedTransaction(PatientSearch.class);
+        SettingTableQuery tableQuery = new SettingTableQuery();
+        tableQuery.setSearchString(department);
+        tableQuery.setOrderType("ASC");
+        tableQuery.setPageNumber("1");
+
+        return (long) findAllPatientsByDepartment(tableQuery).size();
     }
 
     @Override
