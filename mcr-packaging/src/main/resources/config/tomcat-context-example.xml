@@ -48,5 +48,6 @@
     <Environment name="mater.tie.patientServiceUrl"         type="java.lang.String"  override="false" value="/csp/samples/Ripple.PatientService.cls"/>
     <Environment name="mater.tie.orderServiceUrl"           type="java.lang.String"  override="false" value="/csp/samples/Ripple.OrderService.cls"/>
     <Environment name="mater.tie.resultServiceUrl"          type="java.lang.String"  override="false" value="/csp/samples/Ripple.ResultService.cls"/>
+    <Environment name="mater.tie.searchServiceUrl"          type="java.lang.String"  override="false" value="/csp/samples/Ripple.PatientSearchService.cls"/>
 
 </Context>
