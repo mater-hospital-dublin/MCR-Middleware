@@ -34,7 +34,8 @@ public final class MaterDateFormatter {
         TimeZone.setDefault(TimeZone.getTimeZone("Europe/London"));
 
         try {
-            return DateUtils.parseDate(input, "yyyyMMddSSSS",
+            return DateUtils.parseDate(input, "yyyyMMddHHmm",
+                                       "yyyyMMddSSSS",
                                        "yyyy-MM-dd",
                                        "dd-MM-yyyy",
                                        "yyyy-MM-dd'T'HH:mm:ss",
